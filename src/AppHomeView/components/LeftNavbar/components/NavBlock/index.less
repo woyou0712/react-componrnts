@@ -1,0 +1,45 @@
+.nav-block {
+  width: 100%;
+  border-bottom: 1px solid #ccc;
+
+  .nav-block-header {
+    width: 100%;
+    height: 40px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    cursor: pointer;
+    &:hover {
+      background-color: rgba(200, 200, 200, 0.1);
+    }
+    .nav-title {
+      font-weight: 700;
+    }
+    .nav-switch {
+      width: 10px;
+      height: 10px;
+      border-top: 1px solid #333;
+      border-right: 1px solid #333;
+      transform: rotate(45deg);
+    }
+  }
+
+  .nav-block-content {
+    border-top: 1px solid #eee;
+    padding: 10px 20px;
+    display: none;
+  }
+
+  &.open {
+    .nav-block-header {
+      .nav-switch {
+        transform: rotate(135deg);
+      }
+    }
+    .nav-block-content {
+      display: block;
+    }
+  }
+}

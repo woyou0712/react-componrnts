@@ -1,4 +1,4 @@
 import React from "react";
-import MoveElement from "../MoveElement";
+import ViewNode from "../ViewNode";
 
-export default React.createContext<{ move?: MoveElement }>({});
+export default React.createContext<{ viewNode?: ViewNode }>({});

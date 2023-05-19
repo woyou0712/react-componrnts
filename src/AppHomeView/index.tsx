@@ -1,5 +1,5 @@
 /* eslint-disable */
-import React from "react";
+import React, { useEffect } from "react";
 import LeftNavbar from "./components/LeftNavbar";
 import AppView from "./components/AppView";
 import RightConf from "./components/RightConf";

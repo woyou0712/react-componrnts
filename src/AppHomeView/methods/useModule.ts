@@ -1,15 +1,15 @@
 import { useEffect, useState } from "react";
-import MoveElement from "../MoveElement";
+import ViewNode from "../ViewNode";
 
 function useModule() {
-  const [move, setMove] = useState<MoveElement>();
+  const [viewNode, setViewNode] = useState<ViewNode>();
 
   useEffect(() => {
-    setMove(new MoveElement());
-  });
+    setViewNode(new ViewNode({ viewContent: "#app-view" }));
+  }, []);
 
   return {
-    move,
+    viewNode,
   };
 }
 

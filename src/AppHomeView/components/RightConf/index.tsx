@@ -6,7 +6,7 @@ import "./index.less";
 
 function RightConf() {
   return (
-    <div className="RightConf">
+    <div className="right-config">
       <span>RightConf Component</span>
     </div>
   );
