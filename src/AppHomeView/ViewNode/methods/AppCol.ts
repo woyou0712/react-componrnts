@@ -1,3 +1,4 @@
+import { getKey } from "../../utils/Tools";
 import AppBlock from "./AppBlock";
 import AppItem from "./AppItem";
 import AppRow from "./AppRow";
@@ -12,7 +13,7 @@ export default class AppCol {
   private children: (AppBlock | AppItem)[] = [];
   constructor(option: AppColOption) {
     const { id, parent, partition, margin, padding, children } = option;
-    this.id = id;
+    this.id = id || getKey();
     this.parent = parent;
     this.partition = partition;
     this.margin = margin;

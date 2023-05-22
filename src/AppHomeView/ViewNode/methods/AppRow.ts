@@ -1,3 +1,4 @@
+import { getKey } from "../../utils/Tools";
 import AppBlock from "./AppBlock";
 import AppCol from "./AppCol";
 import AppHead from "./AppHead";
@@ -14,7 +15,7 @@ export default class AppRow {
 
   constructor(option: AppRowOption) {
     const { id, parent, partition, height, margin, padding, children } = option;
-    this.id = id;
+    this.id = id || getKey();
     this.parent = parent;
     this.partition = partition;
     this.height = height;

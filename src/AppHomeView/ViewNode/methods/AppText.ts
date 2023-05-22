@@ -1,3 +1,4 @@
+import { getKey } from "../../utils/Tools";
 import AppItem from "./AppItem";
 import { AppTextOption } from "./nodes.d";
 
@@ -13,7 +14,7 @@ export default class AppText {
   constructor(options: AppTextOption) {
     const { id, parent, textAlign, fontSize, fontWeight, color, background } =
       options;
-    this.id = id;
+    this.id = id || getKey();
     this.parent = parent;
     this.textAlign = textAlign;
     this.fontSize = fontSize;

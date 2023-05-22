@@ -26,7 +26,7 @@ export type Node = AppBlock | AppHead | AppItem | AppText | AppRow | AppCol;
 
 // 行（宽度100%）
 export type AppRowOption = {
-  id: string;
+  id?: string;
   parent?: AppBlock | AppHead;
   partition: Partition;
   height: string | number;
@@ -36,7 +36,7 @@ export type AppRowOption = {
 };
 // 列
 export type AppColOption = {
-  id: string;
+  id?: string;
   parent: AppRow;
   partition: Partition; // 占比
   margin: string | number;
@@ -46,7 +46,7 @@ export type AppColOption = {
 
 // 块级区域（宽度100%）
 export type AppBlockOption = {
-  id: string;
+  id?: string;
   key?: string;
   parent?: AppCol;
   background?: string;
@@ -61,7 +61,7 @@ export type AppBlockOption = {
 
 // 块级区域头部
 export type AppHeadOption = {
-  id: string;
+  id?: string;
   parent: AppBlock;
   children: AppRow[];
   border?: string;
@@ -69,7 +69,7 @@ export type AppHeadOption = {
 
 // 一个小应用
 export type AppItemOption = {
-  id: string;
+  id?: string;
   key?: string;
   parent: AppCol;
   background?: string;
@@ -80,7 +80,7 @@ export type AppItemOption = {
 
 // 文本
 export type AppTextOption = {
-  id: string;
+  id?: string;
   parent: AppItem;
   textAlign: string;
   fontSize: string | number;

@@ -31,7 +31,7 @@ export default class AppBlock {
       padding,
       children,
     } = options;
-    this.id = id;
+    this.id = id || getKey();
     this.key = key || getKey();
     this.parent = parent;
     this.background = background;

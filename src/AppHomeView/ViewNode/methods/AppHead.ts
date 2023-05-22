@@ -1,3 +1,4 @@
+import { getKey } from "../../utils/Tools";
 import AppBlock from "./AppBlock";
 import AppRow from "./AppRow";
 import { AppHeadOption } from "./nodes.d";
@@ -10,7 +11,7 @@ export default class AppHead {
 
   constructor(option: AppHeadOption) {
     const { id, parent, children, border } = option;
-    this.id = id;
+    this.id = id || getKey();
     this.parent = parent;
     this.children = children;
     this.border = border;

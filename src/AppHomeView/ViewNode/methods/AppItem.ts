@@ -15,7 +15,7 @@ export default class AppItem {
   constructor(option: AppItemOption) {
     const { id, key, parent, background, children, borderRadius, border } =
       option;
-    this.id = id;
+    this.id = id || getKey();
     this.key = key || getKey();
     this.parent = parent;
     this.background = background;
