@@ -2,6 +2,7 @@ import AppItem from "./AppItem";
 import { AppTextOption } from "./nodes.d";
 
 export default class AppText {
+  private id: string;
   private parent: AppItem;
   private textAlign: string;
   private fontSize: string | number;
@@ -10,8 +11,9 @@ export default class AppText {
   private background?: string;
 
   constructor(options: AppTextOption) {
-    const { parent, textAlign, fontSize, fontWeight, color, background } =
+    const { id, parent, textAlign, fontSize, fontWeight, color, background } =
       options;
+    this.id = id;
     this.parent = parent;
     this.textAlign = textAlign;
     this.fontSize = fontSize;
@@ -27,6 +29,9 @@ export default class AppText {
 
   set<K extends keyof AppTextOption>(key: K, value: AppTextOption[K]) {
     switch (key) {
+      case "id":
+        this.id = value as string;
+        break;
       case "parent":
         this.parent = value as AppItem;
         break;

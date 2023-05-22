@@ -1,18 +1,20 @@
 import AppBlock from "./AppBlock";
 import AppItem from "./AppItem";
 import AppRow from "./AppRow";
-import { Proportion, AppColOption } from "./nodes.d";
+import { Partition, AppColOption } from "./nodes.d";
 
 export default class AppCol {
+  private id: string;
   private parent: AppRow;
-  private proportion: Proportion; // 占比
+  private partition: Partition; // 占比
   private margin: string | number;
   private padding: string | number;
   private children: (AppBlock | AppItem)[] = [];
   constructor(option: AppColOption) {
-    const { parent, proportion, margin, padding, children } = option;
+    const { id, parent, partition, margin, padding, children } = option;
+    this.id = id;
     this.parent = parent;
-    this.proportion = proportion;
+    this.partition = partition;
     this.margin = margin;
     this.padding = padding;
     this.children = children;
@@ -23,11 +25,14 @@ export default class AppCol {
   }
   set<K extends keyof AppColOption>(key: K, value: AppColOption[K]) {
     switch (key) {
+      case "id":
+        this.id = value as string;
+        break;
       case "parent":
         this.parent = value as AppRow;
         break;
-      case "proportion":
-        this.proportion = value as Proportion;
+      case "partition":
+        this.partition = value as Partition;
         break;
       case "margin":
         this.margin = value as string | number;

@@ -4,7 +4,7 @@ import AppText from "./AppText";
 import { AppItemOption } from "./nodes.d";
 
 export default class AppItem {
-  private id?: string;
+  private id: string;
   private key: string;
   private parent: AppCol;
   private background?: string;

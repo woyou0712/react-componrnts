@@ -5,7 +5,8 @@ function useModule() {
   const [viewNode, setViewNode] = useState<ViewNode>();
 
   useEffect(() => {
-    setViewNode(new ViewNode({ viewContent: "#app-view" }));
+    const node = new ViewNode({ viewContent: "#app-view" });
+    setViewNode(node);
   }, []);
 
   return {

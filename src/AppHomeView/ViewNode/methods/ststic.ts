@@ -1,5 +1,7 @@
+import { NodeType } from "./nodes";
+
 // 元素类型
-export const nodeTypes = [
+export const nodeTypes: { type: NodeType; name: string }[] = [
   { type: "AppBlock", name: "块应用" },
   { type: "AppHead", name: "块头部" },
   { type: "AppItem", name: "子应用" },

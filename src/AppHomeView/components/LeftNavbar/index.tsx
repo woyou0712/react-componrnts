@@ -15,10 +15,11 @@ function LeftNavbar() {
         <div className="navbar-list">
           {ViewNode.nodeTypes.map((item) => (
             <div
-              className={`nav-item ${item.type}`}
+              className="nav-item"
+              draggable
               key={item.type}
               title={item.name}
-              onMouseDown={() => {
+              onDragStart={(e) => {
                 viewNode?.moveCreateNode(item.type);
               }}
             >

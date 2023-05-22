@@ -2,17 +2,17 @@ import { getKey } from "../../utils/Tools";
 import AppCol from "./AppCol";
 import AppHead from "./AppHead";
 import AppRow from "./AppRow";
-import { Proportion, AppBlockOption } from "./nodes.d";
+import { Partition, AppBlockOption } from "./nodes.d";
 
 export default class AppBlock {
-  private id?: string;
+  private id: string;
   private key: string;
   private parent?: AppCol;
   private background?: string;
   private borderRadius?: string | number;
   private border?: string;
-  private height?: string | number;
-  private proportion: Proportion;
+  private height: string | number = 50;
+  private partition: Partition;
   private margin: string | number = 10;
   private padding: string | number = 15;
   private children: (AppRow | AppHead)[] = [];
@@ -25,7 +25,7 @@ export default class AppBlock {
       background,
       border,
       borderRadius,
-      proportion,
+      partition,
       height,
       margin,
       padding,
@@ -37,7 +37,7 @@ export default class AppBlock {
     this.background = background;
     this.border = border;
     this.borderRadius = borderRadius;
-    this.proportion = proportion;
+    this.partition = partition;
     this.height = height;
     this.margin = margin;
     this.padding = padding;
@@ -69,8 +69,8 @@ export default class AppBlock {
       case "borderRadius":
         this.borderRadius = value as string | number;
         break;
-      case "proportion":
-        this.proportion = value as Proportion;
+      case "partition":
+        this.partition = value as Partition;
         break;
       case "height":
         this.height = value as string | number;

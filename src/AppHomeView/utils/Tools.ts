@@ -2,12 +2,12 @@ const baseString =
   "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_-+";
 
 export function querySelector(cssSelector: string) {
-  return document.querySelector(cssSelector);
+  return document.querySelector(cssSelector) as HTMLElement;
 }
 
 export function createElement(
   tagName: keyof HTMLElementTagNameMap,
-  options?: { id: string; class: string; text: string }
+  options?: { id?: string; class?: string; text?: string }
 ) {
   const tag = document.createElement(tagName);
   if (options) {
