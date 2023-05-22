@@ -10,6 +10,7 @@ export default class AppBlock {
   private parent?: AppCol;
   private background?: string;
   private borderRadius?: string | number;
+  private border?: string;
   private height?: string | number;
   private proportion: Proportion;
   private margin: string | number = 10;
@@ -22,6 +23,7 @@ export default class AppBlock {
       key,
       parent,
       background,
+      border,
       borderRadius,
       proportion,
       height,
@@ -33,6 +35,7 @@ export default class AppBlock {
     this.key = key || getKey();
     this.parent = parent;
     this.background = background;
+    this.border = border;
     this.borderRadius = borderRadius;
     this.proportion = proportion;
     this.height = height;
@@ -59,6 +62,9 @@ export default class AppBlock {
         break;
       case "background":
         this.background = value as string;
+        break;
+      case "border":
+        this.border = value as string;
         break;
       case "borderRadius":
         this.borderRadius = value as string | number;

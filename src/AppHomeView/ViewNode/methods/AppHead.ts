@@ -5,11 +5,13 @@ import { AppHeadOption } from "./nodes.d";
 export default class AppHead {
   private parent: AppBlock;
   private children: AppRow;
+  private border?: string;
 
   constructor(option: AppHeadOption) {
-    const { parent, children } = option;
+    const { parent, children, border } = option;
     this.parent = parent;
     this.children = children;
+    this.border = border;
   }
 
   get(key: keyof AppHeadOption) {
@@ -22,6 +24,9 @@ export default class AppHead {
         break;
       case "children":
         this.children = value as AppRow;
+        break;
+      case "border":
+        this.border = value as string;
         break;
     }
     return this;

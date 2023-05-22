@@ -37,6 +37,7 @@ export type AppBlockOption = {
   key?: string;
   parent?: AppCol;
   background?: string;
+  border?: string;
   borderRadius: string | number;
   proportion: Proportion;
   height: string | number;
@@ -49,6 +50,7 @@ export type AppBlockOption = {
 export type AppHeadOption = {
   parent: AppBlock;
   children: AppRow;
+  border?: string;
 };
 
 // 一个小应用
@@ -57,6 +59,8 @@ export type AppItemOption = {
   key?: string;
   parent: AppCol;
   background?: string;
+  border?: string;
+  borderRadius: string | number;
   children: AppText[];
 };
 

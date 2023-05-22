@@ -8,14 +8,19 @@ export default class AppItem {
   private key: string;
   private parent: AppCol;
   private background?: string;
+  private border?: string;
+  private borderRadius: string | number;
   private children: AppText[] = [];
 
   constructor(option: AppItemOption) {
-    const { id, key, parent, background, children } = option;
+    const { id, key, parent, background, children, borderRadius, border } =
+      option;
     this.id = id;
     this.key = key || getKey();
     this.parent = parent;
     this.background = background;
+    this.borderRadius = borderRadius;
+    this.border = border;
     this.children = children;
   }
 
@@ -35,6 +40,12 @@ export default class AppItem {
         break;
       case "background":
         this.background = value as string;
+        break;
+      case "borderRadius":
+        this.borderRadius = value as string | number;
+        break;
+      case "border":
+        this.border = value as string;
         break;
       case "children":
         this.children = value as AppText[];
