@@ -1,0 +1,19 @@
+.create-form-build {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  & > div {
+    height: 100%;
+    overflow-y: auto;
+  }
+  & > .left-block {
+    width: 400px;
+  }
+  & > .center-block {
+    width: ~"calc(100% - 800px)";
+  }
+  & > .right-block {
+    width: 400px;
+  }
+}
