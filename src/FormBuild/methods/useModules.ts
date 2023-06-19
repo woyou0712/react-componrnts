@@ -1,16 +1,11 @@
-import { useEffect, useState } from "react";
-import { FormModuleOption } from "./types";
+import { useState } from "react";
 import FormModule from "./FormModule";
 
-export default function useModule(option?: FormModuleOption) {
-  const [modules, setModules] = useState<FormModule>();
+export default function useModule() {
+  const [modules, setModules] = useState({ form: new FormModule() });
 
-  useEffect(() => {
-    if (option) {
-      const form = new FormModule(option);
-      setModules(form);
-    }
-  }, [option]);
+  modules.form.removeOnCaheng();
+  modules.form.onChange(() => setModules(modules));
 
   return modules;
 }
