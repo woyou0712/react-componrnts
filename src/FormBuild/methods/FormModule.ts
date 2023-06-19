@@ -35,12 +35,21 @@ export default class FormModule {
     this._labelWidth = v;
     this._onChange();
   }
-  private _disabled = false; // 是否禁用
+  private _disabled = false; // 是否禁用表单
   get disabled() {
     return this._disabled;
   }
   set disabled(v) {
     this._disabled = v;
+    this._onChange();
+  }
+
+  private _activeItem?: FormItem; // 当前激活的对象
+  get activeItem() {
+    return this._activeItem;
+  }
+  set activeItem(v) {
+    this._activeItem = v;
     this._onChange();
   }
 
@@ -73,9 +82,9 @@ export default class FormModule {
         this.disabled = option.disabled || false;
       }
       if ("children" in option) {
-        this.children = (option.children || []).map(
-          (option) => new FormItem(option)
-        );
+        (option.children || []).forEach((option) => {
+          this.createItem(option);
+        });
       }
     }
   }
@@ -98,8 +107,9 @@ export default class FormModule {
   }
 
   createItem(option?: FormItemOption) {
-    this._children.push(new FormItem(option));
-    this._onChange();
+    const item = new FormItem(option);
+    this._children.push(item);
+    item.onChange(() => this._onChange());
     return this;
   }
 }

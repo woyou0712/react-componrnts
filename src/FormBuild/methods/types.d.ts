@@ -40,6 +40,7 @@ export interface FormItemOption {
   maxLength?: number; // 最大输入数量
   connectTable?: string; // 关联表
   connectCol?: string; // 关联字段
+  queryParams?: boolean; // 是否用于查询入参
 
   require?: boolean; // 是否必须
 

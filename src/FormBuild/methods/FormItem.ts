@@ -58,6 +58,15 @@ export default class FormItem {
     this._connectCol = v;
     this._onChange();
   }
+  private _queryParams = false; // 是否用于查询入参
+  get queryParams() {
+    return this._queryParams;
+  }
+  set queryParams(v) {
+    this._queryParams = v;
+    this._onChange();
+  }
+
   private _require = false; // 是否必须
   get require() {
     return this._require;
@@ -112,6 +121,9 @@ export default class FormItem {
       }
       if ("connectCol" in option) {
         this.connectCol = option.connectCol;
+      }
+      if ("queryParams" in option) {
+        this.queryParams = option.queryParams || false;
       }
       if ("require" in option) {
         this.require = option.require || false;
