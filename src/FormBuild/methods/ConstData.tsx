@@ -1,6 +1,6 @@
-import { FormItemType } from "./types.d";
+import { ItemTypeOption } from "./types.d";
 
-export const ItemTypeOptions: { value: FormItemType; label: string }[] = [
+export const ItemTypeOptions: ItemTypeOption[] = [
   { value: "input", label: "文本输入" },
   { value: "textarea", label: "多行文本" },
   { value: "password", label: "密码输入" },
