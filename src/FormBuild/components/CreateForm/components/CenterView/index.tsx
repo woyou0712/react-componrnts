@@ -6,7 +6,7 @@ import "./index.less";
 
 function CenterView() {
   return (
-    <div className="CenterView">
+    <div className="create-form-center-view">
       <span>CenterView Component</span>
     </div>
   );

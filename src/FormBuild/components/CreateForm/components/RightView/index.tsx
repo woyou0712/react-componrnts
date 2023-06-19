@@ -6,7 +6,7 @@ import "./index.less";
 
 function RightView() {
   return (
-    <div className="RightView">
+    <div className="create-form-right-view">
       <span>RightView Component</span>
     </div>
   );

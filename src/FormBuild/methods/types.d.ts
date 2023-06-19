@@ -30,7 +30,7 @@ export type FormItemType =
   | "block"
   | "button";
 
-export type ItemTypeOption = { value: FormItemType; label: string };
+export type ItemTypeOption = { type: FormItemType; label: string };
 
 export type DataType = "number" | "datetime" | "string";
 export type InputValueType = string | number | Date;

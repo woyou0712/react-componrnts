@@ -4,7 +4,7 @@ import {
   Size,
   Align,
   FormItemOption,
-  FormItemType,
+  ItemTypeOption,
 } from "./types.d";
 export default class FormModule {
   private static _changeTimeout?: NodeJS.Timeout; // 防抖定时器
@@ -77,7 +77,7 @@ export default class FormModule {
     this._moveingItem = v;
     this._onChange();
   }
-  private _createingType?: FormItemType; // 当前正在创建的类型
+  private _createingType?: ItemTypeOption; // 当前正在创建的类型
   get createingType() {
     return this._createingType;
   }

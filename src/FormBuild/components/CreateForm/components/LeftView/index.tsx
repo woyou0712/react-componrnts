@@ -8,8 +8,8 @@ import "./index.less";
 function LeftView() {
   return (
     <div className="create-form-left-view">
-      {ItemTypeOptions.map((type) => (
-        <TypeItem key={type.value} type={type} />
+      {ItemTypeOptions.map((item) => (
+        <TypeItem key={item.type} data={item} />
       ))}
     </div>
   );
