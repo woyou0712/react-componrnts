@@ -29,7 +29,7 @@ function TypeItem({ data }: { data: ItemTypeOption }) {
 
   return (
     <div ref={drag} className="create-form-left-type">
-      {data.label}
+      {data.name}
     </div>
   );
 }
