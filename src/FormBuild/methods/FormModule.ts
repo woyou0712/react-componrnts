@@ -9,6 +9,15 @@ import {
 export default class FormModule {
   private static _changeTimeout?: NodeJS.Timeout; // 防抖定时器
   /** ========================= 基础属性 Start ========================= */
+  private _id = Date.now();
+  get id() {
+    return this._id;
+  }
+  set id(v) {
+    this._id = v;
+    this._onChange();
+  }
+
   private _name = `table_${Date.now()}`; // 表名称
   get name() {
     return this._name;
@@ -101,6 +110,9 @@ export default class FormModule {
   }
 
   setOption(option: FormModuleOption) {
+    if ("id" in option) {
+      this.id = option.id || Date.now();
+    }
     if ("name" in option) {
       this.name = option.name || `table_${Date.now()}`;
     }

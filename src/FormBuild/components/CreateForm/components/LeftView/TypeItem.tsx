@@ -7,15 +7,15 @@ import { ItemTypeOption } from "../../../../methods/types.d";
 import "./index.less";
 
 function TypeItem({ data }: { data: ItemTypeOption }) {
-  const module = useContext(context);
+  const modules = useContext(context);
 
   const [{ isDragging }, drag] = useDrag(() => ({
-    type: "box",
+    type: modules.dragType.CREATE,
     item() {
       return data;
     },
     end(item, monitor) {
-      module.form.createingType = undefined;
+      modules.form.createingType = undefined;
       console.log("拖动结束", item, monitor.getDropResult());
     },
     collect(monitor) {
@@ -24,7 +24,7 @@ function TypeItem({ data }: { data: ItemTypeOption }) {
   }));
 
   if (isDragging) {
-    module.form.createingType = data;
+    modules.form.createingType = data;
   }
 
   return (

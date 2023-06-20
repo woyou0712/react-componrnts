@@ -1,4 +1,4 @@
-import { ItemTypeOption } from "./types.d";
+import { DragType, ItemTypeOption } from "./types.d";
 
 export const ItemTypeOptions: ItemTypeOption[] = [
   { type: "input", name: "文本输入" },
@@ -20,3 +20,8 @@ export const ItemTypeOptions: ItemTypeOption[] = [
   { type: "block", name: "容器" },
   { type: "button", name: "按钮" },
 ];
+
+export const dragType: DragType = {
+  CREATE: "create",
+  MOVE: "move",
+};

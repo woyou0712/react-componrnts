@@ -2,6 +2,7 @@ export type Align = "left" | "center" | "right";
 export type Size = "large" | "default" | "small";
 
 export interface FormModuleOption {
+  id?: number;
   name?: string; // 表名称
   formSize?: Size; // 表单大小
   labelAlign?: Align; // label对齐方式
@@ -36,6 +37,7 @@ export type DataType = "number" | "datetime" | "string";
 export type InputValueType = string | number | Date;
 
 export interface FormItemOption {
+  id?: number;
   type?: FormItemType; // 组件类型
   name?: string; // 字段名称
   dataType?: DataType; // 数据类型
@@ -48,6 +50,12 @@ export interface FormItemOption {
 
   placeholder?: string; // 占位提示符
   defaultValue?: InputValueType | InputValueType[]; // 默认值
+  colspan?: number; // 格栅布局宽度
 
   attribute?: { [key: string]: any }; // 其他属性
+}
+
+interface DragType {
+  CREATE: string;
+  MOVE: string;
 }
