@@ -36,7 +36,7 @@ export type FormItemType =
 export type ItemTypeOption = { type: FormItemType; label: string };
 
 export type DataType = "number" | "datetime" | "string";
-export type InputValueType = string | number | Date;
+export type InputValueType = string | number | Date | boolean;
 
 export interface FormItemOption {
   id?: number;

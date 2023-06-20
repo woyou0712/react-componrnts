@@ -1,18 +1,34 @@
 /* eslint-disable */
-import React from "react";
+import React, { useContext } from "react";
 import PropTypes from "prop-types";
+import { Form, Radio } from "antd";
+import FormItem from "../../methods/FormItem";
+import context from "../../methods/context";
 
 import "./index.less";
 
-function FormRadio() {
+function FormRadio({ data }: { data: FormItem }) {
+  const modules = useContext(context);
+  const { form } = modules;
+
   return (
-    <div className="FormRadio">
-      <span>FormRadio Component</span>
-    </div>
+    <Form.Item
+      name={data.name}
+      label={data.label}
+      required={data.required}
+      rules={data.rules}
+    >
+      <Radio.Group
+        defaultValue={data.defaultValue}
+        disabled={data.disabled || form.disabled}
+      />
+    </Form.Item>
   );
 }
 
-FormRadio.propTypes = {};
+FormRadio.propTypes = {
+  data: PropTypes.object,
+};
 
 FormRadio.defaultProps = {};
 

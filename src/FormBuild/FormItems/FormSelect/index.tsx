@@ -1,18 +1,35 @@
 /* eslint-disable */
-import React from "react";
+import React, { useContext } from "react";
 import PropTypes from "prop-types";
+import { Form, Select } from "antd";
+import FormItem from "../../methods/FormItem";
+import context from "../../methods/context";
 
 import "./index.less";
 
-function FormSelect() {
+function FormSelect({ data }: { data: FormItem }) {
+  const modules = useContext(context);
+  const { form } = modules;
+
   return (
-    <div className="FormSelect">
-      <span>FormSelect Component</span>
-    </div>
+    <Form.Item
+      name={data.name}
+      label={data.label}
+      required={data.required}
+      rules={data.rules}
+    >
+      <Select
+        placeholder={data.placeholder}
+        disabled={data.disabled || form.disabled}
+        defaultValue={data.defaultValue as string}
+      />
+    </Form.Item>
   );
 }
 
-FormSelect.propTypes = {};
+FormSelect.propTypes = {
+  data: PropTypes.object,
+};
 
 FormSelect.defaultProps = {};
 

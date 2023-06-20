@@ -34,15 +34,15 @@ function FormItems({ data }: { data: FormItem }) {
     case "number":
       return <FormNumber data={data} />;
     case "select":
-      return <FormSelect />;
+      return <FormSelect data={data} />;
     case "cascader":
-      return <FormCascader />;
+      return <FormCascader data={data} />;
     case "radio":
-      return <FormRadio />;
+      return <FormRadio data={data} />;
     case "checkbox":
-      return <FormCheckbox />;
+      return <FormCheckbox data={data} />;
     case "switch":
-      return <FormSwitch />;
+      return <FormSwitch data={data} />;
     case "slider":
       return <FormSlider />;
     case "time":

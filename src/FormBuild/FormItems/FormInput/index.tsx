@@ -1,12 +1,16 @@
 /* eslint-disable */
-import React from "react";
+import React, { useContext } from "react";
 import PropTypes from "prop-types";
 import { Form, Input } from "antd";
 import FormItem from "../../methods/FormItem";
+import context from "../../methods/context";
 
 import "./index.less";
 
 function FormInput({ data }: { data: FormItem }) {
+  const modules = useContext(context);
+  const { form } = modules;
+
   return (
     <Form.Item
       name={data.name}
@@ -16,7 +20,7 @@ function FormInput({ data }: { data: FormItem }) {
     >
       <Input
         placeholder={data.placeholder}
-        disabled={data.disabled}
+        disabled={data.disabled || form.disabled}
         maxLength={data.maxLength}
         defaultValue={data.defaultValue as string}
       />
