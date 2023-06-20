@@ -1,15 +1,16 @@
 import { Rule } from "rc-field-form/lib/interface";
 import { Moment } from "moment";
+import { SizeType } from "antd/lib/config-provider/SizeContext";
 
-export type Align = "left" | "center" | "right";
-export type Size = "large" | "default" | "small";
+export type LabelAlign = "left" | "right";
 
 export interface FormModuleOption {
   id?: number;
-  name?: string; // 表名称
-  formSize?: Size; // 表单大小
-  labelAlign?: Align; // label对齐方式
-  labelWidth?: string; // label宽度
+  name?: string; // 表名
+  label?: string; // 表备注
+  formSize?: SizeType; // 表单尺寸
+  labelAlign?: LabelAlign; // label对齐方式
+  labelCol?: number; // label宽度
   disabled?: boolean; // 是否禁用
   children?: FormItemOption[]; // 表单字段列表
 }

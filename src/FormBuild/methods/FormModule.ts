@@ -1,11 +1,12 @@
 import FormItem from "./FormItem";
 import {
   FormModuleOption,
-  Size,
-  Align,
+  LabelAlign,
   FormItemOption,
   ItemTypeOption,
 } from "./types.d";
+import { SizeType } from "antd/lib/config-provider/SizeContext";
+
 export default class FormModule {
   private static _changeTimeout?: NodeJS.Timeout; // 防抖定时器
   /** ========================= 基础属性 Start ========================= */
@@ -26,7 +27,16 @@ export default class FormModule {
     this._name = v;
     this._onChange();
   }
-  private _formSize: Size = "default"; // 表单大小
+
+  private _label = `新建表`; // 表名称
+  get label() {
+    return this._label;
+  }
+  set label(v) {
+    this._label = v;
+    this._onChange();
+  }
+  private _formSize: SizeType = "middle"; // 表单大小
   get formSize() {
     return this._formSize;
   }
@@ -34,7 +44,7 @@ export default class FormModule {
     this._formSize = v;
     this._onChange();
   }
-  private _labelAlign: Align = "right"; // label对齐方式
+  private _labelAlign: LabelAlign = "right"; // label对齐方式
   get labelAlign() {
     return this._labelAlign;
   }
@@ -42,11 +52,11 @@ export default class FormModule {
     this._labelAlign = v;
     this._onChange();
   }
-  private _labelWidth = "100px"; // label宽度
-  get labelWidth() {
+  private _labelWidth = 3; // label宽度
+  get labelCol() {
     return this._labelWidth;
   }
-  set labelWidth(v) {
+  set labelCol(v) {
     this._labelWidth = v;
     this._onChange();
   }
@@ -110,25 +120,28 @@ export default class FormModule {
   }
 
   setOption(option: FormModuleOption) {
-    if ("id" in option) {
-      this.id = option.id || Date.now();
+    if (option.id !== undefined) {
+      this.id = option.id;
     }
-    if ("name" in option) {
-      this.name = option.name || `table_${Date.now()}`;
+    if (option.name !== undefined) {
+      this.name = option.name;
     }
-    if ("formSize" in option) {
-      this.formSize = option.formSize || "default";
+    if (option.label !== undefined) {
+      this.label = option.label;
     }
-    if ("labelAlign" in option) {
-      this.labelAlign = option.labelAlign || "right";
+    if (option.formSize !== undefined) {
+      this.formSize = option.formSize;
     }
-    if ("labelWidth" in option) {
-      this.labelWidth = option.labelWidth || "100px";
+    if (option.labelAlign !== undefined) {
+      this.labelAlign = option.labelAlign;
     }
-    if ("disabled" in option) {
-      this.disabled = option.disabled || false;
+    if (option.labelCol !== undefined) {
+      this.labelCol = option.labelCol;
     }
-    if ("children" in option) {
+    if (option.disabled !== undefined) {
+      this.disabled = option.disabled;
+    }
+    if (option.children !== undefined) {
       (option.children || []).forEach((option) => {
         this.createItem(option);
       });
@@ -148,7 +161,7 @@ export default class FormModule {
   createItem(option?: FormItemOption) {
     const item = new FormItem(option);
     this._children.push(item);
-    item.onChange(() => this._onChange());
+    this.activeItem = item;
     return this;
   }
 }
