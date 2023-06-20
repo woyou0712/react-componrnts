@@ -4,6 +4,7 @@ import {
   LabelAlign,
   FormItemOption,
   ItemTypeOption,
+  FormLayout,
 } from "./types.d";
 import { SizeType } from "antd/lib/config-provider/SizeContext";
 
@@ -66,6 +67,22 @@ export default class FormModule {
   }
   set disabled(v) {
     this._disabled = v;
+    this._onChange();
+  }
+  private _layout: FormLayout = "horizontal"; // 表单布局
+  get layout() {
+    return this._layout;
+  }
+  set layout(v) {
+    this._layout = v;
+    this._onChange();
+  }
+  private _colon = true; // 是否显示 label 后面的冒号
+  get colon() {
+    return this._colon;
+  }
+  set colon(v) {
+    this._colon = v;
     this._onChange();
   }
 
@@ -140,6 +157,12 @@ export default class FormModule {
     }
     if (option.disabled !== undefined) {
       this.disabled = option.disabled;
+    }
+    if (option.layout !== undefined) {
+      this.layout = option.layout;
+    }
+    if (option.colon !== undefined) {
+      this.colon = option.colon;
     }
     if (option.children !== undefined) {
       (option.children || []).forEach((option) => {

@@ -3,6 +3,7 @@ import { Moment } from "moment";
 import { SizeType } from "antd/lib/config-provider/SizeContext";
 
 export type LabelAlign = "left" | "right";
+export type FormLayout = "horizontal" | "vertical" | "inline";
 
 export interface FormModuleOption {
   id?: number;
@@ -12,6 +13,8 @@ export interface FormModuleOption {
   labelAlign?: LabelAlign; // label对齐方式
   labelCol?: number; // label宽度
   disabled?: boolean; // 是否禁用
+  layout?: FormLayout; // 表单布局
+  colon?: boolean; // 是否显示 label 后面的冒号
   children?: FormItemOption[]; // 表单字段列表
 }
 

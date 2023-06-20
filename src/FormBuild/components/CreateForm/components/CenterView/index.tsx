@@ -29,15 +29,25 @@ function CenterView() {
   const [size, setSize] = useState<SizeType>(modules.form.formSize);
   const [algin, setAlgin] = useState<LabelAlign>(modules.form.labelAlign);
   const [col, setCol] = useState<number>(modules.form.labelCol);
+  const [colon, setColon] = useState<boolean>(modules.form.colon);
+  const [layout, setLayout] = useState(modules.form.layout);
   modules.form.onChange((form) => {
     setChildren([...form.children]);
     setSize(form.formSize);
     setAlgin(form.labelAlign);
     setCol(form.labelCol);
+    setColon(form.colon);
+    setLayout(form.layout);
   });
   return (
     <div className="create-form-center-view" ref={drop}>
-      <Form size={size} labelAlign={algin} labelCol={{ span: col }}>
+      <Form
+        size={size}
+        labelAlign={algin}
+        labelCol={{ span: col }}
+        colon={colon}
+        layout={layout}
+      >
         <Row>
           {children.map((item) => (
             <Col span={item.colspan} key={item.id}>

@@ -19,8 +19,9 @@ function FormOption() {
       labelAlign: form.labelAlign,
       labelCol: form.labelCol,
       disabled: form.disabled,
+      colon: form.colon,
+      layout: form.layout,
     };
-    console.log(values);
     formV.setFieldsValue(values);
   };
 
@@ -58,7 +59,17 @@ function FormOption() {
         <Form.Item label="标签宽度" name="labelCol">
           <Slider min={1} max={24} />
         </Form.Item>
-        <Form.Item label="禁用表单" name="disabled">
+        <Form.Item label="禁用表单" name="disabled" valuePropName="checked">
+          <Switch />
+        </Form.Item>
+        <Form.Item label="表单布局" name="layout">
+          <Radio.Group buttonStyle="solid">
+            <Radio.Button value="vertical">上下</Radio.Button>
+            <Radio.Button value="horizontal">默认</Radio.Button>
+            <Radio.Button value="inline">行内</Radio.Button>
+          </Radio.Group>
+        </Form.Item>
+        <Form.Item label="显示冒号" name="colon" valuePropName="checked">
           <Switch />
         </Form.Item>
       </Form>
