@@ -2,7 +2,7 @@
 import React, { useContext, useMemo, useState } from "react";
 import PropTypes from "prop-types";
 import { useDrop } from "react-dnd";
-import { Row, Col } from "antd";
+import { Row, Col, Form } from "antd";
 import { ItemTypeOption } from "../../../../methods/types";
 import MoveItem from "./MoveItem";
 import context from "../../../../methods/context";
@@ -27,16 +27,17 @@ function CenterView() {
   modules.form.onChange((form) => {
     setChildren(form.children);
   });
-
   return (
     <div className="create-form-center-view" ref={drop}>
-      <Row>
-        {children.map((item) => (
-          <Col span={item.colspan} key={item.id}>
-            <MoveItem data={item} />
-          </Col>
-        ))}
-      </Row>
+      <Form>
+        <Row>
+          {children.map((item) => (
+            <Col span={item.colspan} key={item.id}>
+              <MoveItem data={item} />
+            </Col>
+          ))}
+        </Row>
+      </Form>
     </div>
   );
 }

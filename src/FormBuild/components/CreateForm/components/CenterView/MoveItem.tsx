@@ -5,7 +5,6 @@ import { useDrag, useDrop } from "react-dnd";
 import FormItem from "../../../../methods/FormItem";
 import FormItems from "../../../../FormItems";
 import useModules from "../../../../methods/useModules";
-import { ItemTypeOption } from "../../../../methods/types";
 
 import "./index.less";
 
@@ -43,7 +42,6 @@ function MoveItem({ data }: { data: FormItem }) {
     },
     drop(item) {
       if (item.id) {
-        
       }
     },
     hover(item, monitor) {},

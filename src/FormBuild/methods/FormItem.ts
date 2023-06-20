@@ -1,3 +1,4 @@
+import { Rule } from "rc-field-form/lib/interface";
 import {
   FormItemOption,
   FormItemType,
@@ -32,6 +33,15 @@ export default class FormItem {
   }
   set name(v) {
     this._name = v;
+    this._onChange();
+  }
+
+  private _label = `name_${Date.now()}`; // 字段名称
+  get label() {
+    return this._label;
+  }
+  set label(v) {
+    this._label = v;
     this._onChange();
   }
   private _dataType: DataType = "string"; // 数据类型
@@ -75,15 +85,49 @@ export default class FormItem {
     this._queryParams = v;
     this._onChange();
   }
-
-  private _require = false; // 是否必须
-  get require() {
-    return this._require;
+  private _disabled = false; // 是否禁用
+  get disabled() {
+    return this._disabled;
   }
-  set require(v) {
-    this._require = v;
+  set disabled(v) {
+    this._disabled = v;
     this._onChange();
   }
+
+  private _required = false; // 是否必须
+  get required() {
+    return this._required;
+  }
+  set required(v) {
+    this._required = v;
+    if (v) {
+      if (this._rules && this._rules.length) {
+        this._rules[0] = Object.assign(this._rules[0], { required: v });
+      } else {
+        this._rules = [{ required: v }];
+      }
+    } else {
+      if (this._rules && this._rules.length) {
+        const rules = this._rules;
+        rules.forEach((rule, i) => {
+          rules[i] = Object.assign(rule, { required: v });
+        });
+      }
+    }
+    this._onChange();
+  }
+  private _rules?: Rule[]; // 校验规则，设置字段的校验逻辑
+  get rules() {
+    return this._rules;
+  }
+  set rules(v) {
+    this._rules = v;
+    if (!v || !v.length) {
+      this._required = false;
+    }
+    this._onChange();
+  }
+
   private _placeholder?: string; // 占位提示符
   get placeholder() {
     return this._placeholder;
@@ -100,7 +144,7 @@ export default class FormItem {
     this._defaultValue = v;
     this._onChange();
   }
-  private _rowspan = 12; // 格栅布局宽度
+  private _rowspan = 24; // 格栅布局宽度
   get colspan() {
     return this._rowspan;
   }
@@ -121,6 +165,7 @@ export default class FormItem {
 
   constructor(option?: FormItemOption) {
     if (option) this.setOption(option);
+    if (!this.placeholder) this._placeholder = this._label;
   }
 
   setOption(option: FormItemOption) {
@@ -132,6 +177,9 @@ export default class FormItem {
     }
     if ("name" in option) {
       this.name = option.name || `name_${Date.now()}`;
+    }
+    if ("label" in option) {
+      this.label = option.label || `label_${Date.now()}`;
     }
     if ("dataType" in option) {
       this.dataType = option.dataType || "string";
@@ -148,8 +196,14 @@ export default class FormItem {
     if ("queryParams" in option) {
       this.queryParams = option.queryParams || false;
     }
-    if ("require" in option) {
-      this.require = option.require || false;
+    if ("disabled" in option) {
+      this.disabled = option.disabled || false;
+    }
+    if ("required" in option) {
+      this.required = option.required || false;
+    }
+    if ("rules" in option) {
+      this.rules = option.rules;
     }
     if ("placeholder" in option) {
       this.placeholder = option.placeholder;

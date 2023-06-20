@@ -1,12 +1,12 @@
 /* eslint-disable */
 import React from "react";
 import PropTypes from "prop-types";
-import { Form, Input } from "antd";
+import { Form, InputNumber } from "antd";
 import FormItem from "../../methods/FormItem";
 
 import "./index.less";
 
-function FormTextarea({ data }: { data: FormItem }) {
+function FormNumber({ data }: { data: FormItem }) {
   return (
     <Form.Item
       name={data.name}
@@ -14,20 +14,19 @@ function FormTextarea({ data }: { data: FormItem }) {
       required={data.required}
       rules={data.rules}
     >
-      <Input.TextArea
+      <InputNumber
         placeholder={data.placeholder}
         disabled={data.disabled}
-        maxLength={data.maxLength}
         defaultValue={data.defaultValue as string}
       />
     </Form.Item>
   );
 }
 
-FormTextarea.propTypes = {
+FormNumber.propTypes = {
   data: PropTypes.object,
 };
 
-FormTextarea.defaultProps = {};
+FormNumber.defaultProps = {};
 
-export default FormTextarea;
+export default FormNumber;

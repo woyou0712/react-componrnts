@@ -5,7 +5,7 @@ import FormItem from "../methods/FormItem";
 import FormInput from "./FormInput";
 import FormTextarea from "./FormTextarea";
 import FormPassword from "./FormPassword";
-import FormCount from "./FormCount";
+import FormNumber from "./FormNumber";
 import FormSelect from "./FormSelect";
 import FormCascader from "./FormCascader";
 import FormRadio from "./FormRadio";
@@ -28,11 +28,11 @@ function FormItems({ data }: { data: FormItem }) {
     case "input":
       return <FormInput data={data} />;
     case "textarea":
-      return <FormTextarea />;
+      return <FormTextarea data={data} />;
     case "password":
-      return <FormPassword />;
-    case "count":
-      return <FormCount />;
+      return <FormPassword data={data} />;
+    case "number":
+      return <FormNumber data={data} />;
     case "select":
       return <FormSelect />;
     case "cascader":
