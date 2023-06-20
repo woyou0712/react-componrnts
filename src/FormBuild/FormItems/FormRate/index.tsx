@@ -1,18 +1,34 @@
 /* eslint-disable */
-import React from "react";
+import React, { useContext } from "react";
 import PropTypes from "prop-types";
+import { Form, Rate } from "antd";
+import FormItem from "../../methods/FormItem";
+import context from "../../methods/context";
 
 import "./index.less";
 
-function FormRate() {
+function FormRate({ data }: { data: FormItem }) {
+  const modules = useContext(context);
+  const { form } = modules;
+
   return (
-    <div className="FormRate">
-      <span>FormRate Component</span>
-    </div>
+    <Form.Item
+      name={data.name}
+      label={data.label}
+      required={data.required}
+      rules={data.rules}
+    >
+      <Rate
+        disabled={data.disabled || form.disabled}
+        defaultValue={data.defaultValue as number}
+      />
+    </Form.Item>
   );
 }
 
-FormRate.propTypes = {};
+FormRate.propTypes = {
+  data: PropTypes.object,
+};
 
 FormRate.defaultProps = {};
 

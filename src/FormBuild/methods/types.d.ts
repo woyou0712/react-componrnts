@@ -1,4 +1,5 @@
 import { Rule } from "rc-field-form/lib/interface";
+import { Moment } from "moment";
 
 export type Align = "left" | "center" | "right";
 export type Size = "large" | "default" | "small";
@@ -36,7 +37,7 @@ export type FormItemType =
 export type ItemTypeOption = { type: FormItemType; label: string };
 
 export type DataType = "number" | "datetime" | "string";
-export type InputValueType = string | number | Date | boolean;
+export type InputValueType = string | number | Moment | boolean;
 
 export interface FormItemOption {
   id?: number;
@@ -53,7 +54,7 @@ export interface FormItemOption {
   required?: boolean; // 必填样式
   rules?: Rule[]; // 校验规则，设置字段的校验逻辑
 
-  placeholder?: string; // 占位提示符
+  placeholder?: string | [string, string]; // 占位提示符
   defaultValue?: InputValueType | InputValueType[]; // 默认值
   colspan?: number; // 格栅布局宽度
 

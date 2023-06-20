@@ -19,7 +19,7 @@ function FormCascader({ data }: { data: FormItem }) {
       rules={data.rules}
     >
       <Cascader
-        placeholder={data.placeholder}
+        placeholder={data.placeholder as string}
         disabled={data.disabled || form.disabled}
         defaultValue={data.defaultValue as any[]}
       />

@@ -18,7 +18,7 @@ function FormNumber({ data }: { data: FormItem }) {
       rules={data.rules}
     >
       <InputNumber
-        placeholder={data.placeholder}
+        placeholder={data.placeholder as string}
         disabled={data.disabled || form.disabled}
         maxLength={data.maxLength}
         defaultValue={data.defaultValue as string}

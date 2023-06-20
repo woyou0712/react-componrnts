@@ -128,7 +128,7 @@ export default class FormItem {
     this._onChange();
   }
 
-  private _placeholder?: string; // 占位提示符
+  private _placeholder?: string | [string, string]; // 占位提示符
   get placeholder() {
     return this._placeholder;
   }

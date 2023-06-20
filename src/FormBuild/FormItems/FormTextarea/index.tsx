@@ -18,7 +18,7 @@ function FormTextarea({ data }: { data: FormItem }) {
       rules={data.rules}
     >
       <Input.TextArea
-        placeholder={data.placeholder}
+        placeholder={data.placeholder as string}
         disabled={data.disabled || form.disabled}
         maxLength={data.maxLength}
         defaultValue={data.defaultValue as string}

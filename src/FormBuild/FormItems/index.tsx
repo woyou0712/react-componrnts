@@ -44,19 +44,19 @@ function FormItems({ data }: { data: FormItem }) {
     case "switch":
       return <FormSwitch data={data} />;
     case "slider":
-      return <FormSlider />;
+      return <FormSlider data={data} />;
     case "time":
-      return <FormTime />;
+      return <FormTime data={data} />;
     case "times":
-      return <FormTimes />;
+      return <FormTimes data={data} />;
     case "date":
-      return <FormDate />;
+      return <FormDate data={data} />;
     case "dates":
-      return <FormDates />;
+      return <FormDates data={data} />;
     case "rate":
-      return <FormRate />;
+      return <FormRate data={data} />;
     case "upload":
-      return <FormUpload />;
+      return <FormUpload data={data} />;
     case "block":
       return <FormBlock />;
     case "button":

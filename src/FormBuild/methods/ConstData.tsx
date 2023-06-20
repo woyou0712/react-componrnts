@@ -16,7 +16,7 @@ export const ItemTypeOptions: ItemTypeOption[] = [
   { type: "date", label: "日期选择" },
   { type: "dates", label: "日期范围" },
   { type: "rate", label: "评分" },
-  { type: "upload", label: "上传" },
+  { type: "upload", label: "文件上传" },
   { type: "block", label: "容器" },
   { type: "button", label: "按钮" },
 ];

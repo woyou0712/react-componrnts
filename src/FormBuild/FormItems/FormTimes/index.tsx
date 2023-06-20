@@ -1,18 +1,35 @@
 /* eslint-disable */
-import React from "react";
+import React, { useContext } from "react";
 import PropTypes from "prop-types";
-
+import { Form, TimePicker } from "antd";
+import { Moment } from "moment";
+import FormItem from "../../methods/FormItem";
+import context from "../../methods/context";
 import "./index.less";
 
-function FormTimes() {
+function FormTimes({ data }: { data: FormItem }) {
+  const modules = useContext(context);
+  const { form } = modules;
+
   return (
-    <div className="FormTimes">
-      <span>FormTimes Component</span>
-    </div>
+    <Form.Item
+      name={data.name}
+      label={data.label}
+      required={data.required}
+      rules={data.rules}
+    >
+      <TimePicker.RangePicker
+        placeholder={data.placeholder as [string, string]}
+        disabled={data.disabled || form.disabled}
+        defaultValue={data.defaultValue as [Moment, Moment]}
+      />
+    </Form.Item>
   );
 }
 
-FormTimes.propTypes = {};
+FormTimes.propTypes = {
+  data: PropTypes.object,
+};
 
 FormTimes.defaultProps = {};
 

@@ -19,7 +19,7 @@ function FormSelect({ data }: { data: FormItem }) {
       rules={data.rules}
     >
       <Select
-        placeholder={data.placeholder}
+        placeholder={data.placeholder as string}
         disabled={data.disabled || form.disabled}
         defaultValue={data.defaultValue as string}
       />

@@ -1,18 +1,35 @@
 /* eslint-disable */
-import React from "react";
+import React, { useContext } from "react";
 import PropTypes from "prop-types";
+import { Form } from "antd";
+import FormItem from "../../methods/FormItem";
+import context from "../../methods/context";
+import FileUpload from "./FileUpload";
 
 import "./index.less";
 
-function FormUpload() {
+function FormUpload({ data }: { data: FormItem }) {
+  const modules = useContext(context);
+  const { form } = modules;
+
   return (
-    <div className="FormUpload">
-      <span>FormUpload Component</span>
-    </div>
+    <Form.Item
+      name={data.name}
+      label={data.label}
+      required={data.required}
+      rules={data.rules}
+    >
+      <FileUpload
+        disabled={data.disabled || form.disabled}
+        defaultFileList={data.defaultValue as any[]}
+      />
+    </Form.Item>
   );
 }
 
-FormUpload.propTypes = {};
+FormUpload.propTypes = {
+  data: PropTypes.object,
+};
 
 FormUpload.defaultProps = {};
 
