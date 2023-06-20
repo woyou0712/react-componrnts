@@ -169,53 +169,53 @@ export default class FormItem {
   }
 
   setOption(option: FormItemOption) {
-    if ("id" in option) {
-      this.id = option.id || Date.now();
+    if (option.id !== undefined) {
+      this.id = option.id;
     }
-    if ("type" in option) {
-      this.type = option.type || "input";
+    if (option.type !== undefined) {
+      this.type = option.type;
     }
-    if ("name" in option) {
-      this.name = option.name || `name_${Date.now()}`;
+    if (option.name !== undefined) {
+      this.name = option.name;
     }
-    if ("label" in option) {
-      this.label = option.label || `label_${Date.now()}`;
+    if (option.label !== undefined) {
+      this.label = option.label;
     }
-    if ("dataType" in option) {
-      this.dataType = option.dataType || "string";
+    if (option.dataType !== undefined) {
+      this.dataType = option.dataType;
     }
-    if ("maxLength" in option) {
-      this.maxLength = option.maxLength || 255;
+    if (option.maxLength !== undefined) {
+      this.maxLength = option.maxLength;
     }
-    if ("connectTable" in option) {
+    if (option.connectTable !== undefined) {
       this.connectTable = option.connectTable;
     }
-    if ("connectCol" in option) {
+    if (option.connectCol !== undefined) {
       this.connectCol = option.connectCol;
     }
-    if ("queryParams" in option) {
-      this.queryParams = option.queryParams || false;
+    if (option.queryParams !== undefined) {
+      this.queryParams = option.queryParams;
     }
-    if ("disabled" in option) {
-      this.disabled = option.disabled || false;
+    if (option.disabled !== undefined) {
+      this.disabled = option.disabled;
     }
-    if ("required" in option) {
-      this.required = option.required || false;
+    if (option.required !== undefined) {
+      this.required = option.required;
     }
-    if ("rules" in option) {
+    if (option.rules !== undefined) {
       this.rules = option.rules;
     }
-    if ("placeholder" in option) {
+    if (option.placeholder !== undefined) {
       this.placeholder = option.placeholder;
     }
-    if ("defaultValue" in option) {
+    if (option.defaultValue !== undefined) {
       this.defaultValue = option.defaultValue;
     }
-    if ("colspan" in option) {
-      this.colspan = option.colspan || 24;
+    if (option.colspan !== undefined) {
+      this.colspan = option.colspan;
     }
-    if ("attribute" in option) {
-      this.attribute = option.attribute || {};
+    if (option.attribute !== undefined) {
+      this.attribute = option.attribute;
     }
   }
 
