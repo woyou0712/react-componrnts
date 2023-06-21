@@ -17,6 +17,14 @@ export default class FormItem {
     this._id = v;
     this._onChange();
   }
+  private _index: number = 0;
+  get index() {
+    return this._index;
+  }
+  set index(v) {
+    this._index = v;
+    this._onChange();
+  }
 
   private _type: FormItemType = "input"; // 组件类型
   get type() {
@@ -171,6 +179,9 @@ export default class FormItem {
   setOption(option: FormItemOption) {
     if (option.id !== undefined) {
       this.id = option.id;
+    }
+    if (option.index !== undefined) {
+      this.index = option.index;
     }
     if (option.type !== undefined) {
       this.type = option.type;

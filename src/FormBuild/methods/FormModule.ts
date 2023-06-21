@@ -91,6 +91,7 @@ export default class FormModule {
     return this._children;
   }
   set children(v) {
+    v.forEach((item, i) => (item.index = i));
     this._children = v;
     this._onChange();
   }
@@ -181,10 +182,36 @@ export default class FormModule {
     return this;
   }
 
-  createItem(option?: FormItemOption) {
+  createItem(option: FormItemOption, index?: number) {
     const item = new FormItem(option);
-    this._children.push(item);
+    const children = [...this.children];
+    if (index || index === 0) {
+      children.splice(index, 0, item);
+    } else {
+      children.push(item);
+    }
+    this.children = children;
     this.activeItem = item;
+    return this;
+  }
+
+  moveItem(move: FormItem, drop: FormItem, position: "up" | "down" = "down") {
+    // 无法和自己交换位置
+    if (move.id === drop.id) return this;
+    const children = [...this.children];
+    // 先从列表删除该选项
+    children.splice(move.index, 1);
+    // 插入到指定位置
+    for (let i = 0; i < children.length; i++) {
+      const item = children[i];
+      if (item.id === drop.id) {
+        const index = position === "down" ? i + 1 : i;
+        children.splice(index, 0, move);
+        break;
+      }
+    }
+
+    this.children = children;
     return this;
   }
 }

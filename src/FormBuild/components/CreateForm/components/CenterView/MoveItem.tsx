@@ -45,17 +45,26 @@ function MoveItem({ data }: { data: FormItem }) {
       return true;
     },
     drop(item) {
+      // 如果放置对象有ID，则是调整位置
       if (item.id) {
+        console.log("调整位置");
+        modules.form.moveItem(item, data);
+      } else {
+        modules.form.createItem(item, data.index);
       }
     },
     hover(item, monitor) {},
   });
 
   drag(drop(ref));
-
+  const style = { opacity: "1" };
+  if (isDragging) {
+    style.opacity = "0.4";
+  }
   return (
     <div
       ref={ref}
+      style={style}
       className={`create-form-item-view ${
         activeItem?.id === data.id ? "active" : ""
       }`}

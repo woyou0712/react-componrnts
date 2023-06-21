@@ -45,6 +45,7 @@ export type InputValueType = string | number | Moment | boolean;
 
 export interface FormItemOption {
   id?: number;
+  index?: number;
   type?: FormItemType; // 组件类型
   name?: string; // 字段名称
   label?: string; // 组件名称
