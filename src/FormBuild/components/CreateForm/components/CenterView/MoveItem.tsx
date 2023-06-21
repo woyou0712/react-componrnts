@@ -49,12 +49,9 @@ function MoveItem({ data }: { data: FormItem }) {
     drop(item) {
       // 如果放置对象有ID，则是调整位置
       if (item.id) {
-        modules.form.moveItem(item, data, movePosition);
+        modules.form.moveItem(item);
       } else {
-        modules.form.createItem(
-          item,
-          movePosition === "up" ? data.index : data.index + 1
-        );
+        modules.form.createItem(item);
       }
     },
     hover(item, monitor) {
@@ -63,11 +60,12 @@ function MoveItem({ data }: { data: FormItem }) {
       // 当前元素边界
       const box = ref.current?.getBoundingClientRect();
       if (!mousePosition || !box) return;
+      modules.form.hoveringItem = data;
       const mY = mousePosition.y;
       if (Math.abs(mY - box.top) < Math.abs(mY - box.bottom)) {
-        setMovePosition("up");
+        modules.form.hoveringPosition = "up";
       } else {
-        setMovePosition("down");
+        modules.form.hoveringPosition = "down";
       }
     },
   });

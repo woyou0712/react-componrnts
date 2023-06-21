@@ -24,6 +24,10 @@ function CenterView() {
       }
     },
     collect: (monitor) => ({ canDrop: monitor.canDrop() }),
+    hover() {
+      modules.form.hoveringItem = undefined;
+      modules.form.hoveringPosition = undefined;
+    },
   }));
 
   const [children, setChildren] = useState<FormItem[]>(modules.form.children);

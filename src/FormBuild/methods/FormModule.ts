@@ -103,6 +103,9 @@ export default class FormModule {
     return this._activeItem;
   }
   set activeItem(v) {
+    if (this._activeItem === v || this._activeItem?.id === v?.id) {
+      return;
+    }
     this._activeItem = v;
     this._onChange();
   }
@@ -111,6 +114,9 @@ export default class FormModule {
     return this._moveingItem;
   }
   set moveingItem(v) {
+    if (this._moveingItem === v || this._moveingItem?.id === v?.id) {
+      return;
+    }
     this._moveingItem = v;
     this._onChange();
   }
@@ -119,7 +125,30 @@ export default class FormModule {
     return this._createingType;
   }
   set createingType(v) {
+    if (this._createingType === v || this._createingType?.type === v?.type) {
+      return;
+    }
     this._createingType = v;
+    this._onChange();
+  }
+  private _hoveringItem?: FormItem; // hover对象
+  get hoveringItem() {
+    return this._hoveringItem;
+  }
+  set hoveringItem(v) {
+    if (this._hoveringItem === v || this._hoveringItem?.id === v?.id) {
+      return;
+    }
+    this._hoveringItem = v;
+    this._onChange();
+  }
+  private _hoveringPosition?: "up" | "down"; // hover位置
+  get hoveringPosition() {
+    return this._hoveringPosition;
+  }
+  set hoveringPosition(v) {
+    if (this._hoveringPosition === v) return;
+    this._hoveringPosition = v;
     this._onChange();
   }
   /** ========================= 编辑中的属性 End ========================= */
@@ -182,11 +211,18 @@ export default class FormModule {
     return this;
   }
 
-  createItem(option: FormItemOption, index?: number) {
+  createItem(option: FormItemOption) {
     const item = new FormItem(option);
     const children = [...this.children];
-    if (index || index === 0) {
-      children.splice(index, 0, item);
+
+    if (this.hoveringItem) {
+      children.splice(
+        this.hoveringPosition === "up"
+          ? this.hoveringItem.index
+          : this.hoveringItem.index + 1,
+        0,
+        item
+      );
     } else {
       children.push(item);
     }
@@ -195,18 +231,18 @@ export default class FormModule {
     return this;
   }
 
-  moveItem(move: FormItem, drop: FormItem, position: "up" | "down" = "down") {
+  moveItem(moveItem: FormItem) {
     // 无法和自己交换位置
-    if (move.id === drop.id) return this;
+    if (!this.hoveringItem || moveItem.id === this.hoveringItem.id) return this;
     const children = [...this.children];
     // 先从列表删除该选项
-    children.splice(move.index, 1);
+    children.splice(moveItem.index, 1);
     // 插入到指定位置
     for (let i = 0; i < children.length; i++) {
       const item = children[i];
-      if (item.id === drop.id) {
-        const index = position === "down" ? i + 1 : i;
-        children.splice(index, 0, move);
+      if (item.id === this.hoveringItem.id) {
+        const index = this.hoveringPosition === "down" ? i + 1 : i;
+        children.splice(index, 0, moveItem);
         break;
       }
     }
