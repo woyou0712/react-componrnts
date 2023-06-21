@@ -9,7 +9,7 @@ import context from "../../../../methods/context";
 import "./index.less";
 
 function MoveItem({ data }: { data: FormItem }) {
-  const ref = useRef(null);
+  const ref = useRef<HTMLDivElement>(null);
   const modules = useContext(context);
   const [activeItem, setActiveItem] = useState<FormItem>();
   useEffect(() => {
@@ -29,6 +29,8 @@ function MoveItem({ data }: { data: FormItem }) {
       return { isDragging: monitor.isDragging(), canDrag: monitor.canDrag() };
     },
   }));
+
+  const [movePosition, setMovePosition] = useState<"up" | "down">("down");
   const [{ isOver, isOverShallow }, drop] = useDrop<FormItem, any, any>({
     accept: [modules.dragType.CREATE, modules.dragType.MOVE],
     collect: (monitor) => {
@@ -47,13 +49,27 @@ function MoveItem({ data }: { data: FormItem }) {
     drop(item) {
       // 如果放置对象有ID，则是调整位置
       if (item.id) {
-        console.log("调整位置");
-        modules.form.moveItem(item, data);
+        modules.form.moveItem(item, data, movePosition);
       } else {
-        modules.form.createItem(item, data.index);
+        modules.form.createItem(
+          item,
+          movePosition === "up" ? data.index : data.index + 1
+        );
       }
     },
-    hover(item, monitor) {},
+    hover(item, monitor) {
+      // 鼠标位置
+      const mousePosition = monitor.getClientOffset();
+      // 当前元素边界
+      const box = ref.current?.getBoundingClientRect();
+      if (!mousePosition || !box) return;
+      const mY = mousePosition.y;
+      if (Math.abs(mY - box.top) < Math.abs(mY - box.bottom)) {
+        setMovePosition("up");
+      } else {
+        setMovePosition("down");
+      }
+    },
   });
 
   drag(drop(ref));
@@ -62,17 +78,18 @@ function MoveItem({ data }: { data: FormItem }) {
     style.opacity = "0.4";
   }
   return (
-    <div
-      ref={ref}
-      style={style}
-      className={`create-form-item-view ${
-        activeItem?.id === data.id ? "active" : ""
-      }`}
-      onClick={() => {
-        modules.form.activeItem = data;
-      }}
-    >
-      <FormItems data={data} />
+    <div ref={ref}>
+      <div
+        style={style}
+        className={`create-form-item-view ${
+          activeItem?.id === data.id ? "active" : ""
+        }`}
+        onClick={() => {
+          modules.form.activeItem = data;
+        }}
+      >
+        <FormItems data={data} />
+      </div>
     </div>
   );
 }

@@ -33,22 +33,24 @@ function CenterView() {
   }, [modules]);
 
   return (
-    <div className="create-form-center-view" ref={drop}>
-      <Form
-        size={formSize}
-        labelAlign={labelAlign}
-        labelCol={{ span: labelCol }}
-        colon={colon}
-        layout={layout}
-      >
-        <Row>
-          {children.map((item) => (
-            <Col span={item.colspan} key={item.id}>
-              <MoveItem data={item} />
-            </Col>
-          ))}
-        </Row>
-      </Form>
+    <div className="create-form-center-body">
+      <div className="create-form-center-view" ref={drop}>
+        <Form
+          size={formSize}
+          labelAlign={labelAlign}
+          labelCol={{ span: labelCol }}
+          colon={colon}
+          layout={layout}
+        >
+          <Row>
+            {children.map((item) => (
+              <Col span={item.colspan} key={item.id}>
+                <MoveItem data={item} />
+              </Col>
+            ))}
+          </Row>
+        </Form>
+      </div>
     </div>
   );
 }

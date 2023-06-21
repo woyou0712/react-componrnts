@@ -234,7 +234,7 @@ export default class FormItem {
     clearTimeout(FormItem._changeTimeout);
     FormItem._changeTimeout = setTimeout(() => {
       this._changeCalls.forEach((fn) => fn(this));
-    }, 50);
+    }, 20);
   }
 
   // 添加属性

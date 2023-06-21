@@ -134,7 +134,7 @@ export default class FormModule {
     clearTimeout(FormModule._changeTimeout);
     FormModule._changeTimeout = setTimeout(() => {
       this._changeCalls.forEach((fn) => fn(this));
-    }, 50);
+    }, 20);
   }
 
   setOption(option: FormModuleOption) {
