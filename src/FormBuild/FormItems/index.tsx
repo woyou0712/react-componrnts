@@ -2,6 +2,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import FormItem from "../methods/FormItem";
+
 import FormInput from "./FormInput";
 import FormTextarea from "./FormTextarea";
 import FormPassword from "./FormPassword";
@@ -23,7 +24,7 @@ import FormButton from "./FormButton";
 
 import "./index.less";
 
-function FormItems({ data }: { data: FormItem }) {
+function getItem(data: FormItem) {
   switch (data.type) {
     case "input":
       return <FormInput data={data} />;
@@ -64,6 +65,10 @@ function FormItems({ data }: { data: FormItem }) {
     default:
       return <FormInput data={data} />;
   }
+}
+
+function FormItems({ data }: { data: FormItem }) {
+  return <div className="form-item-view">{getItem(data)}</div>;
 }
 
 FormItems.propTypes = {

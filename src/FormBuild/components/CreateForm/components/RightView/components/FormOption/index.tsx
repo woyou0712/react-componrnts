@@ -27,8 +27,7 @@ function FormOption() {
 
   useEffect(() => {
     setValues();
-  }, [form]);
-  form.onChange(() => setValues());
+  }, [modules]);
 
   const onInput = (option: FormModuleOption) => {
     form.setOption(option);

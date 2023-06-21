@@ -3,7 +3,18 @@
   height: 100%;
   overflow-y: auto;
   padding: 18px;
-  .create-form-item-vie {
-    
+  .create-form-item-view {
+    padding: 12px;
+    border-radius: 10px;
+    &.active,
+    &:hover {
+      background-color: #f8f8f8;
+    }
+    &.active {
+      border: 1px solid #1890ff;
+    }
+    div[class$="-form-item"] {
+      margin: 0;
+    }
   }
 }

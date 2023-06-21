@@ -1,6 +1,6 @@
 import { DragType, ItemTypeOption } from "./types.d";
 
-export const ItemTypeOptions: ItemTypeOption[] = [
+export const itemOptions: ItemTypeOption[] = [
   { type: "input", label: "文本输入" },
   { type: "textarea", label: "多行文本" },
   { type: "password", label: "密码输入" },

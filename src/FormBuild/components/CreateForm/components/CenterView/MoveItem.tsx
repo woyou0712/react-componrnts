@@ -1,16 +1,20 @@
 /* eslint-disable */
-import React, { useRef } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import PropTypes from "prop-types";
 import { useDrag, useDrop } from "react-dnd";
 import FormItem from "../../../../methods/FormItem";
 import FormItems from "../../../../FormItems";
-import useModules from "../../../../methods/useModules";
+import context from "../../../../methods/context";
 
 import "./index.less";
 
 function MoveItem({ data }: { data: FormItem }) {
   const ref = useRef(null);
-  const modules = useModules();
+  const modules = useContext(context);
+  const [activeItem, setActiveItem] = useState<FormItem>();
+  useEffect(() => {
+    setActiveItem(modules.form.activeItem);
+  }, [modules]);
 
   const [{ isDragging }, drag] = useDrag(() => ({
     type: modules.dragType.MOVE,
@@ -50,7 +54,15 @@ function MoveItem({ data }: { data: FormItem }) {
   drag(drop(ref));
 
   return (
-    <div ref={ref} className="create-form-item-view">
+    <div
+      ref={ref}
+      className={`create-form-item-view ${
+        activeItem?.id === data.id ? "active" : ""
+      }`}
+      onClick={() => {
+        modules.form.activeItem = data;
+      }}
+    >
       <FormItems data={data} />
     </div>
   );

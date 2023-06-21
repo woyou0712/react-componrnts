@@ -1,5 +1,5 @@
 /* eslint-disable */
-import React, { useContext, useMemo, useState } from "react";
+import React, { useContext, useEffect, useMemo, useState } from "react";
 import PropTypes from "prop-types";
 import { useDrop } from "react-dnd";
 import { Row, Col, Form } from "antd";
@@ -16,6 +16,7 @@ function CenterView() {
   const [, drop] = useDrop(() => ({
     accept: modules.dragType.CREATE,
     drop(item: ItemTypeOption, monitor) {
+      console.log("放置成功");
       if (!item) return;
       const dropResult = monitor.getDropResult();
       if (dropResult === null) {
@@ -26,25 +27,17 @@ function CenterView() {
   }));
 
   const [children, setChildren] = useState<FormItem[]>(modules.form.children);
-  const [size, setSize] = useState<SizeType>(modules.form.formSize);
-  const [algin, setAlgin] = useState<LabelAlign>(modules.form.labelAlign);
-  const [col, setCol] = useState<number>(modules.form.labelCol);
-  const [colon, setColon] = useState<boolean>(modules.form.colon);
-  const [layout, setLayout] = useState(modules.form.layout);
-  modules.form.onChange((form) => {
-    setChildren([...form.children]);
-    setSize(form.formSize);
-    setAlgin(form.labelAlign);
-    setCol(form.labelCol);
-    setColon(form.colon);
-    setLayout(form.layout);
-  });
+  const { formSize, labelAlign, labelCol, colon, layout } = modules.form;
+  useEffect(() => {
+    setChildren([...modules.form.children]);
+  }, [modules]);
+
   return (
     <div className="create-form-center-view" ref={drop}>
       <Form
-        size={size}
-        labelAlign={algin}
-        labelCol={{ span: col }}
+        size={formSize}
+        labelAlign={labelAlign}
+        labelCol={{ span: labelCol }}
         colon={colon}
         layout={layout}
       >
