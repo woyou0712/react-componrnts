@@ -59,7 +59,7 @@ function getItem(data: FormItem) {
     case "upload":
       return <FormUpload data={data} />;
     case "block":
-      return <FormBlock />;
+      return <FormBlock data={data} />;
     case "button":
       return <FormButton />;
     default:
@@ -68,7 +68,7 @@ function getItem(data: FormItem) {
 }
 
 function FormItems({ data }: { data: FormItem }) {
-  return <div className="form-item-view">{getItem(data)}</div>;
+  return getItem(data);
 }
 
 FormItems.propTypes = {

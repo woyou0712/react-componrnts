@@ -4,10 +4,11 @@ import PropTypes from "prop-types";
 import { useDrop } from "react-dnd";
 import { Row, Col, Form } from "antd";
 import { SizeType } from "antd/lib/config-provider/SizeContext";
-import { ItemTypeOption, LabelAlign } from "../../../../methods/types";
-import MoveItem from "./MoveItem";
 import context from "../../../../methods/context";
 import FormItem from "../../../../methods/FormItem";
+import { ItemTypeOption, LabelAlign } from "../../../../methods/types";
+import MoveItem from "./components/MoveItem";
+import FormBlock from "./components/FormBlock";
 
 import "./index.less";
 

@@ -1,0 +1,27 @@
+.form-block-body {
+  padding: 12px;
+  border-radius: 10px;
+  & > div[class$="-form-item"] {
+    display: block;
+    margin: 0;
+  }
+  .form-block-content {
+    min-height: 200px;
+    line-height: 32px;
+    border: 1px dashed #ddd;
+    border-radius: 4px;
+    background-color: #fff;
+  }
+  &.active,
+  &:hover {
+    background-color: #f8f8f8;
+  }
+  &.active {
+    border: 1px solid #1890ff;
+  }
+  &,
+  div,
+  label {
+    cursor: move;
+  }
+}

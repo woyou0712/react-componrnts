@@ -91,7 +91,10 @@ export default class FormModule {
     return this._children;
   }
   set children(v) {
-    v.forEach((item, i) => (item.index = i));
+    v.forEach((item, i) => {
+      item.index = i;
+      item.parentId = undefined;
+    });
     this._children = v;
     this._onChange();
   }
@@ -211,9 +214,14 @@ export default class FormModule {
     return this;
   }
 
-  createItem(option: FormItemOption) {
+  createItem(option: FormItemOption, parentId?: number) {
+    let parent: FormItem | FormModule | undefined = this.findItem(parentId);
+    if (!parent) {
+      parent = this;
+    }
+
     const item = new FormItem(option);
-    const children = [...this.children];
+    const children = [...parent.children];
 
     if (this.hoveringItem) {
       children.splice(
@@ -226,28 +234,50 @@ export default class FormModule {
     } else {
       children.push(item);
     }
-    this.children = children;
+    parent.children = children;
     this.activeItem = item;
     return this;
   }
 
-  moveItem(moveItem: FormItem) {
+  moveItem(moveItem: FormItem, hoverParentId?: number) {
     // 无法和自己交换位置
     if (!this.hoveringItem || moveItem.id === this.hoveringItem.id) return this;
-    const children = [...this.children];
-    // 先从列表删除该选项
-    children.splice(moveItem.index, 1);
-    // 插入到指定位置
-    for (let i = 0; i < children.length; i++) {
-      const item = children[i];
-      if (item.id === this.hoveringItem.id) {
-        const index = this.hoveringPosition === "down" ? i + 1 : i;
-        children.splice(index, 0, moveItem);
-        break;
-      }
+    let moveParent: FormItem | FormModule | undefined = this.findItem(
+      moveItem.parentId
+    );
+    if (!moveParent) {
+      moveParent = this;
     }
+    // 先从原有父元素中删除该选项
+    const moveChildren = [...moveParent.children];
+    const d = moveChildren.splice(moveItem.index, 1);
+    if (!d || !d.length) return;
 
-    this.children = children;
+    moveParent.children = moveChildren;
+
+    // 插入到HOVER指定位置
+    let hoverParent: FormItem | FormModule | undefined =
+      this.findItem(hoverParentId);
+    if (!hoverParent) {
+      hoverParent = this;
+    }
+    const hoveringItem = hoverParent.findItem(this.hoveringItem.id);
+    const hoverChildren = [...hoverParent.children];
+    if (hoveringItem) {
+      const index =
+        this.hoveringPosition === "down"
+          ? hoveringItem.index + 1
+          : hoveringItem.index;
+      hoverChildren.splice(index, 0, moveItem);
+    } else {
+      hoverChildren.push(moveItem);
+    }
+    hoverParent.children = hoverChildren;
     return this;
+  }
+
+  findItem(id?: number) {
+    if (!id) return undefined;
+    return this.children.find((item) => item.id === id);
   }
 }

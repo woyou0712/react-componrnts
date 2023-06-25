@@ -17,6 +17,7 @@ export default class FormItem {
     this._id = v;
     this._onChange();
   }
+
   private _index: number = 0;
   get index() {
     return this._index;
@@ -169,6 +170,28 @@ export default class FormItem {
     this._onChange();
   }
 
+  private _parentId?: number;
+  get parentId() {
+    return this._parentId;
+  }
+  set parentId(v) {
+    this._parentId = v;
+    this._onChange();
+  }
+
+  private _children: FormItem[] = [];
+  get children() {
+    return this._children;
+  }
+  set children(v) {
+    v.forEach((item, i) => {
+      item.index = i;
+      item.parentId = this.id;
+    });
+    this._children = v;
+    this._onChange();
+  }
+
   private _changeCalls: ((data: FormItem) => void)[] = [];
 
   constructor(option?: FormItemOption) {
@@ -228,6 +251,17 @@ export default class FormItem {
     if (option.attribute !== undefined) {
       this.attribute = option.attribute;
     }
+    if (option.parentId !== undefined) {
+      this.parentId = option.parentId;
+    }
+    if (option.children && option.children.length) {
+      const children: FormItem[] = [];
+      option.children.forEach((_option) => {
+        const item = new FormItem(_option);
+        children.push(item);
+      });
+      this.children = children;
+    }
   }
 
   private _onChange() {
@@ -247,6 +281,11 @@ export default class FormItem {
     delete this.attribute[key];
     this._onChange();
     return this;
+  }
+
+  findItem(id?: number) {
+    if (!id) return undefined;
+    return this.children.find((item) => item.id === id);
   }
 
   removeOnCaheng() {

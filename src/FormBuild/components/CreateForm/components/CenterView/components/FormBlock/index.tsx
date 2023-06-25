@@ -1,16 +1,13 @@
 /* eslint-disable */
-import React, { useContext } from "react";
+import React from "react";
 import PropTypes from "prop-types";
-import { Form, Cascader } from "antd";
-import FormItem from "../../methods/FormItem";
-import context from "../../methods/context";
+import { Form, Row, Col } from "antd";
+import FormItem from "../../../../../../methods/FormItem";
+import MoveItem from "../MoveItem";
 
 import "./index.less";
 
 function FormBlock({ data }: { data: FormItem }) {
-  const modules = useContext(context);
-  const { form } = modules;
-
   return (
     <div className="form-block-body">
       <Form.Item
@@ -20,7 +17,15 @@ function FormBlock({ data }: { data: FormItem }) {
         rules={data.rules}
         labelCol={{ span: 24 }}
       >
-        <div className="form-block-content"></div>
+        <div className="form-block-content">
+          <Row>
+            {(data.children || []).map((item) => (
+              <Col span={item.colspan} key={item.id}>
+                <MoveItem data={item} />
+              </Col>
+            ))}
+          </Row>
+        </div>
       </Form.Item>
     </div>
   );

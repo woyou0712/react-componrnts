@@ -64,9 +64,12 @@ export interface FormItemOption {
   colspan?: number; // 格栅布局宽度
 
   attribute?: { [key: string]: any }; // 其他属性
+
+  parentId?: number;
+  children?: FormItemOption[];
 }
 
 interface DragType {
-  CREATE: string;
-  MOVE: string;
+  CREATE: "create";
+  MOVE: "move";
 }

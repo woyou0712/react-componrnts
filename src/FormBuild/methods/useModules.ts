@@ -13,7 +13,7 @@ export default function useModules() {
   useEffect(() => {
     setModules({ form, itemOptions, dragType });
   }, [form]);
-  
+
   modules.form.removeOnCaheng();
   modules.form.onChange(() => {
     setModules({ form, itemOptions, dragType });
