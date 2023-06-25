@@ -240,6 +240,7 @@ export default class FormModule {
   }
 
   moveItem(moveItem: FormItem, hoverParentId?: number) {
+    debugger;
     // 无法和自己交换位置
     if (!this.hoveringItem || moveItem.id === this.hoveringItem.id) return this;
     let moveParent: FormItem | FormModule | undefined = this.findItem(

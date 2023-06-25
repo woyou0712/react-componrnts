@@ -68,7 +68,7 @@ function getItem(data: FormItem) {
 }
 
 function FormItems({ data }: { data: FormItem }) {
-  return getItem(data);
+  return <div className="form-items-body">{getItem(data)}</div>;
 }
 
 FormItems.propTypes = {

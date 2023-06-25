@@ -49,6 +49,7 @@ function MoveItem({ data }: { data: FormItem }) {
     },
     drop(item, monitor) {
       const dropResult = monitor.getDropResult();
+      console.log(dropResult);
       if (dropResult) return;
 
       // 是否可以嵌套
@@ -73,10 +74,10 @@ function MoveItem({ data }: { data: FormItem }) {
       // 当前元素边界
       const box = ref.current?.getBoundingClientRect();
       if (!mousePosition || !box) return;
-      if (
-        data.type !== "block" ||
-        modules.form.hoveringItem?.parentId !== data.id
-      ) {
+      // 判断是否落在子组件上
+      if (data.type !== "block") {
+        modules.form.hoveringItem = data;
+      } else if (modules.form.hoveringItem?.parentId === data.id) {
         modules.form.hoveringItem = data;
       }
       // 判断距离上边和下边的距离，绝对值小的距离近
