@@ -267,8 +267,8 @@ export default class FormModule {
     moveParent.children = moveChildren;
 
     // 插入到HOVER指定位置
-    let hoverChildren = [...this.children];
     let hoverParent: FormItem | FormModule = this;
+    let hoverChildren = [...this.children];
     // 如果是盒子模型，或者hover对象有父级，则是创建子元素
     if (this.hoveringItem) {
       if (this.hoveringItem.type === "block") {
