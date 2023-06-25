@@ -98,6 +98,8 @@ export default class FormModule {
     this._children = v;
     this._onChange();
   }
+
+  private _allItemMap: { [key: string]: FormItem } = {};
   /** ========================= 基础属性 End ========================= */
 
   /** ========================= 编辑中的属性 Start ========================= */
@@ -160,6 +162,15 @@ export default class FormModule {
 
   constructor(option?: FormModuleOption) {
     if (option) this.setOption(option);
+    const findItems = (children: FormItem[]) => {
+      children.forEach((item) => {
+        this._allItemMap[item.id] = item;
+        if (item.children && item.children.length) {
+          findItems(item.children);
+        }
+      });
+    };
+    findItems(this.children);
   }
 
   private _onChange() {
@@ -204,16 +215,6 @@ export default class FormModule {
     }
   }
 
-  removeOnCaheng() {
-    this._changeCalls = [];
-    return this;
-  }
-
-  onChange(callback: (data: FormModule) => void) {
-    this._changeCalls.push(callback);
-    return this;
-  }
-
   createItem(option: FormItemOption) {
     let children = [...this.children];
     let parent: FormItem | FormModule = this;
@@ -231,6 +232,8 @@ export default class FormModule {
     }
     // 创建元素
     const item = new FormItem(option);
+    this._allItemMap[item.id] = item;
+
     if (this.hoveringItem) {
       children.splice(
         this.hoveringPosition === "up"
@@ -293,6 +296,16 @@ export default class FormModule {
 
   findItem(id?: number) {
     if (!id) return undefined;
-    return this.children.find((item) => item.id === id);
+    return this._allItemMap[id];
+  }
+
+  removeOnCaheng() {
+    this._changeCalls = [];
+    return this;
+  }
+
+  onChange(callback: (data: FormModule) => void) {
+    this._changeCalls.push(callback);
+    return this;
   }
 }

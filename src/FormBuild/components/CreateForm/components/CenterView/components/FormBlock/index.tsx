@@ -1,5 +1,5 @@
 /* eslint-disable */
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import PropTypes from "prop-types";
 import { Form, Row, Col } from "antd";
 import FormItem from "../../../../../../methods/FormItem";
@@ -14,15 +14,27 @@ function BlockForm({
   onChange,
 }: {
   data: FormItem;
-  value?: any;
+  value?: { [key: string]: any };
   onChange?: () => void;
 }) {
+  const [form] = Form.useForm();
+  useEffect(() => {
+    if (value) {
+      form.setFieldsValue(value);
+    }
+  }, [value]);
   const modules = useContext(context);
-  const { formSize, labelAlign, labelCol, colon, layout } = modules.form;
+  const { formSize, labelAlign, labelCol, colon, layout, hoveringItem } =
+    modules.form;
 
   return (
-    <div className="form-block-content">
+    <div
+      className={`form-block-content ${
+        hoveringItem && hoveringItem.id === data.id ? "drop" : ""
+      }`}
+    >
       <Form
+        form={form}
         size={formSize}
         labelAlign={labelAlign}
         labelCol={{ span: labelCol }}
@@ -60,6 +72,8 @@ function FormBlock({ data }: { data: FormItem }) {
 
 FormBlock.propTypes = {
   data: PropTypes.object,
+  value: PropTypes.object,
+  onChange: PropTypes.func,
 };
 
 FormBlock.defaultProps = {};

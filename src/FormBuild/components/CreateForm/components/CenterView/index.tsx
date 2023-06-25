@@ -17,7 +17,6 @@ function CenterView() {
   const [, drop] = useDrop(() => ({
     accept: modules.dragType.CREATE,
     drop(item: ItemTypeOption, monitor) {
-      console.log("放置成功");
       if (!item) return;
       const dropResult = monitor.getDropResult();
       if (dropResult === null) {

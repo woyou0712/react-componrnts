@@ -24,7 +24,7 @@ function MoveItem({ data }: { data: FormItem }) {
     },
     end(item, monitor) {
       modules.form.createingType = undefined;
-      console.log("拖动结束", item, monitor.getDropResult());
+      modules.form.moveingItem = undefined;
     },
     collect(monitor) {
       return { isDragging: monitor.isDragging(), canDrag: monitor.canDrag() };

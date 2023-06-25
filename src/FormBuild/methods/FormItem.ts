@@ -283,11 +283,6 @@ export default class FormItem {
     return this;
   }
 
-  findItem(id?: number) {
-    if (!id) return undefined;
-    return this.children.find((item) => item.id === id);
-  }
-
   removeOnCaheng() {
     this._changeCalls = [];
     return this;
