@@ -12,11 +12,15 @@ import "./index.less";
 function CenterView() {
   const modules = useContext(context);
   const [, drop] = useDrop(() => ({
-    accept: modules.dragType.CREATE,
-    drop(item: ItemTypeOption, monitor) {
+    accept: [modules.dragType.CREATE, modules.dragType.MOVE],
+    drop(item: ItemTypeOption | FormItem, monitor) {
       if (!item) return;
       const dropResult = monitor.getDropResult();
-      if (dropResult === null) {
+      if (dropResult) return;
+      console.log(item);
+      if (item instanceof FormItem && item.id) {
+        modules.form.moveItem(item);
+      } else {
         modules.form.createItem(item);
       }
     },
