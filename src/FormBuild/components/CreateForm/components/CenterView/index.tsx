@@ -1,14 +1,11 @@
 /* eslint-disable */
-import React, { useContext, useEffect, useMemo, useState } from "react";
-import PropTypes from "prop-types";
+import React, { useContext, useEffect, useState } from "react";
 import { useDrop } from "react-dnd";
 import { Row, Col, Form } from "antd";
-import { SizeType } from "antd/lib/config-provider/SizeContext";
 import context from "../../../../methods/context";
 import FormItem from "../../../../methods/FormItem";
-import { ItemTypeOption, LabelAlign } from "../../../../methods/types";
+import { ItemTypeOption } from "../../../../methods/types";
 import MoveItem from "./components/MoveItem";
-import FormBlock from "./components/FormBlock";
 
 import "./index.less";
 
