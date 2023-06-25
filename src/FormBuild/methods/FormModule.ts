@@ -214,15 +214,23 @@ export default class FormModule {
     return this;
   }
 
-  createItem(option: FormItemOption, parentId?: number) {
-    let parent: FormItem | FormModule | undefined = this.findItem(parentId);
-    if (!parent) {
-      parent = this;
+  createItem(option: FormItemOption) {
+    let children = [...this.children];
+    let parent: FormItem | FormModule = this;
+    // 如果是盒子模型，或者hover对象有父级，则是创建子元素
+    if (this.hoveringItem) {
+      if (this.hoveringItem.type === "block") {
+        parent = this.hoveringItem;
+      } else if (this.findItem(this.hoveringItem.parentId)) {
+        parent = this.findItem(this.hoveringItem.parentId) || this;
+      }
     }
-
+    // 如果是block则是子级
+    if (parent instanceof FormItem && parent.type === "block") {
+      children = [...parent.children];
+    }
+    // 创建元素
     const item = new FormItem(option);
-    const children = [...parent.children];
-
     if (this.hoveringItem) {
       children.splice(
         this.hoveringPosition === "up"
@@ -239,8 +247,7 @@ export default class FormModule {
     return this;
   }
 
-  moveItem(moveItem: FormItem, hoverParentId?: number) {
-    debugger;
+  moveItem(moveItem: FormItem) {
     // 无法和自己交换位置
     if (!this.hoveringItem || moveItem.id === this.hoveringItem.id) return this;
     let moveParent: FormItem | FormModule | undefined = this.findItem(
@@ -257,18 +264,25 @@ export default class FormModule {
     moveParent.children = moveChildren;
 
     // 插入到HOVER指定位置
-    let hoverParent: FormItem | FormModule | undefined =
-      this.findItem(hoverParentId);
-    if (!hoverParent) {
-      hoverParent = this;
+    let hoverChildren = [...this.children];
+    let hoverParent: FormItem | FormModule = this;
+    // 如果是盒子模型，或者hover对象有父级，则是创建子元素
+    if (this.hoveringItem) {
+      if (this.hoveringItem.type === "block") {
+        hoverParent = this.hoveringItem;
+      } else if (this.findItem(this.hoveringItem.parentId)) {
+        hoverParent = this.findItem(this.hoveringItem.parentId) || this;
+      }
     }
-    const hoveringItem = hoverParent.findItem(this.hoveringItem.id);
-    const hoverChildren = [...hoverParent.children];
-    if (hoveringItem) {
+    // 如果是block则是子级
+    if (hoverParent instanceof FormItem && hoverParent.type === "block") {
+      hoverChildren = [...hoverParent.children];
+    }
+    if (this.hoveringItem) {
       const index =
         this.hoveringPosition === "down"
-          ? hoveringItem.index + 1
-          : hoveringItem.index;
+          ? this.hoveringItem.index + 1
+          : this.hoveringItem.index;
       hoverChildren.splice(index, 0, moveItem);
     } else {
       hoverChildren.push(moveItem);

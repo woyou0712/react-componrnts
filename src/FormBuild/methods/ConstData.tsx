@@ -18,7 +18,7 @@ export const itemOptions: ItemTypeOption[] = [
   { type: "rate", label: "评分" },
   { type: "upload", label: "文件上传" },
   { type: "block", label: "容器" },
-  { type: "button", label: "按钮" },
+  // { type: "button", label: "按钮" },
 ];
 
 export const dragType: DragType = {

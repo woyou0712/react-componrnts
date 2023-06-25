@@ -59,10 +59,10 @@ function MoveItem({ data }: { data: FormItem }) {
       }
       // 如果放置对象有ID，则是调整位置
       if (item.id) {
-        modules.form.moveItem(item, parentId);
+        modules.form.moveItem(item);
         return;
       }
-      modules.form.createItem(item, parentId);
+      modules.form.createItem(item);
     },
     hover(item, monitor) {
       if (item.id === data.id) {
@@ -77,7 +77,7 @@ function MoveItem({ data }: { data: FormItem }) {
       // 判断是否落在子组件上
       if (data.type !== "block") {
         modules.form.hoveringItem = data;
-      } else if (modules.form.hoveringItem?.parentId === data.id) {
+      } else if (modules.form.hoveringItem?.parentId !== data.id) {
         modules.form.hoveringItem = data;
       }
       // 判断距离上边和下边的距离，绝对值小的距离近
@@ -99,7 +99,10 @@ function MoveItem({ data }: { data: FormItem }) {
   return (
     <div
       className={`create-form-item-body ${
-        isOver && isOverShallow && hoveringItem?.id === data.id
+        hoveringItem?.type !== "block" &&
+        isOver &&
+        isOverShallow &&
+        hoveringItem?.id === data.id
           ? modules.form.hoveringPosition
           : ""
       }`}
