@@ -11,6 +11,7 @@ import SelectOption from "./components/SelectOption";
 import CascaderOption from "./components/CascaderOption";
 import RadioOption from "./components/RadioOption";
 import SliderOption from "./components/SliderOption";
+import SwitchOption from "./components/SwitchOption";
 
 import "./index.less";
 
@@ -29,9 +30,10 @@ function getComponent(data: FormItem) {
     case "radio":
     case "checkbox":
       return <RadioOption />;
+    case "switch":
+      return <SwitchOption />;
     case "slider":
       return <SliderOption />;
-    case "switch":
     case "time":
     case "times":
     case "date":
@@ -56,7 +58,6 @@ function ItemOption() {
       queryParams: _data.queryParams,
       disabled: _data.disabled,
       required: _data.required,
-      defaultValue: _data.defaultValue,
       colspan: _data.colspan,
     };
     form.setFieldsValue(values);
@@ -101,9 +102,6 @@ function ItemOption() {
         </Form.Item>
         <Form.Item label="必填" name="required" valuePropName="checked">
           <Switch />
-        </Form.Item>
-        <Form.Item label="默认值" name="defaultValue">
-          <Input />
         </Form.Item>
       </Form>
       <hr />

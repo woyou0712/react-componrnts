@@ -21,7 +21,7 @@ function FormSwitch({ data }: { data: FormItem }) {
     >
       <Switch
         disabled={data.disabled || form.disabled}
-        defaultChecked={data.defaultValue as boolean}
+        defaultChecked={data.defaultValue === "true" ? true : false}
       />
     </Form.Item>
   );

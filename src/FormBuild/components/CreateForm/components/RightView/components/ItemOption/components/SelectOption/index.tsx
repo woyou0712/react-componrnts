@@ -50,6 +50,9 @@ function SelectOption() {
         <Form.Item label="占位提示符" name="placeholder">
           <Input />
         </Form.Item>
+        <Form.Item label="默认值" name="defaultValue">
+          <Input />
+        </Form.Item>
       </Form>
       <Form form={formA} labelCol={{ span: 6 }} onValuesChange={onAttribute}>
         <Form.Item label="多选" name="multiple" valuePropName="checked">

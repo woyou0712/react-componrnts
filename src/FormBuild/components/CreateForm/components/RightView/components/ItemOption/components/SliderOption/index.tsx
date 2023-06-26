@@ -12,8 +12,14 @@ import "./index.less";
 function SliderOption() {
   const modules = useContext(context);
   const data = useMemo(() => modules.form.activeItem, [modules]);
+  const [form] = Form.useForm();
   const [formA] = Form.useForm();
   const setValues = (_data: FormItem) => {
+    const values = {
+      defaultValue: _data.defaultValue,
+    };
+    form.setFieldsValue(values);
+
     const attribute = {
       min: _data.attribute.min,
       max: _data.attribute.max,
@@ -27,6 +33,10 @@ function SliderOption() {
     }
   }, [modules]);
 
+  const onInput = (option: FormItemOption) => {
+    data?.setOption(option);
+  };
+
   const onAttribute = (attribute: { [key: string]: any }) => {
     data?.pushAttribute(attribute);
   };
@@ -38,6 +48,11 @@ function SliderOption() {
           <InputNumber />
         </Form.Item>
         <Form.Item label="最小值" name="max">
+          <InputNumber />
+        </Form.Item>
+      </Form>
+      <Form form={form} labelCol={{ span: 6 }} onValuesChange={onInput}>
+        <Form.Item label="默认值" name="defaultValue">
           <InputNumber />
         </Form.Item>
       </Form>
