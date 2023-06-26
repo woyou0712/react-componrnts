@@ -6,19 +6,21 @@ import { FormItemOption } from "../../../../../../methods/types";
 import context from "../../../../../../methods/context";
 import FormItem from "../../../../../../methods/FormItem";
 import InputOption from "./components/InputOption";
+import NumberOption from "./components/NumberOption";
 import SelectOption from "./components/SelectOption";
 import CascaderOption from "./components/CascaderOption";
+import RadioOption from "./components/RadioOption";
 
 import "./index.less";
-import RadioOption from "./components/RadioOption";
 
 function getComponent(data: FormItem) {
   switch (data.type) {
     case "input":
     case "textarea":
     case "password":
-    case "number":
       return <InputOption />;
+    case "number":
+      return <NumberOption />;
     case "select":
       return <SelectOption />;
     case "cascader":
@@ -98,14 +100,6 @@ function ItemOption() {
         </Form.Item>
         <Form.Item label="关联字段" name="connectCol">
           <Select disabled={!data?.connectTable} />
-        </Form.Item>
-        <Form.Item label="数据类型" name="dataType">
-          <Select disabled>
-            <Select.Option value="string">字符</Select.Option>
-            <Select.Option value="datetime">时间</Select.Option>
-            <Select.Option value="number">数值</Select.Option>
-            <Select.Option value="float">小数</Select.Option>
-          </Select>
         </Form.Item>
         <Form.Item label="必填" name="required" valuePropName="checked">
           <Switch />

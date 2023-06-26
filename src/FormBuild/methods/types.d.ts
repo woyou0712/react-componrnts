@@ -66,6 +66,8 @@ export interface Attribute {
   options?: OptionType[];
   dataOrigin?: "self" | "import";
   origin?: OriginType;
+  min?: number;
+  max?: number;
   [key: string]: any;
 }
 

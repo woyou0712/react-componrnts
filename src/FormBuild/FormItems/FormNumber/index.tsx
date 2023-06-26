@@ -10,6 +10,7 @@ import "./index.less";
 function FormNumber({ data }: { data: FormItem }) {
   const modules = useContext(context);
   const { form } = modules;
+  const { max, min } = data.attribute;
   return (
     <Form.Item
       name={data.name}
@@ -33,7 +34,9 @@ function FormNumber({ data }: { data: FormItem }) {
         placeholder={data.placeholder as string}
         disabled={data.disabled || form.disabled}
         maxLength={data.maxLength}
-        defaultValue={data.defaultValue as string}
+        defaultValue={data.defaultValue as number}
+        max={max}
+        min={min}
       />
     </Form.Item>
   );

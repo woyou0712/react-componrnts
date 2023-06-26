@@ -2,19 +2,17 @@
 import React, { useContext, useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { Form, Checkbox } from "antd";
-import { FieldNames } from "rc-select/lib/Select.d";
 import FormItem from "../../methods/FormItem";
 import context from "../../methods/context";
 import { OptionType } from "../../methods/types";
+import { getFieldNames } from "../../methods/utils";
 
 import "./index.less";
-import { getFieldNames } from "../../methods/utils";
 
 function FormCheckbox({ data }: { data: FormItem }) {
   const modules = useContext(context);
-  const { multiple, options, dataOrigin, origin } = data.attribute;
+  const { options, dataOrigin, origin } = data.attribute;
   const [_options, setOptions] = useState<OptionType[]>([]);
-  const [fieldNames, setFieldNames] = useState<FieldNames>(getFieldNames());
 
   useEffect(() => {
     if (dataOrigin === "self") {
@@ -30,7 +28,7 @@ function FormCheckbox({ data }: { data: FormItem }) {
         { label: "外部数据1", value: 1 },
         { label: "外部数据2", value: 2 },
       ]);
-      setFieldNames(getFieldNames(origin));
+      // getFieldNames(origin);
     }
   }, [modules]);
 
