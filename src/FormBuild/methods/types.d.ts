@@ -11,6 +11,8 @@ export type SelfRule = Rule & {
   message?: string;
 };
 
+export type OptionType = { value?: string | number; label?: string };
+
 export interface FormModuleOption {
   id?: number;
   name?: string; // 表名

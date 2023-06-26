@@ -15,7 +15,19 @@ function FormNumber({ data }: { data: FormItem }) {
       name={data.name}
       label={data.label}
       required={data.required}
-      rules={data.rules}
+      rules={data.rules.map((item) => {
+        let pattern;
+        try {
+          pattern = item.pattern ? new RegExp(item.pattern) : undefined;
+        } catch (e) {
+          console.log("正则表达式格式错误");
+        }
+        return {
+          required: item.required,
+          message: item.message,
+          pattern,
+        };
+      })}
     >
       <InputNumber
         placeholder={data.placeholder as string}

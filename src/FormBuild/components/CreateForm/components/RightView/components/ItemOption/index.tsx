@@ -8,18 +8,20 @@ import FormItem from "../../../../../../methods/FormItem";
 import InputOption from "./components/InputOption";
 
 import "./index.less";
+import SelectOption from "./components/SelectOption";
 
 function getComponent(data: FormItem) {
   switch (data.type) {
     case "input":
-      return <InputOption />;
     case "textarea":
     case "password":
     case "number":
-    case "select":
-    case "cascader":
+      return <InputOption />;
     case "radio":
     case "checkbox":
+    case "select":
+      return <SelectOption />;
+    case "cascader":
     case "switch":
     case "slider":
     case "time":

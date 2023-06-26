@@ -28,7 +28,13 @@ function TypeItem({ data }: { data: ItemTypeOption }) {
   }
 
   return (
-    <div ref={drag} className="create-form-left-type">
+    <div
+      ref={drag}
+      className="create-form-left-type"
+      onClick={() => {
+        modules.form.createItem(data);
+      }}
+    >
       {data.label}
     </div>
   );

@@ -2,24 +2,24 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Input, Space } from "antd";
-import { SelfRule } from "../../../../../../../../methods/types.d";
-import "./index.less";
+import { OptionType } from "../../../../../../../../methods/types.d";
 import DeleteButton from "../../../../../DeleteButton";
+import "./index.less";
 
-function RulesOptions({
+function Options({
   value,
   onChange,
 }: {
-  value?: SelfRule[];
-  onChange?: (data: SelfRule[]) => void;
+  value?: OptionType[];
+  onChange?: (data: OptionType[]) => void;
 }) {
   return (
-    <div className="form-rules-options">
+    <div className="form-optios-options">
       {value
-        ? value.map((rule, index) => {
-            const key = `rule-${index}`;
+        ? value.map((option, index) => {
+            const key = `option-${index}`;
             return (
-              <div key={key} className="form-rule-options-item">
+              <div key={key} className="form-option-options-item">
                 <DeleteButton
                   onClick={() => {
                     value.splice(index, 1);
@@ -27,21 +27,21 @@ function RulesOptions({
                   }}
                 />
                 <Input
-                  value={rule.pattern}
-                  placeholder="正则表达式"
+                  value={option.value}
+                  placeholder="编码"
                   onChange={(e) => {
-                    rule.pattern = e.target.value;
+                    option.value = e.target.value;
                   }}
                   onBlur={() => {
                     if (onChange) onChange(value);
                   }}
                 />
                 <Input
-                  value={rule.message}
-                  placeholder="提示文本"
+                  value={option.label}
+                  placeholder="名称"
                   style={{ marginTop: "10px" }}
                   onChange={(e) => {
-                    rule.message = e.target.value;
+                    option.label = e.target.value;
                   }}
                   onBlur={() => {
                     if (onChange) onChange(value);
@@ -52,21 +52,21 @@ function RulesOptions({
           })
         : null}
       <div
-        className="form-rule-options-item button"
+        className="form-option-options-item button"
         onClick={() => {
-          const rules = value || [];
-          rules.push({});
-          if (onChange) onChange(rules);
+          const options = value || [];
+          options.push({});
+          if (onChange) onChange(options);
         }}
       >
-        +添加校验规则
+        +添加选项
       </div>
     </div>
   );
 }
 
-RulesOptions.propTypes = {};
+Options.propTypes = {};
 
-RulesOptions.defaultProps = {};
+Options.defaultProps = {};
 
-export default RulesOptions;
+export default Options;

@@ -1,0 +1,21 @@
+.form-optios-options {
+  width: 100%;
+  .form-option-options-item {
+    border: 1px solid #ddd;
+    padding: 8px;
+    border-radius: 4px;
+    position: relative;
+    overflow: hidden;
+    & + .form-option-options-item {
+      margin-top: 10px;
+    }
+    &.button {
+      text-align: center;
+      color: #1890ff;
+      cursor: pointer;
+      &:hover {
+        background-color: #f8f8f8;
+      }
+    }
+  }
+}

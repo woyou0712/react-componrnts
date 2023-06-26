@@ -4,13 +4,13 @@ import PropTypes from "prop-types";
 import { Form, Select } from "antd";
 import FormItem from "../../methods/FormItem";
 import context from "../../methods/context";
+import { OptionType } from "../../methods/types";
 
 import "./index.less";
 
 function FormSelect({ data }: { data: FormItem }) {
   const modules = useContext(context);
-  const { form } = modules;
-
+  const { multiple, options } = data.attribute;
   return (
     <Form.Item
       name={data.name}
@@ -19,9 +19,14 @@ function FormSelect({ data }: { data: FormItem }) {
       rules={data.rules}
     >
       <Select
+        mode={multiple ? "multiple" : undefined}
         placeholder={data.placeholder as string}
-        disabled={data.disabled || form.disabled}
+        disabled={data.disabled || modules.form.disabled}
         defaultValue={data.defaultValue as string}
+        options={(options as OptionType[])?.map((item) => ({
+          label: item.label,
+          value: item.value,
+        }))}
       />
     </Form.Item>
   );
