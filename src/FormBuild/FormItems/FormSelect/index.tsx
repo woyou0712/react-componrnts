@@ -27,8 +27,8 @@ function FormSelect({ data }: { data: FormItem }) {
     } else {
       // 网络源
       setOptions([
-        { label: "我是网络数据1", value: 1 },
-        { label: "我是网络数据2", value: 2 },
+        { label: "外部数据1", value: 1 },
+        { label: "外部数据2", value: 2 },
       ]);
       setFieldNames(getFieldNames(origin));
     }

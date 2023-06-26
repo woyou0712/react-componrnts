@@ -10,6 +10,7 @@ import SelectOption from "./components/SelectOption";
 import CascaderOption from "./components/CascaderOption";
 
 import "./index.less";
+import RadioOption from "./components/RadioOption";
 
 function getComponent(data: FormItem) {
   switch (data.type) {
@@ -24,6 +25,7 @@ function getComponent(data: FormItem) {
       return <CascaderOption />;
     case "radio":
     case "checkbox":
+      return <RadioOption />;
     case "switch":
     case "slider":
     case "time":

@@ -1,30 +1,27 @@
 /* eslint-disable */
 import React, { useContext, useEffect, useMemo } from "react";
 import PropTypes from "prop-types";
-import { Form, Input, Radio, Slider, Switch, InputNumber } from "antd";
+import { Form, Input, Radio } from "antd";
 import { FormItemOption } from "../../../../../../../../methods/types";
 import FormItem from "../../../../../../../../methods/FormItem";
 import context from "../../../../../../../../methods/context";
 import Options from "../Options";
 import DataOrigin from "../DataOrigin";
-import RulesOptions from "../RulesOptions";
 
 import "./index.less";
 
-function SelectOption() {
+function RadioOption() {
   const modules = useContext(context);
   const data = useMemo(() => modules.form.activeItem, [modules]);
   const [form] = Form.useForm();
   const [formA] = Form.useForm();
   const setValues = (_data: FormItem) => {
     const values = {
-      placeholder: _data.placeholder,
       defaultValue: _data.defaultValue,
     };
     form.setFieldsValue(values);
 
     const attribute = {
-      multiple: _data.attribute.multiple,
       options: _data.attribute.options,
       dataOrigin: _data.attribute.dataOrigin,
       origin: _data.attribute.origin,
@@ -45,19 +42,13 @@ function SelectOption() {
     data?.pushAttribute(attribute);
   };
   return data ? (
-    <div className="SelectOption">
+    <div className="RadioOption">
       <Form form={form} labelCol={{ span: 6 }} onValuesChange={onInput}>
-        <Form.Item label="占位提示符" name="placeholder">
-          <Input />
-        </Form.Item>
         <Form.Item label="默认值" name="defaultValue">
           <Input />
         </Form.Item>
       </Form>
       <Form form={formA} labelCol={{ span: 6 }} onValuesChange={onAttribute}>
-        <Form.Item label="多选" name="multiple" valuePropName="checked">
-          <Switch />
-        </Form.Item>
         <Form.Item label="数据来源" name="dataOrigin">
           <Radio.Group buttonStyle="solid">
             <Radio.Button value="self">自定义选项</Radio.Button>
@@ -78,8 +69,8 @@ function SelectOption() {
   ) : null;
 }
 
-SelectOption.propTypes = {};
+RadioOption.propTypes = {};
 
-SelectOption.defaultProps = {};
+RadioOption.defaultProps = {};
 
-export default SelectOption;
+export default RadioOption;
