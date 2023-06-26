@@ -1,9 +1,9 @@
-import { Rule } from "rc-field-form/lib/interface";
 import {
   FormItemOption,
   FormItemType,
   DataType,
   InputValueType,
+  SelfRule,
 } from "./types.d";
 
 export default class FormItem {
@@ -109,23 +109,17 @@ export default class FormItem {
   }
   set required(v) {
     this._required = v;
-    if (v) {
-      if (this._rules && this._rules.length) {
-        this._rules[0] = Object.assign(this._rules[0], { required: v });
-      } else {
-        this._rules = [{ required: v }];
-      }
+    if (v && !this._rules.length) {
+      this._rules = [{ required: v }];
     } else {
-      if (this._rules && this._rules.length) {
-        const rules = this._rules;
-        rules.forEach((rule, i) => {
-          rules[i] = Object.assign(rule, { required: v });
-        });
-      }
+      this._rules.forEach((rule, i) => {
+        this._rules[i] = Object.assign(rule, { required: v });
+      });
     }
+    
     this._onChange();
   }
-  private _rules?: Rule[]; // 校验规则，设置字段的校验逻辑
+  private _rules: SelfRule[] = []; // 校验规则，设置字段的校验逻辑
   get rules() {
     return this._rules;
   }

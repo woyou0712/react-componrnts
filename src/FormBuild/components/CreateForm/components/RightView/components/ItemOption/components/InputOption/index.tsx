@@ -1,59 +1,52 @@
 /* eslint-disable */
 import React, { useContext, useEffect } from "react";
 import PropTypes from "prop-types";
-import { Form, Input, Radio, Slider, Switch } from "antd";
-import { FormModuleOption } from "../../../../../../methods/types";
-import context from "../../../../../../methods/context";
+import { Form, Input, Radio, Slider, Switch, InputNumber } from "antd";
+import { FormItemOption } from "../../../../../../../../methods/types";
+import FormItem from "../../../../../../../../methods/FormItem";
 
 import "./index.less";
 
-function FormOption() {
+function InputOption({ data }: { data: FormItem }) {
   const [formV] = Form.useForm();
-  const modules = useContext(context);
-  const { form } = modules;
+
   const setValues = () => {
     const values = {
-      name: form.name,
-      label: form.label,
-      formSize: form.formSize,
-      labelAlign: form.labelAlign,
-      labelCol: form.labelCol,
-      disabled: form.disabled,
-      colon: form.colon,
-      layout: form.layout,
+      name: data.name,
+      label: data.label,
+      dataType: data.dataType,
+      maxLength: data.maxLength,
     };
     formV.setFieldsValue(values);
   };
 
   useEffect(() => {
     setValues();
-  }, [modules]);
+  }, [data]);
 
-  const onInput = (option: FormModuleOption) => {
-    form.setOption(option);
+  const onInput = (option: FormItemOption) => {
+    data.setOption(option);
   };
 
   return (
-    <div className="FormOption">
+    <div className="InputOption">
       <Form form={formV} labelCol={{ span: 6 }} onValuesChange={onInput}>
-        <Form.Item label="表名" name="name">
+        <Form.Item label="字段名称" name="name">
           <Input />
         </Form.Item>
-        <Form.Item label="表备注" name="label">
+        <Form.Item label="字段备注" name="label">
           <Input />
         </Form.Item>
-        <Form.Item label="表单尺寸" name="formSize">
+        <Form.Item label="数据类型" name="dataType">
           <Radio.Group buttonStyle="solid">
-            <Radio.Button value="small">小</Radio.Button>
-            <Radio.Button value="middle">中</Radio.Button>
-            <Radio.Button value="large">大</Radio.Button>
+            <Radio.Button value="string">字符</Radio.Button>
+            <Radio.Button value="datetime">时间</Radio.Button>
+            <Radio.Button value="number">数值</Radio.Button>
+            <Radio.Button value="float">小数</Radio.Button>
           </Radio.Group>
         </Form.Item>
-        <Form.Item label="标签对齐" name="labelAlign">
-          <Radio.Group buttonStyle="solid">
-            <Radio.Button value="left">左</Radio.Button>
-            <Radio.Button value="right">右</Radio.Button>
-          </Radio.Group>
+        <Form.Item label="最大长度" name="maxLength">
+          <InputNumber />
         </Form.Item>
         <Form.Item label="标签宽度" name="labelCol">
           <Slider min={1} max={24} />
@@ -76,8 +69,8 @@ function FormOption() {
   );
 }
 
-FormOption.propTypes = {};
+InputOption.propTypes = {};
 
-FormOption.defaultProps = {};
+InputOption.defaultProps = {};
 
-export default FormOption;
+export default InputOption;

@@ -5,6 +5,10 @@ import { SizeType } from "antd/lib/config-provider/SizeContext";
 export type LabelAlign = "left" | "right";
 export type FormLayout = "horizontal" | "vertical" | "inline";
 
+export type SelfRule = Rule & {
+  regExp?: string;
+};
+
 export interface FormModuleOption {
   id?: number;
   name?: string; // 表名
@@ -40,7 +44,7 @@ export type FormItemType =
 
 export type ItemTypeOption = { type: FormItemType; label: string };
 
-export type DataType = "number" | "datetime" | "string";
+export type DataType = "number" | "datetime" | "string" | "float";
 export type InputValueType = string | number | Moment | boolean;
 
 export interface FormItemOption {
@@ -57,7 +61,7 @@ export interface FormItemOption {
   disabled?: boolean; // 是否禁用
 
   required?: boolean; // 必填样式
-  rules?: Rule[]; // 校验规则，设置字段的校验逻辑
+  rules?: SelfRule[]; // 校验规则，设置字段的校验逻辑
 
   placeholder?: string | [string, string]; // 占位提示符
   defaultValue?: InputValueType | InputValueType[]; // 默认值

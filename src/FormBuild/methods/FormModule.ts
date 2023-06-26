@@ -164,6 +164,7 @@ export default class FormModule {
     if (option) this.setOption(option);
     const findItems = (children: FormItem[]) => {
       children.forEach((item) => {
+        item.onChange(() => this._onChange());
         this._allItemMap[item.id] = item;
         if (item.children && item.children.length) {
           findItems(item.children);
@@ -232,6 +233,7 @@ export default class FormModule {
     }
     // 创建元素
     const item = new FormItem(option);
+    item.onChange(() => this._onChange());
     this._allItemMap[item.id] = item;
 
     if (this.hoveringItem) {
