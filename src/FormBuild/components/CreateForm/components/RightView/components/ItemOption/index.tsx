@@ -10,6 +10,7 @@ import NumberOption from "./components/NumberOption";
 import SelectOption from "./components/SelectOption";
 import CascaderOption from "./components/CascaderOption";
 import RadioOption from "./components/RadioOption";
+import SliderOption from "./components/SliderOption";
 
 import "./index.less";
 
@@ -28,8 +29,9 @@ function getComponent(data: FormItem) {
     case "radio":
     case "checkbox":
       return <RadioOption />;
-    case "switch":
     case "slider":
+      return <SliderOption />;
+    case "switch":
     case "time":
     case "times":
     case "date":
