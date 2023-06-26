@@ -45,7 +45,7 @@ export default class FormItem {
     this._onChange();
   }
 
-  private _label = `name_${Date.now()}`; // 字段名称
+  private _label?: string; // 备注
   get label() {
     return this._label;
   }
@@ -196,11 +196,6 @@ export default class FormItem {
 
   constructor(option?: FormItemOption) {
     if (option) this.setOption(option);
-    if (!this.placeholder)
-      this._placeholder =
-        this.type === "times" || this.type === "dates"
-          ? [this._label, this._label]
-          : this._label;
   }
 
   setOption(option: FormItemOption) {

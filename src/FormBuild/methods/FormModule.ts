@@ -29,7 +29,7 @@ export default class FormModule {
     this._onChange();
   }
 
-  private _label = `新建表`; // 表名称
+  private _label = `新建表`; // 备注
   get label() {
     return this._label;
   }
@@ -37,7 +37,7 @@ export default class FormModule {
     this._label = v;
     this._onChange();
   }
-  private _formSize: SizeType = "middle"; // 表单大小
+  private _formSize: SizeType = "middle"; // 表单尺寸
   get formSize() {
     return this._formSize;
   }
@@ -53,7 +53,7 @@ export default class FormModule {
     this._labelAlign = v;
     this._onChange();
   }
-  private _labelWidth = 3; // label宽度
+  private _labelWidth = 3; // 标签宽度
   get labelCol() {
     return this._labelWidth;
   }
