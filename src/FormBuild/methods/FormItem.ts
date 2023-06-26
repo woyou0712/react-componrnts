@@ -116,7 +116,7 @@ export default class FormItem {
         this._rules[i] = Object.assign(rule, { required: v });
       });
     }
-    
+
     this._onChange();
   }
   private _rules: SelfRule[] = []; // 校验规则，设置字段的校验逻辑
@@ -190,6 +190,13 @@ export default class FormItem {
 
   constructor(option?: FormItemOption) {
     if (option) this.setOption(option);
+    // 选择组件，初始化数据来源
+    if (
+      ["select", "cascader", "radio", "checkbox"].indexOf(this._type) !== -1 &&
+      !this.attribute.dataOrigin
+    ) {
+      this.attribute.dataOrigin = "self";
+    }
   }
 
   setOption(option: FormItemOption) {

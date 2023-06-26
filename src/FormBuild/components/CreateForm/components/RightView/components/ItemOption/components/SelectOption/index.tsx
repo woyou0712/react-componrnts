@@ -6,6 +6,7 @@ import { FormItemOption } from "../../../../../../../../methods/types";
 import FormItem from "../../../../../../../../methods/FormItem";
 import context from "../../../../../../../../methods/context";
 import Options from "../Options";
+import DataOrigin from "../DataOrigin";
 import RulesOptions from "../RulesOptions";
 
 import "./index.less";
@@ -25,6 +26,7 @@ function SelectOption() {
     const attribute = {
       multiple: _data.attribute.multiple,
       options: _data.attribute.options,
+      dataOrigin: _data.attribute.dataOrigin,
     };
     formA.setFieldsValue(attribute);
   };
@@ -56,9 +58,21 @@ function SelectOption() {
         <Form.Item label="多选" name="multiple" valuePropName="checked">
           <Switch />
         </Form.Item>
-        <Form.Item label="选项" name="options">
-          <Options />
+        <Form.Item label="数据来源" name="dataOrigin">
+          <Radio.Group buttonStyle="solid">
+            <Radio.Button value="self">自定义选项</Radio.Button>
+            <Radio.Button value="import">外部数据</Radio.Button>
+          </Radio.Group>
         </Form.Item>
+        {data.attribute.dataOrigin === "self" ? (
+          <Form.Item label="选项" name="options">
+            <Options />
+          </Form.Item>
+        ) : (
+          <Form.Item label="数据源" name="origin">
+            <DataOrigin />
+          </Form.Item>
+        )}
       </Form>
     </div>
   ) : null;

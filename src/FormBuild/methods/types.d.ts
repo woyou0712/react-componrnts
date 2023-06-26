@@ -11,7 +11,18 @@ export type SelfRule = Rule & {
   message?: string;
 };
 
-export type OptionType = { value?: string | number; label?: string };
+export type OptionType = {
+  value?: string | number;
+  label?: string;
+  children?: OptionType[];
+};
+
+export type OriginType = {
+  url?: string;
+  value?: string;
+  label?: string;
+  children?: string;
+};
 
 export interface FormModuleOption {
   id?: number;
