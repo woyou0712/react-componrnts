@@ -6,7 +6,8 @@ export type LabelAlign = "left" | "right";
 export type FormLayout = "horizontal" | "vertical" | "inline";
 
 export type SelfRule = Rule & {
-  regExp?: string;
+  pattern?: string;
+  message?: string;
 };
 
 export interface FormModuleOption {

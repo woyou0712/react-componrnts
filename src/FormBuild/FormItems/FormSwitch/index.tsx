@@ -17,6 +17,7 @@ function FormSwitch({ data }: { data: FormItem }) {
       label={data.label}
       required={data.required}
       rules={data.rules}
+      valuePropName="checked"
     >
       <Switch
         disabled={data.disabled || form.disabled}

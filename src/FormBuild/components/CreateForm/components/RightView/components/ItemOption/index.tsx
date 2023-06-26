@@ -70,7 +70,7 @@ function ItemOption() {
     if (data) {
       setValues(data);
     }
-  }, [data]);
+  }, [modules]);
 
   const onInput = (option: FormItemOption) => {
     data?.setOption(option);
@@ -97,8 +97,15 @@ function ItemOption() {
         <Form.Item label="禁用" name="disabled" valuePropName="checked">
           <Switch />
         </Form.Item>
-
-        <Form.Item label="占位提示符" name="placeholder"></Form.Item>
+        <Form.Item label="必填" name="required" valuePropName="checked">
+          <Switch />
+        </Form.Item>
+        <Form.Item label="校验规则" name="rules">
+          <RulesOptions />
+        </Form.Item>
+        <Form.Item label="占位提示符" name="placeholder">
+          <Input />
+        </Form.Item>
         <Form.Item label="数据类型" name="dataType">
           <Select>
             <Select.Option value="string">字符</Select.Option>
@@ -119,11 +126,7 @@ function ItemOption() {
         <Form.Item label="关联字段" name="connectCol">
           <Select disabled={!data?.connectTable} />
         </Form.Item>
-        <Form.Item label="必填" name="required" valuePropName="checked">
-          <Switch />
-        </Form.Item>
       </Form>
-      <RulesOptions data={data} />
     </div>
   );
 }
