@@ -17,11 +17,11 @@ function getComponent(data: FormItem) {
     case "password":
     case "number":
       return <InputOption />;
-    case "radio":
-    case "checkbox":
     case "select":
       return <SelectOption />;
     case "cascader":
+    case "radio":
+    case "checkbox":
     case "switch":
     case "slider":
     case "time":
@@ -107,6 +107,7 @@ function ItemOption() {
           <Switch />
         </Form.Item>
       </Form>
+      <hr />
       {getComponent(data)}
     </div>
   );
