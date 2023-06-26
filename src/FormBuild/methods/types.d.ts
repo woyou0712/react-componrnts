@@ -6,6 +6,7 @@ export type LabelAlign = "left" | "right";
 export type FormLayout = "horizontal" | "vertical" | "inline";
 
 export type SelfRule = Rule & {
+  required?: boolean;
   pattern?: string;
   message?: string;
 };

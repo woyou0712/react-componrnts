@@ -29,7 +29,7 @@ function RulesOptions({
                 <Input
                   value={rule.pattern}
                   placeholder="正则表达式"
-                  onChange={(e) => {
+                  onBlur={(e) => {
                     rule.pattern = e.target.value;
                     if (onChange) onChange(value);
                   }}
@@ -38,7 +38,7 @@ function RulesOptions({
                   value={rule.message}
                   placeholder="提示文本"
                   style={{ marginTop: "10px" }}
-                  onChange={(e) => {
+                  onBlur={(e) => {
                     rule.message = e.target.value;
                     if (onChange) onChange(value);
                   }}

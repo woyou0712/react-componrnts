@@ -1,28 +1,18 @@
 /* eslint-disable */
 import React, { useContext, useEffect, useMemo } from "react";
 import PropTypes from "prop-types";
-import {
-  Empty,
-  Form,
-  Input,
-  Radio,
-  Select,
-  Slider,
-  Switch,
-  InputNumber,
-} from "antd";
+import { Empty, Form, Input, Select, Slider, Switch, InputNumber } from "antd";
 import { FormItemOption } from "../../../../../../methods/types";
 import context from "../../../../../../methods/context";
 import FormItem from "../../../../../../methods/FormItem";
-import RulesOptions from "./components/RulesOptions";
 import InputOption from "./components/InputOption";
 
 import "./index.less";
 
 function getComponent(data: FormItem) {
-  switch (data?.type) {
+  switch (data.type) {
     case "input":
-      return <InputOption data={data} />;
+      return <InputOption />;
     case "textarea":
     case "password":
     case "number":
@@ -97,36 +87,25 @@ function ItemOption() {
         <Form.Item label="禁用" name="disabled" valuePropName="checked">
           <Switch />
         </Form.Item>
-        <Form.Item label="必填" name="required" valuePropName="checked">
-          <Switch />
-        </Form.Item>
-        <Form.Item label="校验规则" name="rules">
-          <RulesOptions />
-        </Form.Item>
-        <Form.Item label="占位提示符" name="placeholder">
-          <Input />
-        </Form.Item>
-        <Form.Item label="数据类型" name="dataType">
-          <Select>
-            <Select.Option value="string">字符</Select.Option>
-            <Select.Option value="datetime">时间</Select.Option>
-            <Select.Option value="number">数值</Select.Option>
-            <Select.Option value="float">小数</Select.Option>
-          </Select>
-        </Form.Item>
-        <Form.Item label="默认值" name="defaultValue">
-          <Input />
-        </Form.Item>
-        <Form.Item label="最大长度" name="maxLength">
-          <InputNumber disabled={data.dataType !== "string"} />
-        </Form.Item>
         <Form.Item label="关联表" name="connectTable">
           <Select />
         </Form.Item>
         <Form.Item label="关联字段" name="connectCol">
           <Select disabled={!data?.connectTable} />
         </Form.Item>
+        <Form.Item label="数据类型" name="dataType">
+          <Select disabled>
+            <Select.Option value="string">字符</Select.Option>
+            <Select.Option value="datetime">时间</Select.Option>
+            <Select.Option value="number">数值</Select.Option>
+            <Select.Option value="float">小数</Select.Option>
+          </Select>
+        </Form.Item>
+        <Form.Item label="必填" name="required" valuePropName="checked">
+          <Switch />
+        </Form.Item>
       </Form>
+      {getComponent(data)}
     </div>
   );
 }
