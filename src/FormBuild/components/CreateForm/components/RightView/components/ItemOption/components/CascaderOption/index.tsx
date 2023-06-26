@@ -19,7 +19,6 @@ function CascaderOption() {
   const setValues = (_data: FormItem) => {
     const values = {
       placeholder: _data.placeholder,
-      defaultValue: _data.defaultValue,
     };
     form.setFieldsValue(values);
 
@@ -47,9 +46,6 @@ function CascaderOption() {
     <div className="CascaderOption">
       <Form form={form} labelCol={{ span: 6 }} onValuesChange={onInput}>
         <Form.Item label="占位提示符" name="placeholder">
-          <Input />
-        </Form.Item>
-        <Form.Item label="默认值" name="defaultValue">
           <Input />
         </Form.Item>
       </Form>

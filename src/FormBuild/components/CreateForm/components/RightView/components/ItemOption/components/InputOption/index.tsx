@@ -18,7 +18,6 @@ function InputOption() {
       rules: _data.rules,
       maxLength: _data.maxLength,
       placeholder: _data.placeholder,
-      defaultValue: _data.defaultValue,
     };
     form.setFieldsValue(values);
   };
@@ -40,9 +39,6 @@ function InputOption() {
           <InputNumber />
         </Form.Item>
         <Form.Item label="占位提示符" name="placeholder">
-          <Input />
-        </Form.Item>
-        <Form.Item label="默认值" name="defaultValue">
           <Input />
         </Form.Item>
         <Form.Item label="校验规则" name="rules">

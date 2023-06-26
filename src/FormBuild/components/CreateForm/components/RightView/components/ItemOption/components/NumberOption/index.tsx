@@ -18,7 +18,6 @@ function NumberOption() {
     const values = {
       rules: _data.rules,
       placeholder: _data.placeholder,
-      defaultValue: _data.defaultValue,
       dataType: _data.dataType,
     };
     form.setFieldsValue(values);
@@ -56,9 +55,6 @@ function NumberOption() {
       </Form>
       <Form form={form} labelCol={{ span: 6 }} onValuesChange={onInput}>
         <Form.Item label="占位提示符" name="placeholder">
-          <Input />
-        </Form.Item>
-        <Form.Item label="默认值" name="defaultValue">
           <Input />
         </Form.Item>
         <Form.Item label="校验规则" name="rules">

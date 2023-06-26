@@ -49,15 +49,11 @@ function ItemOption() {
     const values = {
       name: _data.name,
       label: _data.label,
-      dataType: _data.dataType,
-      maxLength: _data.maxLength,
       connectTable: _data.connectTable,
       connectCol: _data.connectCol,
       queryParams: _data.queryParams,
       disabled: _data.disabled,
       required: _data.required,
-      rules: _data.rules,
-      placeholder: _data.placeholder,
       defaultValue: _data.defaultValue,
       colspan: _data.colspan,
     };
@@ -103,6 +99,9 @@ function ItemOption() {
         </Form.Item>
         <Form.Item label="必填" name="required" valuePropName="checked">
           <Switch />
+        </Form.Item>
+        <Form.Item label="默认值" name="defaultValue">
+          <Input />
         </Form.Item>
       </Form>
       <hr />
