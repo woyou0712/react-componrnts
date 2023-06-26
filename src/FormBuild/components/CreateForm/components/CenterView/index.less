@@ -6,7 +6,10 @@
     width: 100%;
     height: 100%;
     overflow-y: auto;
-    .create-form-item-body {
+    .create-form-item-mover {
+      position: relative;
+      overflow: hidden;
+
       &.up {
         border-top: 5px solid #1890ff;
       }
@@ -15,14 +18,21 @@
       }
       .create-form-item-view {
         padding: 12px;
-        border-radius: 10px;
+        border-radius: 4px;
         overflow: hidden;
         position: relative;
         transition: 0.3;
 
+        .form-delete-button {
+          display: none;
+          cursor: pointer;
+        }
         &.active,
         &:hover {
           background-color: #f8f8f8;
+          & > .form-delete-button {
+            display: block;
+          }
         }
         &.active {
           border: 1px solid #1890ff;

@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import { Input, Space } from "antd";
 import { SelfRule } from "../../../../../../../../methods/types.d";
 import "./index.less";
+import DeleteButton from "../../../../../DeleteButton";
 
 function RulesOptions({
   value,
@@ -19,6 +20,12 @@ function RulesOptions({
             const key = `rule-${index}`;
             return (
               <div key={key} className="form-rule-options-item">
+                <DeleteButton
+                  onClick={() => {
+                    value.splice(index, 1);
+                    if (onChange) onChange(value);
+                  }}
+                />
                 <Input
                   value={rule.pattern}
                   placeholder="正则表达式"

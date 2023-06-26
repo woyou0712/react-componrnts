@@ -6,6 +6,7 @@ import FormItem from "../../../../../../methods/FormItem";
 import FormItems from "../../../../../../FormItems";
 import context from "../../../../../../methods/context";
 import FormBlock from "../FormBlock";
+import DeleteButton from "../../../DeleteButton";
 
 function MoveItem({ data }: { data: FormItem }) {
   const ref = useRef<HTMLDivElement>(null);
@@ -95,10 +96,9 @@ function MoveItem({ data }: { data: FormItem }) {
   if (isDragging) {
     style.opacity = "0.4";
   }
-
   return (
     <div
-      className={`create-form-item-body ${
+      className={`create-form-item-mover ${
         hoveringItem?.type !== "block" &&
         isOver &&
         isOverShallow &&
@@ -118,6 +118,11 @@ function MoveItem({ data }: { data: FormItem }) {
           modules.form.activeItem = data;
         }}
       >
+        <DeleteButton
+          onClick={() => {
+            modules.form.removeItem(data.id);
+          }}
+        />
         {data.type === "block" ? (
           <FormBlock data={data} />
         ) : (

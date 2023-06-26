@@ -301,6 +301,40 @@ export default class FormModule {
     return this._allItemMap[id];
   }
 
+  removeItem(id: number) {
+    const item = this._allItemMap[id];
+    if (!item) return this;
+    // 从视图删除该项
+    let parent: FormItem | FormModule = this;
+    if (item.parentId) {
+      parent = this._allItemMap[item.parentId];
+    }
+    const children = [...parent.children];
+    children.splice(item.index, 1);
+    parent.children = children;
+    // 从map表中移除（包括子元素），释放内存
+    const delChildren = (_children: FormItem[]) => {
+      _children.forEach((_item) => {
+        if (this._allItemMap[_item.id]) {
+          delete this._allItemMap[_item.id];
+          if (this.activeItem && this.activeItem.id === _item.id) {
+            this.activeItem = undefined;
+          }
+        }
+        if (_item.children && _item.children.length) {
+          delChildren(_item.children);
+        }
+      });
+    };
+    delChildren(item.children);
+    if (this.activeItem && this.activeItem.id === item.id) {
+      this.activeItem = undefined;
+    }
+    delete this._allItemMap[id];
+    this._onChange();
+    return this;
+  }
+
   removeOnCaheng() {
     this._changeCalls = [];
     return this;
