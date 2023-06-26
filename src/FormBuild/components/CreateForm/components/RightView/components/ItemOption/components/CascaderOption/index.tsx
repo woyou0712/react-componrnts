@@ -11,7 +11,7 @@ import RulesOptions from "../RulesOptions";
 
 import "./index.less";
 
-function SelectOption() {
+function CascaderOption() {
   const modules = useContext(context);
   const data = useMemo(() => modules.form.activeItem, [modules]);
   const [form] = Form.useForm();
@@ -25,8 +25,6 @@ function SelectOption() {
 
     const attribute = {
       multiple: _data.attribute.multiple,
-      options: _data.attribute.options,
-      dataOrigin: _data.attribute.dataOrigin,
       origin: _data.attribute.origin,
     };
     formA.setFieldsValue(attribute);
@@ -46,7 +44,7 @@ function SelectOption() {
     data?.pushAttribute(attribute);
   };
   return data ? (
-    <div className="SelectOption">
+    <div className="CascaderOption">
       <Form form={form} labelCol={{ span: 6 }} onValuesChange={onInput}>
         <Form.Item label="占位提示符" name="placeholder">
           <Input />
@@ -59,28 +57,16 @@ function SelectOption() {
         <Form.Item label="多选" name="multiple" valuePropName="checked">
           <Switch />
         </Form.Item>
-        <Form.Item label="数据来源" name="dataOrigin">
-          <Radio.Group buttonStyle="solid">
-            <Radio.Button value="self">自定义选项</Radio.Button>
-            <Radio.Button value="import">外部数据</Radio.Button>
-          </Radio.Group>
+        <Form.Item label="数据源" name="origin">
+          <DataOrigin />
         </Form.Item>
-        {data.attribute.dataOrigin === "self" ? (
-          <Form.Item label="选项" name="options">
-            <Options />
-          </Form.Item>
-        ) : (
-          <Form.Item label="数据源" name="origin">
-            <DataOrigin />
-          </Form.Item>
-        )}
       </Form>
     </div>
   ) : null;
 }
 
-SelectOption.propTypes = {};
+CascaderOption.propTypes = {};
 
-SelectOption.defaultProps = {};
+CascaderOption.defaultProps = {};
 
-export default SelectOption;
+export default CascaderOption;

@@ -61,6 +61,13 @@ export type ItemTypeOption = { type: FormItemType; label: string };
 
 export type DataType = "number" | "datetime" | "string" | "float";
 export type InputValueType = string | number | Moment | boolean;
+export interface Attribute {
+  multiple?: boolean;
+  options?: OptionType[];
+  dataOrigin?: "self" | "import";
+  origin?: OriginType;
+  [key: string]: any;
+}
 
 export interface FormItemOption {
   id?: number;
@@ -82,7 +89,7 @@ export interface FormItemOption {
   defaultValue?: InputValueType | InputValueType[]; // 默认值
   colspan?: number; // 格栅布局宽度
 
-  attribute?: { [key: string]: any }; // 其他属性
+  attribute?: Attribute; // 其他属性
 
   parentId?: number;
   children?: FormItemOption[];

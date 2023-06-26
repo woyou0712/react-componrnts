@@ -6,9 +6,10 @@ import { FormItemOption } from "../../../../../../methods/types";
 import context from "../../../../../../methods/context";
 import FormItem from "../../../../../../methods/FormItem";
 import InputOption from "./components/InputOption";
+import SelectOption from "./components/SelectOption";
+import CascaderOption from "./components/CascaderOption";
 
 import "./index.less";
-import SelectOption from "./components/SelectOption";
 
 function getComponent(data: FormItem) {
   switch (data.type) {
@@ -20,6 +21,7 @@ function getComponent(data: FormItem) {
     case "select":
       return <SelectOption />;
     case "cascader":
+      return <CascaderOption />;
     case "radio":
     case "checkbox":
     case "switch":

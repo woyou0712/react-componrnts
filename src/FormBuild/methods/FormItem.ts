@@ -4,6 +4,7 @@ import {
   DataType,
   InputValueType,
   SelfRule,
+  Attribute,
 } from "./types.d";
 
 export default class FormItem {
@@ -155,7 +156,7 @@ export default class FormItem {
     this._rowspan = v;
     this._onChange();
   }
-  private _attribute: { [key: string]: any } = {}; // 其他属性
+  private _attribute: Attribute = {}; // 其他属性
   get attribute() {
     return this._attribute;
   }
