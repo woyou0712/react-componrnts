@@ -7,7 +7,8 @@ import { Attribute } from "../../../../../../../../methods/types";
 
 import "./index.less";
 import moment, { Moment } from "moment";
-import { times2str } from "../../../../../../../../methods/utils";
+import { str2times, times2str } from "../../../../../../../../methods/utils";
+import Inputs from "../../../Inputs";
 
 function TimesOption() {
   const modules = useContext(context);
@@ -15,7 +16,9 @@ function TimesOption() {
   const [formA] = Form.useForm();
   const setValues = (_data: FormItem) => {
     const attribute = {
-      defaultValue: _data.attribute.defaultValue,
+      defaultValue: _data.attribute.defaultValue
+        ? str2times(_data.attribute.defaultValue as string)
+        : undefined,
       placeholder: _data.attribute.placeholder,
     };
     formA.setFieldsValue(attribute);
@@ -44,7 +47,7 @@ function TimesOption() {
           <TimePicker.RangePicker />
         </Form.Item>
         <Form.Item label="占位提示符" name="placeholder">
-          <Input />
+          <Inputs />
         </Form.Item>
       </Form>
     </div>

@@ -72,7 +72,7 @@ export interface Attribute {
   max?: number;
   addonBefore?: string;
   addonAfter?: string;
-  placeholder?: string | [string, string]; // 占位提示符
+  placeholder?: string | string[]; // 占位提示符
   defaultValue?: InputValueType | InputValueType[]; // 默认值
   [key: string]: any;
 }

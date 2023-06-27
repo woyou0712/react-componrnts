@@ -20,8 +20,6 @@ function TimeOption() {
         ? moment(_data.attribute.defaultValue as string)
         : undefined,
     };
-
-    console.log("_defaultValue", attribute);
     formA.setFieldsValue(attribute);
   };
 
