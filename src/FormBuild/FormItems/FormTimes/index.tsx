@@ -10,6 +10,7 @@ import "./index.less";
 function FormTimes({ data }: { data: FormItem }) {
   const modules = useContext(context);
   const { form } = modules;
+  const { placeholder, defaultValue } = data.attribute;
 
   return (
     <Form.Item
@@ -19,9 +20,9 @@ function FormTimes({ data }: { data: FormItem }) {
       rules={data.rules}
     >
       <TimePicker.RangePicker
-        placeholder={data.placeholder as [string, string]}
+        placeholder={placeholder as [string, string]}
         disabled={data.disabled || form.disabled}
-        defaultValue={data.defaultValue as [Moment, Moment]}
+        defaultValue={defaultValue as [Moment, Moment]}
       />
     </Form.Item>
   );

@@ -10,6 +10,8 @@ import "./index.less";
 function FormTextarea({ data }: { data: FormItem }) {
   const modules = useContext(context);
   const { form } = modules;
+  const { placeholder, defaultValue } = data.attribute;
+
   return (
     <Form.Item
       name={data.name}
@@ -30,10 +32,10 @@ function FormTextarea({ data }: { data: FormItem }) {
       })}
     >
       <Input.TextArea
-        placeholder={data.placeholder as string}
+        placeholder={placeholder as string}
         disabled={data.disabled || form.disabled}
         maxLength={data.maxLength}
-        defaultValue={data.defaultValue as string}
+        defaultValue={defaultValue as string}
       />
     </Form.Item>
   );

@@ -11,12 +11,12 @@ import "./index.less";
 function TimeOption() {
   const modules = useContext(context);
   const data = useMemo(() => modules.form.activeItem, [modules]);
-  const [form] = Form.useForm();
+  const [formA] = Form.useForm();
   const setValues = (_data: FormItem) => {
-    const values = {
-      defaultValue: _data.defaultValue,
+    const attribute = {
+      defaultValue: _data.attribute.defaultValue,
     };
-    form.setFieldsValue(values);
+    formA.setFieldsValue(attribute);
   };
 
   useEffect(() => {
@@ -25,13 +25,13 @@ function TimeOption() {
     }
   }, [modules]);
 
-  const onInput = (option: FormItemOption) => {
-    data?.setOption(option);
+  const onAttribute = (attribute: { [key: string]: any }) => {
+    data?.pushAttribute(attribute);
   };
 
   return data ? (
     <div className="TimeOption">
-      <Form form={form} labelCol={{ span: 6 }} onValuesChange={onInput}>
+      <Form form={formA} labelCol={{ span: 6 }} onValuesChange={onAttribute}>
         <Form.Item label="默认值" name="defaultValue">
           <TimePicker />
         </Form.Item>

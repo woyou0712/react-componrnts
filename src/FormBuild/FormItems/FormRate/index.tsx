@@ -10,6 +10,7 @@ import "./index.less";
 function FormRate({ data }: { data: FormItem }) {
   const modules = useContext(context);
   const { form } = modules;
+  const { defaultValue } = data.attribute;
 
   return (
     <Form.Item
@@ -20,7 +21,7 @@ function FormRate({ data }: { data: FormItem }) {
     >
       <Rate
         disabled={data.disabled || form.disabled}
-        defaultValue={data.defaultValue as number}
+        defaultValue={defaultValue as number}
       />
     </Form.Item>
   );

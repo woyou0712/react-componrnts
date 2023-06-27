@@ -10,7 +10,7 @@ import "./index.less";
 function FormSlider({ data }: { data: FormItem }) {
   const modules = useContext(context);
   const { form } = modules;
-  const { max, min } = data.attribute;
+  const { max, min, defaultValue } = data.attribute;
   return (
     <Form.Item
       name={data.name}
@@ -20,7 +20,7 @@ function FormSlider({ data }: { data: FormItem }) {
     >
       <Slider
         disabled={data.disabled || form.disabled}
-        defaultValue={data.defaultValue as number}
+        defaultValue={defaultValue as number}
         max={max}
         min={min}
       />

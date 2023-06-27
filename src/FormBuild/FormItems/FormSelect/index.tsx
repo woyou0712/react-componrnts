@@ -12,7 +12,8 @@ import { getFieldNames } from "../../methods/utils";
 
 function FormSelect({ data }: { data: FormItem }) {
   const modules = useContext(context);
-  const { multiple, options, dataOrigin, origin } = data.attribute;
+  const { multiple, options, dataOrigin, origin, placeholder, defaultValue } =
+    data.attribute;
   const [_options, setOptions] = useState<OptionType[]>([]);
   const [fieldNames, setFieldNames] = useState<FieldNames>();
 
@@ -48,9 +49,9 @@ function FormSelect({ data }: { data: FormItem }) {
     >
       <Select
         mode={multiple ? "multiple" : undefined}
-        placeholder={data.placeholder as string}
+        placeholder={placeholder as string}
         disabled={data.disabled || modules.form.disabled}
-        defaultValue={data.defaultValue as string}
+        defaultValue={defaultValue as string}
         fieldNames={fieldNames}
         options={_options}
       />

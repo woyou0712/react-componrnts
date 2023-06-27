@@ -72,6 +72,8 @@ export interface Attribute {
   max?: number;
   addonBefore?: string;
   addonAfter?: string;
+  placeholder?: string | [string, string]; // 占位提示符
+  defaultValue?: InputValueType | InputValueType[]; // 默认值
   [key: string]: any;
 }
 
@@ -88,9 +90,6 @@ export interface FormItemOption {
 
   required?: boolean; // 必填样式
   rules?: SelfRule[]; // 校验规则，设置字段的校验逻辑
-
-  placeholder?: string | [string, string]; // 占位提示符
-  defaultValue?: InputValueType | InputValueType[]; // 默认值
   colspan?: number; // 格栅布局宽度
 
   attribute?: Attribute; // 其他属性

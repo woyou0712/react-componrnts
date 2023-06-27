@@ -11,7 +11,7 @@ import "./index.less";
 
 function FormCheckbox({ data }: { data: FormItem }) {
   const modules = useContext(context);
-  const { options, dataOrigin, origin } = data.attribute;
+  const { options, dataOrigin, origin, defaultValue } = data.attribute;
   const [_options, setOptions] = useState<OptionType[]>([]);
 
   useEffect(() => {
@@ -40,9 +40,7 @@ function FormCheckbox({ data }: { data: FormItem }) {
       rules={data.rules}
     >
       <Checkbox.Group
-        defaultValue={
-          data.defaultValue ? [data.defaultValue as string] : undefined
-        }
+        defaultValue={defaultValue ? [defaultValue as string] : undefined}
       >
         {_options.map((item, index) => {
           const key = `r-${index}`;

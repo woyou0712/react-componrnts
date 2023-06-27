@@ -17,15 +17,15 @@ function NumberOption() {
   const setValues = (_data: FormItem) => {
     const values = {
       rules: _data.rules,
-      placeholder: _data.placeholder,
       dataType: _data.dataType,
-      defaultValue: _data.defaultValue,
     };
     form.setFieldsValue(values);
 
     const attribute = {
       min: _data.attribute.min,
       max: _data.attribute.max,
+      defaultValue: _data.attribute.defaultValue,
+      placeholder: _data.attribute.placeholder,
     };
     formA.setFieldsValue(attribute);
   };
@@ -53,14 +53,14 @@ function NumberOption() {
         <Form.Item label="最小值" name="max">
           <InputNumber />
         </Form.Item>
-      </Form>
-      <Form form={form} labelCol={{ span: 6 }} onValuesChange={onInput}>
         <Form.Item label="默认值" name="defaultValue">
           <InputNumber />
         </Form.Item>
         <Form.Item label="占位提示符" name="placeholder">
           <Input />
         </Form.Item>
+      </Form>
+      <Form form={form} labelCol={{ span: 6 }} onValuesChange={onInput}>
         <Form.Item label="校验规则" name="rules">
           <RulesOptions />
         </Form.Item>

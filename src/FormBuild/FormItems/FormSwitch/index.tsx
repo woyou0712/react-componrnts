@@ -10,6 +10,7 @@ import "./index.less";
 function FormSwitch({ data }: { data: FormItem }) {
   const modules = useContext(context);
   const { form } = modules;
+  const { defaultValue } = data.attribute;
 
   return (
     <Form.Item
@@ -21,7 +22,7 @@ function FormSwitch({ data }: { data: FormItem }) {
     >
       <Switch
         disabled={data.disabled || form.disabled}
-        defaultChecked={data.defaultValue === "true" ? true : false}
+        defaultChecked={defaultValue === "true" ? true : false}
       />
     </Form.Item>
   );

@@ -11,7 +11,7 @@ import "./index.less";
 
 function FormRadio({ data }: { data: FormItem }) {
   const modules = useContext(context);
-  const { options, dataOrigin, origin } = data.attribute;
+  const { options, dataOrigin, origin, defaultValue } = data.attribute;
   const [_options, setOptions] = useState<OptionType[]>([]);
 
   useEffect(() => {
@@ -39,7 +39,7 @@ function FormRadio({ data }: { data: FormItem }) {
       required={data.required}
       rules={data.rules}
     >
-      <Radio.Group defaultValue={data.defaultValue}>
+      <Radio.Group defaultValue={defaultValue}>
         {_options.map((item, index) => {
           const key = `r-${index}`;
           return (

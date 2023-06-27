@@ -117,22 +117,6 @@ export default class FormItem {
     this._onChange();
   }
 
-  private _placeholder?: string | [string, string]; // 占位提示符
-  get placeholder() {
-    return this._placeholder;
-  }
-  set placeholder(v) {
-    this._placeholder = v;
-    this._onChange();
-  }
-  private _defaultValue?: InputValueType | InputValueType[]; // 默认值
-  get defaultValue() {
-    return this._defaultValue;
-  }
-  set defaultValue(v) {
-    this._defaultValue = v;
-    this._onChange();
-  }
   private _rowspan = 24; // 格栅布局宽度
   get colspan() {
     return this._rowspan;
@@ -218,12 +202,6 @@ export default class FormItem {
     }
     if (option.rules !== undefined) {
       this.rules = option.rules;
-    }
-    if (option.placeholder !== undefined) {
-      this.placeholder = option.placeholder;
-    }
-    if (option.defaultValue !== undefined) {
-      this.defaultValue = option.defaultValue;
     }
     if (option.colspan !== undefined) {
       this.colspan = option.colspan;

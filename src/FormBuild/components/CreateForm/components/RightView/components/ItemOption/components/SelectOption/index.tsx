@@ -14,15 +14,8 @@ import "./index.less";
 function SelectOption() {
   const modules = useContext(context);
   const data = useMemo(() => modules.form.activeItem, [modules]);
-  const [form] = Form.useForm();
   const [formA] = Form.useForm();
   const setValues = (_data: FormItem) => {
-    const values = {
-      placeholder: _data.placeholder,
-      defaultValue: _data.defaultValue,
-    };
-    form.setFieldsValue(values);
-
     const attribute = {
       multiple: _data.attribute.multiple,
       options: _data.attribute.options,
@@ -30,6 +23,8 @@ function SelectOption() {
       origin: _data.attribute.origin,
       connectTable: _data.attribute.connectTable,
       connectCol: _data.attribute.connectCol,
+      placeholder: _data.attribute.placeholder,
+      defaultValue: _data.attribute.defaultValue,
     };
     formA.setFieldsValue(attribute);
   };
@@ -39,10 +34,6 @@ function SelectOption() {
       setValues(data);
     }
   }, [modules]);
-
-  const onInput = (option: FormItemOption) => {
-    data?.setOption(option);
-  };
   const onAttribute = (attribute: { [key: string]: any }) => {
     data?.pushAttribute(attribute);
   };
@@ -88,12 +79,10 @@ function SelectOption() {
               break;
           }
         })(data.attribute.dataOrigin)}
-      </Form>
-      <Form form={form} labelCol={{ span: 6 }} onValuesChange={onInput}>
-        <Form.Item label="占位提示符" name="placeholder">
+        <Form.Item label="默认值" name="defaultValue">
           <Input />
         </Form.Item>
-        <Form.Item label="默认值" name="defaultValue">
+        <Form.Item label="占位提示符" name="placeholder">
           <Input />
         </Form.Item>
       </Form>

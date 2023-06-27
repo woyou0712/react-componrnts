@@ -18,12 +18,12 @@ function InputOption() {
     const values = {
       rules: _data.rules,
       maxLength: _data.maxLength,
-      placeholder: _data.placeholder,
-      defaultValue: _data.defaultValue,
     };
     form.setFieldsValue(values);
 
     const attribute = {
+      placeholder: _data.attribute.placeholder,
+      defaultValue: _data.attribute.defaultValue,
       addonBefore: _data.attribute.addonBefore,
       addonAfter: _data.attribute.addonAfter,
     };
@@ -53,16 +53,16 @@ function InputOption() {
         <Form.Item label="后缀" name="addonAfter">
           <Input />
         </Form.Item>
-      </Form>
-      <Form form={form} labelCol={{ span: 6 }} onValuesChange={onInput}>
-        <Form.Item label="最大长度" name="maxLength">
-          <InputNumber />
+        <Form.Item label="默认值" name="defaultValue">
+          <Input />
         </Form.Item>
         <Form.Item label="占位提示符" name="placeholder">
           <Input />
         </Form.Item>
-        <Form.Item label="默认值" name="defaultValue">
-          <Input />
+      </Form>
+      <Form form={form} labelCol={{ span: 6 }} onValuesChange={onInput}>
+        <Form.Item label="最大长度" name="maxLength">
+          <InputNumber />
         </Form.Item>
         <Form.Item label="校验规则" name="rules">
           <RulesOptions />

@@ -11,6 +11,7 @@ import "./index.less";
 function FormUpload({ data }: { data: FormItem }) {
   const modules = useContext(context);
   const { form } = modules;
+  const { defaultValue } = data.attribute;
 
   return (
     <Form.Item
@@ -21,7 +22,7 @@ function FormUpload({ data }: { data: FormItem }) {
     >
       <FileUpload
         disabled={data.disabled || form.disabled}
-        defaultFileList={data.defaultValue as any[]}
+        defaultFileList={defaultValue as any[]}
       />
     </Form.Item>
   );

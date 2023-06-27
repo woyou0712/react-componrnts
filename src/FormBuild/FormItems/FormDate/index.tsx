@@ -10,6 +10,7 @@ import "./index.less";
 function FormDate({ data }: { data: FormItem }) {
   const modules = useContext(context);
   const { form } = modules;
+  const { placeholder, defaultValue } = data.attribute;
 
   return (
     <Form.Item
@@ -19,9 +20,9 @@ function FormDate({ data }: { data: FormItem }) {
       rules={data.rules}
     >
       <DatePicker
-        placeholder={data.placeholder as string}
+        placeholder={placeholder as string}
         disabled={data.disabled || form.disabled}
-        defaultValue={data.defaultValue as Moment}
+        defaultValue={defaultValue as Moment}
       />
     </Form.Item>
   );

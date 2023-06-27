@@ -12,7 +12,7 @@ import "./index.less";
 
 function FormCascader({ data }: { data: FormItem }) {
   const modules = useContext(context);
-  const { multiple, origin } = data.attribute;
+  const { multiple, origin, placeholder, defaultValue } = data.attribute;
   const [_options, setOptions] = useState<OptionType[]>([]);
   const [fieldNames, setFieldNames] = useState<FieldNames>();
 
@@ -48,11 +48,9 @@ function FormCascader({ data }: { data: FormItem }) {
     >
       <Cascader
         multiple={multiple}
-        placeholder={data.placeholder as string}
+        placeholder={placeholder as string}
         disabled={data.disabled || modules.form.disabled}
-        defaultValue={
-          data.defaultValue ? [data.defaultValue as string] : undefined
-        }
+        defaultValue={defaultValue ? [defaultValue as string] : undefined}
         fieldNames={fieldNames}
         options={_options}
       />

@@ -10,7 +10,7 @@ import "./index.less";
 function FormInput({ data }: { data: FormItem }) {
   const modules = useContext(context);
   const { form } = modules;
-  const { addonBefore, addonAfter } = data.attribute;
+  const { addonBefore, addonAfter, placeholder, defaultValue } = data.attribute;
 
   return (
     <Form.Item
@@ -32,10 +32,10 @@ function FormInput({ data }: { data: FormItem }) {
       })}
     >
       <Input
-        placeholder={data.placeholder as string}
+        placeholder={placeholder as string}
         disabled={data.disabled || form.disabled}
         maxLength={data.maxLength}
-        defaultValue={data.defaultValue as string}
+        defaultValue={defaultValue as string}
         addonBefore={addonBefore ? addonBefore : undefined}
         addonAfter={addonAfter ? addonAfter : undefined}
       />
