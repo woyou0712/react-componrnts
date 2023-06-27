@@ -222,6 +222,27 @@ export default class FormItem {
     }
   }
 
+  getOption() {
+    const option: FormItemOption = {
+      id: this.id,
+      index: this.index,
+      type: this.type,
+      name: this.name,
+      label: this.label,
+      dataType: this.dataType,
+      maxLength: this.maxLength,
+      queryParams: this.queryParams,
+      disabled: this.disabled,
+      required: this.required,
+      rules: this.rules,
+      colspan: this.colspan,
+      attribute: this.attribute,
+      parentId: this.parentId,
+      children: this.children.map((item) => item.getOption()),
+    };
+    return option;
+  }
+
   private _onChange() {
     clearTimeout(FormItem._changeTimeout);
     FormItem._changeTimeout = setTimeout(() => {

@@ -50,7 +50,15 @@ function CenterView() {
             清空
           </Button>
 
-          <Button type="primary">保存</Button>
+          <Button
+            type="primary"
+            onClick={() => {
+              const option = modules.form.getOption();
+              console.log(option);
+            }}
+          >
+            保存
+          </Button>
         </Space>
       </div>
       <div className="create-form-center-view" ref={drop}>

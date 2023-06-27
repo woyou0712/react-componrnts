@@ -216,6 +216,22 @@ export default class FormModule {
     }
   }
 
+  getOption() {
+    const option: FormModuleOption = {
+      id: this.id,
+      name: this.name,
+      label: this.label,
+      formSize: this.formSize,
+      labelAlign: this.labelAlign,
+      labelCol: this.labelCol,
+      disabled: this.disabled,
+      layout: this.layout,
+      colon: this.colon,
+      children: this.children.map((item) => item.getOption()),
+    };
+    return option;
+  }
+
   createItem(option: FormItemOption) {
     let children = [...this.children];
     let parent: FormItem | FormModule = this;
