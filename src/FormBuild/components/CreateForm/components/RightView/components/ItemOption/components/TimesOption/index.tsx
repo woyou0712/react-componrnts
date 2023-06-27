@@ -1,14 +1,14 @@
 /* eslint-disable */
 import React, { useContext, useEffect, useMemo } from "react";
 import { Form, Input, TimePicker } from "antd";
+import { Moment } from "moment";
+import { str2times, times2str } from "../../../../../../../../methods/utils";
+import Inputs from "../../../Inputs";
 import FormItem from "../../../../../../../../methods/FormItem";
 import context from "../../../../../../../../methods/context";
 import { Attribute } from "../../../../../../../../methods/types";
 
 import "./index.less";
-import moment, { Moment } from "moment";
-import { str2times, times2str } from "../../../../../../../../methods/utils";
-import Inputs from "../../../Inputs";
 
 function TimesOption() {
   const modules = useContext(context);

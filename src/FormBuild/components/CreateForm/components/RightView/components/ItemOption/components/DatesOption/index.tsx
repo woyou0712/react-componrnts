@@ -1,25 +1,25 @@
 /* eslint-disable */
 import React, { useContext, useEffect, useMemo } from "react";
 import { Form, Input, DatePicker } from "antd";
-import { Attribute } from "../../../../../../../../methods/types";
-import { date2str } from "../../../../../../../../methods/utils";
+import { Moment } from "moment";
 import FormItem from "../../../../../../../../methods/FormItem";
 import context from "../../../../../../../../methods/context";
-import moment, { Moment } from "moment";
+import { Attribute } from "../../../../../../../../methods/types";
+import { dates2str, str2dates } from "../../../../../../../../methods/utils";
+import Inputs from "../../../Inputs";
 
 import "./index.less";
 
-function DateOption() {
+function DatesOption() {
   const modules = useContext(context);
   const data = useMemo(() => modules.form.activeItem, [modules]);
   const [formA] = Form.useForm();
-
   const setValues = (_data: FormItem) => {
     const attribute = {
-      placeholder: _data.attribute.placeholder,
       defaultValue: _data.attribute.defaultValue
-        ? moment(_data.attribute.defaultValue as string)
+        ? str2dates(_data.attribute.defaultValue as string)
         : undefined,
+      placeholder: _data.attribute.placeholder,
     };
     formA.setFieldsValue(attribute);
   };
@@ -31,29 +31,31 @@ function DateOption() {
   }, [modules]);
 
   const onAttribute = (attribute: Attribute) => {
-    const _attribute = { ...attribute };
-    if (_attribute.defaultValue) {
-      _attribute.defaultValue = date2str(_attribute.defaultValue as Moment);
+    const _attribute: Attribute = { ...attribute };
+    if (Array.isArray(_attribute.defaultValue)) {
+      _attribute.defaultValue = dates2str(
+        _attribute.defaultValue as [Moment, Moment]
+      );
     }
     data?.pushAttribute(_attribute);
   };
 
   return data ? (
-    <div className="DateOption">
+    <div className="DatesOption">
       <Form form={formA} labelCol={{ span: 6 }} onValuesChange={onAttribute}>
         <Form.Item label="默认值" name="defaultValue">
-          <DatePicker />
+          <DatePicker.RangePicker />
         </Form.Item>
         <Form.Item label="占位提示符" name="placeholder">
-          <Input />
+          <Inputs />
         </Form.Item>
       </Form>
     </div>
   ) : null;
 }
 
-DateOption.propTypes = {};
+DatesOption.propTypes = {};
 
-DateOption.defaultProps = {};
+DatesOption.defaultProps = {};
 
-export default DateOption;
+export default DatesOption;

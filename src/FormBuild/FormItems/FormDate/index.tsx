@@ -2,7 +2,7 @@
 import React, { useContext } from "react";
 import PropTypes from "prop-types";
 import { Form, DatePicker } from "antd";
-import { Moment } from "moment";
+import moment, { Moment } from "moment";
 import FormItem from "../../methods/FormItem";
 import context from "../../methods/context";
 import "./index.less";
@@ -18,7 +18,7 @@ function FormDate({ data }: { data: FormItem }) {
       label={data.label}
       required={data.required}
       rules={data.rules}
-      initialValue={defaultValue}
+      initialValue={defaultValue ? moment(defaultValue as string) : undefined}
     >
       <DatePicker
         placeholder={placeholder as string}

@@ -50,7 +50,7 @@ function Inputs({
 }
 
 Inputs.propTypes = {
-  value: PropTypes.string,
+  value: PropTypes.array,
   onChange: PropTypes.func,
 };
 
