@@ -20,6 +20,7 @@ import DatesOption from "./components/DatesOption";
 import RateOption from "./components/RateOption";
 
 import "./index.less";
+import UploadOption from "./components/UploadOption";
 
 function getComponent(data: FormItem) {
   switch (data.type) {
@@ -51,6 +52,7 @@ function getComponent(data: FormItem) {
     case "rate":
       return <RateOption />;
     case "upload":
+      return <UploadOption />;
     case "block":
     case "button":
   }

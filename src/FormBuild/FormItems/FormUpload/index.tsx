@@ -11,7 +11,8 @@ import "./index.less";
 function FormUpload({ data }: { data: FormItem }) {
   const modules = useContext(context);
   const { form } = modules;
-  const { defaultValue } = data.attribute;
+  const { fileUploadTitle, fileUploadMaxCount, fileUploadMaxSize } =
+    data.attribute;
 
   return (
     <Form.Item
@@ -20,7 +21,12 @@ function FormUpload({ data }: { data: FormItem }) {
       required={data.required}
       rules={data.rules}
     >
-      <FileUpload disabled={data.disabled || form.disabled} />
+      <FileUpload
+        disabled={data.disabled || form.disabled}
+        title={fileUploadTitle}
+        maxCount={fileUploadMaxCount}
+        maxSize={fileUploadMaxSize}
+      />
     </Form.Item>
   );
 }

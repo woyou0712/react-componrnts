@@ -3,7 +3,6 @@ import { UploadOutlined } from "@ant-design/icons";
 import { Button, Upload, message } from "antd";
 import { UploadRequestOption, RcFile } from "rc-upload/lib/interface";
 import { UploadFile, UploadChangeParam } from "antd/lib/upload/interface.d";
-import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
 import "./index.less";
@@ -111,8 +110,8 @@ function FileUpload({
       <div className="message-title">{title}</div>
       {maxCount || maxSize ? (
         <div className="message-size">
-          {maxCount ? `上传限${maxCount}个文件 ` : null}{" "}
-          {maxSize ? `最大${maxSize}MB/个` : null}
+          {maxCount ? `上传限${maxCount}个文件 ` : null}
+          {maxSize ? `${maxCount ? "," : ""}限制${maxSize}MB/个` : null}
         </div>
       ) : null}
       <Upload
@@ -145,11 +144,4 @@ FileUpload.defaultProps = {
   buttonText: "文件上传",
 };
 
-// function mapDispatch(dispatch: any) {
-//   return {
-//     uploadFile: dispatch?.common?.uploadFile,
-//   };
-// }
-
-// export default connect(null, mapDispatch)(FileUpload);
 export default FileUpload;

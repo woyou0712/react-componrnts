@@ -62,6 +62,9 @@ export type ItemTypeOption = { type: FormItemType; label: string };
 export type DataType = "number" | "datetime" | "string" | "float";
 export type InputValueType = string | number | Moment | boolean;
 export interface Attribute {
+  placeholder?: string | string[]; // 占位提示符
+  defaultValue?: InputValueType | InputValueType[]; // 默认值
+
   multiple?: boolean;
   options?: OptionType[];
   dataOrigin?: "self" | "import" | "join";
@@ -72,8 +75,10 @@ export interface Attribute {
   max?: number;
   addonBefore?: string;
   addonAfter?: string;
-  placeholder?: string | string[]; // 占位提示符
-  defaultValue?: InputValueType | InputValueType[]; // 默认值
+
+  fileUploadTitle?: string;
+  fileUploadMaxCount?: number;
+  fileUploadMaxSize?: number;
   [key: string]: any;
 }
 
