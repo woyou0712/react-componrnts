@@ -20,10 +20,7 @@ function FormUpload({ data }: { data: FormItem }) {
       required={data.required}
       rules={data.rules}
     >
-      <FileUpload
-        disabled={data.disabled || form.disabled}
-        defaultFileList={defaultValue as any[]}
-      />
+      <FileUpload disabled={data.disabled || form.disabled} />
     </Form.Item>
   );
 }

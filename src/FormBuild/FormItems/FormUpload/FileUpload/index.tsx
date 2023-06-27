@@ -1,18 +1,20 @@
 import React, { useEffect, useState } from "react";
 import { UploadOutlined } from "@ant-design/icons";
-import { Button, Upload } from "antd";
-import {
-  UploadFile,
-  UploadChangeParam,
-  HttpRequestHeader,
-} from "antd/lib/upload/interface.d";
+import { Button, Upload, message } from "antd";
+import { UploadRequestOption, RcFile } from "rc-upload/lib/interface";
+import { UploadFile, UploadChangeParam } from "antd/lib/upload/interface.d";
+import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
 import "./index.less";
 
+type UploadFunc = (params: {
+  file: File;
+  needSuffix: boolean;
+}) => Promise<{ fid: string; fileUrl: string }>;
+
 interface PropsType {
-  action?: string;
-  headers?: HttpRequestHeader;
+  uploadFile?: UploadFunc;
   value?: UploadFile[];
   onChange?: (files: UploadFile[]) => void;
   maxCount?: number;
@@ -20,12 +22,10 @@ interface PropsType {
   title?: string;
   buttonText?: string;
   disabled?: boolean;
-  defaultFileList?: UploadFile[];
 }
 
 function FileUpload({
-  action,
-  headers,
+  uploadFile,
   value,
   onChange,
   maxCount,
@@ -33,7 +33,6 @@ function FileUpload({
   title,
   buttonText,
   disabled,
-  defaultFileList,
 }: PropsType) {
   const [fileList, setFileList] = useState<UploadFile[]>([]);
   useEffect(() => {
@@ -51,9 +50,14 @@ function FileUpload({
       if (file.response) {
         // Component will show file.url as link
         file.url = file.response.url;
+        file.status = "success";
       }
       return file;
     });
+    // 1. Limit the number of uploaded files
+    // Only to show two recent uploaded files, and old ones will be replaced by the new
+    // newFileList = newFileList.slice(-5);
+
     if (onChange) {
       onChange(newFileList);
     } else {
@@ -61,23 +65,64 @@ function FileUpload({
     }
   };
 
+  const uploadByApi = ({
+    file,
+    onSuccess,
+    onError,
+    onProgress,
+  }: UploadRequestOption) => {
+    if (!file) return;
+    const _file: RcFile = file as RcFile;
+    const M = _file.size / (1024 * 1024);
+    if (maxSize && M > maxSize) {
+      message.error(`文件【${_file.name}】大小超过${maxSize}M,无法上传`);
+      if (onError) {
+        onError(new Error(`文件【${_file.name}】大小超过${maxSize}M,无法上传`));
+      }
+      return;
+    }
+    if (uploadFile) {
+      uploadFile({
+        file: _file,
+        needSuffix: true,
+      })
+        .then((res) => {
+          if (onProgress) onProgress({ percent: 1 });
+          const newFile = {
+            ...res,
+            uid: res.fid,
+            url: res.fileUrl,
+            name: _file.name,
+            size: _file.size,
+          };
+          if (onSuccess) onSuccess(newFile);
+        })
+        .catch(onError);
+    } else {
+      setTimeout(function () {
+        if (onProgress) onProgress({ percent: 1 });
+        if (onSuccess) onSuccess(_file);
+      }, 3000);
+    }
+  };
+
   return (
     <div className="file-upload-self">
       <div className="message-title">{title}</div>
-      <div className="message-size">
-        上传限{maxCount}个文件，最大{maxSize}MB/个
-      </div>
+      {maxCount || maxSize ? (
+        <div className="message-size">
+          {maxCount ? `上传限${maxCount}个文件 ` : null}{" "}
+          {maxSize ? `最大${maxSize}MB/个` : null}
+        </div>
+      ) : null}
       <Upload
-        action={action}
-        headers={headers}
+        customRequest={uploadByApi}
         maxCount={maxCount}
         onChange={handleChange}
-        multiple
         fileList={fileList}
         disabled={disabled}
-        defaultFileList={defaultFileList}
       >
-        <Button icon={<UploadOutlined />} disabled={disabled}>
+        <Button disabled={disabled} icon={<UploadOutlined />}>
           {buttonText}
         </Button>
       </Upload>
@@ -86,8 +131,7 @@ function FileUpload({
 }
 
 FileUpload.propTypes = {
-  action: PropTypes.string,
-  header: PropTypes.object,
+  uploadFile: PropTypes.func,
   value: PropTypes.array,
   onChange: PropTypes.func,
   maxCount: PropTypes.number,
@@ -95,13 +139,17 @@ FileUpload.propTypes = {
   title: PropTypes.string,
   buttonText: PropTypes.string,
   disabled: PropTypes.bool,
-  defaultFileList: PropTypes.array,
 };
 
 FileUpload.defaultProps = {
-  maxCount: 30,
-  maxSize: 500,
   buttonText: "文件上传",
 };
 
+// function mapDispatch(dispatch: any) {
+//   return {
+//     uploadFile: dispatch?.common?.uploadFile,
+//   };
+// }
+
+// export default connect(null, mapDispatch)(FileUpload);
 export default FileUpload;

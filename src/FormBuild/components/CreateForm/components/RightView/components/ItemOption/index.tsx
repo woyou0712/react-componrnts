@@ -17,6 +17,7 @@ import TimeOption from "./components/TimeOption";
 import TimesOption from "./components/TimesOption";
 import DateOption from "./components/DateOption";
 import DatesOption from "./components/DatesOption";
+import RateOption from "./components/RateOption";
 
 import "./index.less";
 
@@ -48,6 +49,7 @@ function getComponent(data: FormItem) {
     case "dates":
       return <DatesOption />;
     case "rate":
+      return <RateOption />;
     case "upload":
     case "block":
     case "button":

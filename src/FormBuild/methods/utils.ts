@@ -78,3 +78,45 @@ export function str2dates(str: string): [Moment, Moment] | undefined {
   const strs = str.split("~");
   return [moment(strs[0]), moment(strs[1])];
 }
+
+const str_all = "qwertyuiopasdfghjklzxcvbnm1234567890";
+export function uuid() {
+  let res = "";
+  for (let i = 0; i < 5; i++) {
+    const index = Math.floor(Math.random() * str_all.length);
+    res += str_all[index];
+  }
+
+  return `${res}${Date.now()}`;
+}
+
+
+/** 假装是个事件队列 */
+export function createEventQueue() {
+  const queue: {
+    fn: () => Promise<any>;
+    status: "before" | "runing" | "end";
+  }[] = [];
+
+  function run() {
+    let isRun = false;
+    queue.forEach((item, index) => {
+      if (item.status === "end") return;
+      if (item.status === "runing") isRun = true;
+      if (isRun) return;
+      item.fn().then(() => {
+        item.status = "end";
+        if (index === queue.length - 1) return;
+        run();
+      });
+    });
+  }
+
+  return function (fn: () => Promise<any>) {
+    queue.push({
+      fn,
+      status: "before",
+    });
+    run();
+  };
+}
