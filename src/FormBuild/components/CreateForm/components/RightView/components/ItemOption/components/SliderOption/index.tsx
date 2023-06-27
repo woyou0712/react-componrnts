@@ -1,6 +1,7 @@
 /* eslint-disable */
 import React, { useContext, useEffect, useMemo } from "react";
 import { Form, InputNumber } from "antd";
+import { Attribute } from "../../../../../../../../methods/types";
 import FormItem from "../../../../../../../../methods/FormItem";
 import context from "../../../../../../../../methods/context";
 
@@ -25,7 +26,7 @@ function SliderOption() {
     }
   }, [modules]);
 
-  const onAttribute = (attribute: { [key: string]: any }) => {
+  const onAttribute = (attribute: Attribute) => {
     data?.pushAttribute(attribute);
   };
 

@@ -1,10 +1,10 @@
 /* eslint-disable */
 import React, { useContext, useEffect, useMemo } from "react";
-import PropTypes from "prop-types";
-import { Form, TimePicker } from "antd";
-import { FormItemOption } from "../../../../../../../../methods/types";
+import { Form, Input, TimePicker } from "antd";
 import FormItem from "../../../../../../../../methods/FormItem";
 import context from "../../../../../../../../methods/context";
+import { Attribute } from "../../../../../../../../methods/types";
+import moment, { Moment } from "moment";
 
 import "./index.less";
 
@@ -15,6 +15,7 @@ function TimeOption() {
   const setValues = (_data: FormItem) => {
     const attribute = {
       defaultValue: _data.attribute.defaultValue,
+      placeholder: _data.attribute.placeholder,
     };
     formA.setFieldsValue(attribute);
   };
@@ -25,8 +26,14 @@ function TimeOption() {
     }
   }, [modules]);
 
-  const onAttribute = (attribute: { [key: string]: any }) => {
-    data?.pushAttribute(attribute);
+  const onAttribute = (attribute: Attribute) => {
+    const _attribute = { ...attribute };
+    if (_attribute.defaultValue) {
+      _attribute.defaultValue = moment(
+        _attribute.defaultValue as Moment
+      ).format("HH:mm:ss");
+    }
+    data?.pushAttribute(_attribute);
   };
 
   return data ? (
@@ -34,6 +41,9 @@ function TimeOption() {
       <Form form={formA} labelCol={{ span: 6 }} onValuesChange={onAttribute}>
         <Form.Item label="默认值" name="defaultValue">
           <TimePicker />
+        </Form.Item>
+        <Form.Item label="占位提示符" name="placeholder">
+          <Input />
         </Form.Item>
       </Form>
     </div>

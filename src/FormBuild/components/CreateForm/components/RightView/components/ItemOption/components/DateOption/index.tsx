@@ -1,23 +1,20 @@
 /* eslint-disable */
 import React, { useContext, useEffect, useMemo } from "react";
-import { Form, Input, Switch } from "antd";
+import { Form, Input, DatePicker } from "antd";
 import { Attribute } from "../../../../../../../../methods/types";
 import FormItem from "../../../../../../../../methods/FormItem";
 import context from "../../../../../../../../methods/context";
-import DataOrigin from "../DataOrigin";
 
 import "./index.less";
 
-function CascaderOption() {
+function DateOption() {
   const modules = useContext(context);
   const data = useMemo(() => modules.form.activeItem, [modules]);
   const [formA] = Form.useForm();
   const setValues = (_data: FormItem) => {
     const attribute = {
-      multiple: _data.attribute.multiple,
-      origin: _data.attribute.origin,
-      placeholder: _data.attribute.placeholder,
       defaultValue: _data.attribute.defaultValue,
+      placeholder: _data.attribute.placeholder,
     };
     formA.setFieldsValue(attribute);
   };
@@ -29,20 +26,14 @@ function CascaderOption() {
   }, [modules]);
 
   const onAttribute = (attribute: Attribute) => {
-    console.log(attribute);
     data?.pushAttribute(attribute);
   };
+
   return data ? (
-    <div className="CascaderOption">
+    <div className="DateOption">
       <Form form={formA} labelCol={{ span: 6 }} onValuesChange={onAttribute}>
-        <Form.Item label="多选" name="multiple" valuePropName="checked">
-          <Switch />
-        </Form.Item>
-        <Form.Item label="数据源" name="origin">
-          <DataOrigin />
-        </Form.Item>
         <Form.Item label="默认值" name="defaultValue">
-          <Input />
+          <DatePicker />
         </Form.Item>
         <Form.Item label="占位提示符" name="placeholder">
           <Input />
@@ -52,8 +43,8 @@ function CascaderOption() {
   ) : null;
 }
 
-CascaderOption.propTypes = {};
+DateOption.propTypes = {};
 
-CascaderOption.defaultProps = {};
+DateOption.defaultProps = {};
 
-export default CascaderOption;
+export default DateOption;

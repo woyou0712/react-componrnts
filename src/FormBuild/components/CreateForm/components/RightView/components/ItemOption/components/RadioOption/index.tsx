@@ -1,7 +1,7 @@
 /* eslint-disable */
 import React, { useContext, useEffect, useMemo } from "react";
 import { Form, Input, Radio } from "antd";
-import { FormItemOption } from "../../../../../../../../methods/types";
+import { Attribute } from "../../../../../../../../methods/types";
 import FormItem from "../../../../../../../../methods/FormItem";
 import context from "../../../../../../../../methods/context";
 import Options from "../Options";
@@ -29,7 +29,7 @@ function RadioOption() {
     }
   }, [modules]);
 
-  const onAttribute = (attribute: { [key: string]: any }) => {
+  const onAttribute = (attribute: Attribute) => {
     data?.pushAttribute(attribute);
   };
   return data ? (

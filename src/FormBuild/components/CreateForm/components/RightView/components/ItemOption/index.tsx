@@ -5,6 +5,7 @@ import { Empty, Form, Select, Slider, Switch } from "antd";
 import { FormItemOption } from "../../../../../../methods/types";
 import context from "../../../../../../methods/context";
 import FormItem from "../../../../../../methods/FormItem";
+import TextInput from "../TextInput";
 import InputOption from "./components/InputOption";
 import NumberOption from "./components/NumberOption";
 import SelectOption from "./components/SelectOption";
@@ -13,7 +14,7 @@ import RadioOption from "./components/RadioOption";
 import SliderOption from "./components/SliderOption";
 import SwitchOption from "./components/SwitchOption";
 import TimeOption from "./components/TimeOption";
-import TextInput from "../TextInput";
+import DateOption from "./components/DateOption";
 
 import "./index.less";
 
@@ -40,6 +41,7 @@ function getComponent(data: FormItem) {
       return <TimeOption />;
     case "times":
     case "date":
+      return <DateOption />;
     case "dates":
     case "rate":
     case "upload":

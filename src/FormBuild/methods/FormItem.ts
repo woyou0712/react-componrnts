@@ -230,7 +230,7 @@ export default class FormItem {
   }
 
   // 添加属性
-  pushAttribute(newData: { [key: string]: any }) {
+  pushAttribute(newData: Attribute) {
     this.attribute = Object.assign({}, this._attribute, newData);
     return this;
   }

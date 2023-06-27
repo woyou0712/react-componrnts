@@ -1,8 +1,10 @@
 /* eslint-disable */
 import React, { useContext, useEffect, useMemo } from "react";
-import PropTypes from "prop-types";
 import { Form, Input, InputNumber } from "antd";
-import { FormItemOption } from "../../../../../../../../methods/types";
+import {
+  Attribute,
+  FormItemOption,
+} from "../../../../../../../../methods/types";
 import FormItem from "../../../../../../../../methods/FormItem";
 import context from "../../../../../../../../methods/context";
 import RulesOptions from "../RulesOptions";
@@ -40,7 +42,7 @@ function InputOption() {
     data?.setOption(option);
   };
 
-  const onAttribute = (attribute: { [key: string]: any }) => {
+  const onAttribute = (attribute: Attribute) => {
     data?.pushAttribute(attribute);
   };
 

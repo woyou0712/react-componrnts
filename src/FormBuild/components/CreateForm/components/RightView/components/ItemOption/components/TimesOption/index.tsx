@@ -1,23 +1,20 @@
 /* eslint-disable */
 import React, { useContext, useEffect, useMemo } from "react";
-import { Form, Input, Switch } from "antd";
-import { Attribute } from "../../../../../../../../methods/types";
+import { Form, Input, TimePicker } from "antd";
 import FormItem from "../../../../../../../../methods/FormItem";
 import context from "../../../../../../../../methods/context";
-import DataOrigin from "../DataOrigin";
+import { Attribute } from "../../../../../../../../methods/types";
 
 import "./index.less";
 
-function CascaderOption() {
+function TimesOption() {
   const modules = useContext(context);
   const data = useMemo(() => modules.form.activeItem, [modules]);
   const [formA] = Form.useForm();
   const setValues = (_data: FormItem) => {
     const attribute = {
-      multiple: _data.attribute.multiple,
-      origin: _data.attribute.origin,
-      placeholder: _data.attribute.placeholder,
       defaultValue: _data.attribute.defaultValue,
+      placeholder: _data.attribute.placeholder,
     };
     formA.setFieldsValue(attribute);
   };
@@ -29,20 +26,14 @@ function CascaderOption() {
   }, [modules]);
 
   const onAttribute = (attribute: Attribute) => {
-    console.log(attribute);
     data?.pushAttribute(attribute);
   };
+
   return data ? (
-    <div className="CascaderOption">
+    <div className="TimesOption">
       <Form form={formA} labelCol={{ span: 6 }} onValuesChange={onAttribute}>
-        <Form.Item label="多选" name="multiple" valuePropName="checked">
-          <Switch />
-        </Form.Item>
-        <Form.Item label="数据源" name="origin">
-          <DataOrigin />
-        </Form.Item>
         <Form.Item label="默认值" name="defaultValue">
-          <Input />
+          <TimePicker />
         </Form.Item>
         <Form.Item label="占位提示符" name="placeholder">
           <Input />
@@ -52,8 +43,8 @@ function CascaderOption() {
   ) : null;
 }
 
-CascaderOption.propTypes = {};
+TimesOption.propTypes = {};
 
-CascaderOption.defaultProps = {};
+TimesOption.defaultProps = {};
 
-export default CascaderOption;
+export default TimesOption;

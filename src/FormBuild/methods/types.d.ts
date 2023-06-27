@@ -3,7 +3,7 @@ import { Moment } from "moment";
 import { SizeType } from "antd/lib/config-provider/SizeContext";
 
 export type LabelAlign = "left" | "right";
-export type FormLayout = "horizontal" | "vertical" | "inline";
+export type FormLayout = "horizontal" | "vertical";
 
 export type SelfRule = Rule & {
   required?: boolean;

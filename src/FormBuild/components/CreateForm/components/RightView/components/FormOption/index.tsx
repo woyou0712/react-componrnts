@@ -64,8 +64,7 @@ function FormOption() {
         <Form.Item label="表单布局" name="layout">
           <Radio.Group buttonStyle="solid">
             <Radio.Button value="vertical">上下</Radio.Button>
-            <Radio.Button value="horizontal">默认</Radio.Button>
-            <Radio.Button value="inline">行内</Radio.Button>
+            <Radio.Button value="horizontal">左右</Radio.Button>
           </Radio.Group>
         </Form.Item>
         <Form.Item label="显示冒号" name="colon" valuePropName="checked">
