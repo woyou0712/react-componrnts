@@ -335,6 +335,12 @@ export default class FormModule {
     return this;
   }
 
+  removeChildren() {
+    this._allItemMap = {};
+    this.children = [];
+    return this;
+  }
+
   removeOnCaheng() {
     this._changeCalls = [];
     return this;

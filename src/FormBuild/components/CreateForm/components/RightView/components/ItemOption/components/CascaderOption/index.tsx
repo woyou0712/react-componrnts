@@ -1,13 +1,10 @@
 /* eslint-disable */
 import React, { useContext, useEffect, useMemo } from "react";
-import PropTypes from "prop-types";
-import { Form, Input, Radio, Slider, Switch, InputNumber } from "antd";
+import { Form, Input, Switch } from "antd";
 import { FormItemOption } from "../../../../../../../../methods/types";
 import FormItem from "../../../../../../../../methods/FormItem";
 import context from "../../../../../../../../methods/context";
-import Options from "../Options";
 import DataOrigin from "../DataOrigin";
-import RulesOptions from "../RulesOptions";
 
 import "./index.less";
 

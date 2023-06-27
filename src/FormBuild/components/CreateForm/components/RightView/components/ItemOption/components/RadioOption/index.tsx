@@ -1,6 +1,5 @@
 /* eslint-disable */
 import React, { useContext, useEffect, useMemo } from "react";
-import PropTypes from "prop-types";
 import { Form, Input, Radio } from "antd";
 import { FormItemOption } from "../../../../../../../../methods/types";
 import FormItem from "../../../../../../../../methods/FormItem";

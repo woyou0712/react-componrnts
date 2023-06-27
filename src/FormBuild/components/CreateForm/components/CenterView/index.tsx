@@ -1,7 +1,7 @@
 /* eslint-disable */
 import React, { useContext, useEffect, useState } from "react";
 import { useDrop } from "react-dnd";
-import { Row, Col, Form } from "antd";
+import { Row, Col, Form, Space, Button, Modal } from "antd";
 import context from "../../../../methods/context";
 import FormItem from "../../../../methods/FormItem";
 import { ItemTypeOption } from "../../../../methods/types";
@@ -10,6 +10,7 @@ import MoveItem from "./components/MoveItem";
 import "./index.less";
 
 function CenterView() {
+  const [modal, contextHolder] = Modal.useModal();
   const modules = useContext(context);
   const [, drop] = useDrop(() => ({
     accept: [modules.dragType.CREATE, modules.dragType.MOVE],
@@ -36,9 +37,22 @@ function CenterView() {
   useEffect(() => {
     setChildren([...modules.form.children]);
   }, [modules]);
-
   return (
     <div className="create-form-center-body">
+      <div className="create-form-center-head">
+        <Space>
+          <Button
+            danger
+            onClick={() => {
+              modules.form.removeChildren();
+            }}
+          >
+            清空
+          </Button>
+
+          <Button type="primary">保存</Button>
+        </Space>
+      </div>
       <div className="create-form-center-view" ref={drop}>
         <Form
           size={formSize}
