@@ -1,7 +1,7 @@
 /* eslint-disable */
 import React, { useContext, useEffect, useMemo } from "react";
 import PropTypes from "prop-types";
-import { Empty, Form, Input, Select, Slider, Switch, InputNumber } from "antd";
+import { Empty, Form, Select, Slider, Switch } from "antd";
 import { FormItemOption } from "../../../../../../methods/types";
 import context from "../../../../../../methods/context";
 import FormItem from "../../../../../../methods/FormItem";
@@ -12,6 +12,8 @@ import CascaderOption from "./components/CascaderOption";
 import RadioOption from "./components/RadioOption";
 import SliderOption from "./components/SliderOption";
 import SwitchOption from "./components/SwitchOption";
+import TimeOption from "./components/TimeOption";
+import TextInput from "../TextInput";
 
 import "./index.less";
 
@@ -35,6 +37,7 @@ function getComponent(data: FormItem) {
     case "slider":
       return <SliderOption />;
     case "time":
+      return <TimeOption />;
     case "times":
     case "date":
     case "dates":
@@ -53,8 +56,6 @@ function ItemOption() {
     const values = {
       name: _data.name,
       label: _data.label,
-      connectTable: _data.connectTable,
-      connectCol: _data.connectCol,
       queryParams: _data.queryParams,
       disabled: _data.disabled,
       required: _data.required,
@@ -76,14 +77,18 @@ function ItemOption() {
   if (!data) {
     return <Empty description="未选中组件" style={{ marginTop: "150px" }} />;
   }
+
   return (
     <div className="InputOption">
       <Form form={form} labelCol={{ span: 6 }} onValuesChange={onInput}>
-        <Form.Item label="字段名称" name="name">
-          <Input />
+        <Form.Item label="字段编码" name="name">
+          <TextInput />
         </Form.Item>
-        <Form.Item label="字段备注" name="label">
-          <Input />
+        <Form.Item label="字段名称" name="label">
+          <TextInput />
+        </Form.Item>
+        <Form.Item label="必填" name="required" valuePropName="checked">
+          <Switch />
         </Form.Item>
         <Form.Item label="栅格" name="colspan">
           <Slider min={6} max={24} />
@@ -92,15 +97,6 @@ function ItemOption() {
           <Switch />
         </Form.Item>
         <Form.Item label="禁用" name="disabled" valuePropName="checked">
-          <Switch />
-        </Form.Item>
-        <Form.Item label="关联表" name="connectTable">
-          <Select />
-        </Form.Item>
-        <Form.Item label="关联字段" name="connectCol">
-          <Select disabled={!data?.connectTable} />
-        </Form.Item>
-        <Form.Item label="必填" name="required" valuePropName="checked">
           <Switch />
         </Form.Item>
       </Form>

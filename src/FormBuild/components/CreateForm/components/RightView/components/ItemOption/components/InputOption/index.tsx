@@ -1,7 +1,7 @@
 /* eslint-disable */
 import React, { useContext, useEffect, useMemo } from "react";
 import PropTypes from "prop-types";
-import { Form, Input, Radio, Slider, Switch, InputNumber } from "antd";
+import { Form, Input, InputNumber } from "antd";
 import { FormItemOption } from "../../../../../../../../methods/types";
 import FormItem from "../../../../../../../../methods/FormItem";
 import context from "../../../../../../../../methods/context";
@@ -13,6 +13,7 @@ function InputOption() {
   const modules = useContext(context);
   const data = useMemo(() => modules.form.activeItem, [modules]);
   const [form] = Form.useForm();
+  const [formA] = Form.useForm();
   const setValues = (_data: FormItem) => {
     const values = {
       rules: _data.rules,
@@ -21,6 +22,12 @@ function InputOption() {
       defaultValue: _data.defaultValue,
     };
     form.setFieldsValue(values);
+
+    const attribute = {
+      addonBefore: _data.attribute.addonBefore,
+      addonAfter: _data.attribute.addonAfter,
+    };
+    formA.setFieldsValue(attribute);
   };
 
   useEffect(() => {
@@ -33,8 +40,20 @@ function InputOption() {
     data?.setOption(option);
   };
 
+  const onAttribute = (attribute: { [key: string]: any }) => {
+    data?.pushAttribute(attribute);
+  };
+
   return data ? (
     <div className="InputOption">
+      <Form form={formA} labelCol={{ span: 6 }} onValuesChange={onAttribute}>
+        <Form.Item label="前缀" name="addonBefore">
+          <Input />
+        </Form.Item>
+        <Form.Item label="后缀" name="addonAfter">
+          <Input />
+        </Form.Item>
+      </Form>
       <Form form={form} labelCol={{ span: 6 }} onValuesChange={onInput}>
         <Form.Item label="最大长度" name="maxLength">
           <InputNumber />

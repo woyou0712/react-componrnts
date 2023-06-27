@@ -1,9 +1,9 @@
 /* eslint-disable */
 import React, { useContext, useEffect } from "react";
-import PropTypes from "prop-types";
-import { Form, Input, Radio, Slider, Switch } from "antd";
+import { Form, Radio, Slider, Switch } from "antd";
 import { FormModuleOption } from "../../../../../../methods/types";
 import context from "../../../../../../methods/context";
+import TextInput from "../TextInput";
 
 import "./index.less";
 
@@ -37,10 +37,10 @@ function FormOption() {
     <div className="FormOption">
       <Form form={formV} labelCol={{ span: 6 }} onValuesChange={onInput}>
         <Form.Item label="表名" name="name">
-          <Input />
+          <TextInput />
         </Form.Item>
         <Form.Item label="表备注" name="label">
-          <Input />
+          <TextInput />
         </Form.Item>
         <Form.Item label="表单尺寸" name="formSize">
           <Radio.Group buttonStyle="solid">

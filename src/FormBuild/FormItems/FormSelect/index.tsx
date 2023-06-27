@@ -24,13 +24,18 @@ function FormSelect({ data }: { data: FormItem }) {
       } else {
         setOptions([]);
       }
-    } else {
+    } else if (dataOrigin === "import") {
       // 网络源
       setOptions([
         { label: "外部数据1", value: 1 },
         { label: "外部数据2", value: 2 },
       ]);
       setFieldNames(getFieldNames(origin));
+    } else if (dataOrigin === "join") {
+      setOptions([
+        { label: "其他表数据1", value: 1 },
+        { label: "其他表数据2", value: 2 },
+      ]);
     }
   }, [modules]);
 

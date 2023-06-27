@@ -71,22 +71,7 @@ export default class FormItem {
     this._maxLength = v;
     this._onChange();
   }
-  private _connectTable?: string; // 关联表
-  get connectTable() {
-    return this._connectTable;
-  }
-  set connectTable(v) {
-    this._connectTable = v;
-    this._onChange();
-  }
-  private _connectCol?: string; // 关联字段
-  get connectCol() {
-    return this._connectCol;
-  }
-  set connectCol(v) {
-    this._connectCol = v;
-    this._onChange();
-  }
+
   private _queryParams = false; // 是否用于查询入参
   get queryParams() {
     return this._queryParams;
@@ -221,12 +206,6 @@ export default class FormItem {
     }
     if (option.maxLength !== undefined) {
       this.maxLength = option.maxLength;
-    }
-    if (option.connectTable !== undefined) {
-      this.connectTable = option.connectTable;
-    }
-    if (option.connectCol !== undefined) {
-      this.connectCol = option.connectCol;
     }
     if (option.queryParams !== undefined) {
       this.queryParams = option.queryParams;

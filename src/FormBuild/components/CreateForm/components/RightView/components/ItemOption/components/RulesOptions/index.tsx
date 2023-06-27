@@ -1,10 +1,10 @@
 /* eslint-disable */
 import React from "react";
 import PropTypes from "prop-types";
-import { Input, Space } from "antd";
+import { Input } from "antd";
 import { SelfRule } from "../../../../../../../../methods/types.d";
-import "./index.less";
 import DeleteButton from "../../../../../DeleteButton";
+import "./index.less";
 
 function RulesOptions({
   value,

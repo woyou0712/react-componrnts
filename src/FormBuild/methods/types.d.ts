@@ -64,10 +64,14 @@ export type InputValueType = string | number | Moment | boolean;
 export interface Attribute {
   multiple?: boolean;
   options?: OptionType[];
-  dataOrigin?: "self" | "import";
+  dataOrigin?: "self" | "import" | "join";
   origin?: OriginType;
+  connectTable?: string; // 关联表
+  connectCol?: string; // 关联字段
   min?: number;
   max?: number;
+  addonBefore?: string;
+  addonAfter?: string;
   [key: string]: any;
 }
 
@@ -79,8 +83,6 @@ export interface FormItemOption {
   label?: string; // 组件名称
   dataType?: DataType; // 数据类型
   maxLength?: number; // 最大输入数量
-  connectTable?: string; // 关联表
-  connectCol?: string; // 关联字段
   queryParams?: boolean; // 是否用于查询入参
   disabled?: boolean; // 是否禁用
 

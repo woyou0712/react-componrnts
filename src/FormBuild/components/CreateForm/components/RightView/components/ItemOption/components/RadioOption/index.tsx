@@ -51,19 +51,28 @@ function RadioOption() {
       <Form form={formA} labelCol={{ span: 6 }} onValuesChange={onAttribute}>
         <Form.Item label="数据来源" name="dataOrigin">
           <Radio.Group buttonStyle="solid">
-            <Radio.Button value="self">自定义选项</Radio.Button>
+            <Radio.Button value="self">自定义</Radio.Button>
             <Radio.Button value="import">外部数据</Radio.Button>
           </Radio.Group>
         </Form.Item>
-        {data.attribute.dataOrigin === "self" ? (
-          <Form.Item label="选项" name="options">
-            <Options />
-          </Form.Item>
-        ) : (
-          <Form.Item label="数据源" name="origin">
-            <DataOrigin />
-          </Form.Item>
-        )}
+        {((dataOrigin) => {
+          switch (dataOrigin) {
+            case "self":
+              return (
+                <Form.Item label="选项" name="options">
+                  <Options />
+                </Form.Item>
+              );
+            case "import":
+              return (
+                <Form.Item label="数据源" name="origin">
+                  <DataOrigin />
+                </Form.Item>
+              );
+            default:
+              break;
+          }
+        })(data.attribute.dataOrigin)}
       </Form>
     </div>
   ) : null;
