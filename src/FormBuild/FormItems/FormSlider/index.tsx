@@ -17,13 +17,9 @@ function FormSlider({ data }: { data: FormItem }) {
       label={data.label}
       required={data.required}
       rules={data.rules}
+      initialValue={defaultValue}
     >
-      <Slider
-        disabled={data.disabled || form.disabled}
-        defaultValue={defaultValue as number}
-        max={max}
-        min={min}
-      />
+      <Slider disabled={data.disabled || form.disabled} max={max} min={min} />
     </Form.Item>
   );
 }

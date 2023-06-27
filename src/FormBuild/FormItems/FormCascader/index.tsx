@@ -45,12 +45,12 @@ function FormCascader({ data }: { data: FormItem }) {
       label={data.label}
       required={data.required}
       rules={data.rules}
+      initialValue={defaultValue ? [defaultValue] : undefined}
     >
       <Cascader
         multiple={multiple}
         placeholder={placeholder as string}
         disabled={data.disabled || modules.form.disabled}
-        defaultValue={defaultValue ? [defaultValue as string] : undefined}
         fieldNames={fieldNames}
         options={_options}
       />

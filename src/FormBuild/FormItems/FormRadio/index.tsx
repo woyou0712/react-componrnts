@@ -38,8 +38,9 @@ function FormRadio({ data }: { data: FormItem }) {
       label={data.label}
       required={data.required}
       rules={data.rules}
+      initialValue={defaultValue}
     >
-      <Radio.Group defaultValue={defaultValue}>
+      <Radio.Group>
         {_options.map((item, index) => {
           const key = `r-${index}`;
           return (

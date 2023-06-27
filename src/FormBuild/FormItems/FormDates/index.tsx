@@ -17,11 +17,11 @@ function FormDates({ data }: { data: FormItem }) {
       label={data.label}
       required={data.required}
       rules={data.rules}
+      initialValue={defaultValue}
     >
       <DatePicker.RangePicker
         placeholder={placeholder as [string, string]}
         disabled={data.disabled || form.disabled}
-        defaultValue={defaultValue as [Moment, Moment]}
       />
     </Form.Item>
   );

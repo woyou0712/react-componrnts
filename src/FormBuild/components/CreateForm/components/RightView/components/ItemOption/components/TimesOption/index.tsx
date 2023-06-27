@@ -6,6 +6,8 @@ import context from "../../../../../../../../methods/context";
 import { Attribute } from "../../../../../../../../methods/types";
 
 import "./index.less";
+import moment, { Moment } from "moment";
+import { times2str } from "../../../../../../../../methods/utils";
 
 function TimesOption() {
   const modules = useContext(context);
@@ -26,14 +28,20 @@ function TimesOption() {
   }, [modules]);
 
   const onAttribute = (attribute: Attribute) => {
-    data?.pushAttribute(attribute);
+    const _attribute: Attribute = { ...attribute };
+    if (Array.isArray(_attribute.defaultValue)) {
+      _attribute.defaultValue = times2str(
+        _attribute.defaultValue as [Moment, Moment]
+      );
+    }
+    data?.pushAttribute(_attribute);
   };
 
   return data ? (
     <div className="TimesOption">
       <Form form={formA} labelCol={{ span: 6 }} onValuesChange={onAttribute}>
         <Form.Item label="默认值" name="defaultValue">
-          <TimePicker />
+          <TimePicker.RangePicker />
         </Form.Item>
         <Form.Item label="占位提示符" name="placeholder">
           <Input />

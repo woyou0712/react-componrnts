@@ -16,6 +16,7 @@ function FormTextarea({ data }: { data: FormItem }) {
     <Form.Item
       name={data.name}
       label={data.label}
+      initialValue={defaultValue}
       required={data.required}
       rules={data.rules.map((item) => {
         let pattern;
@@ -35,7 +36,6 @@ function FormTextarea({ data }: { data: FormItem }) {
         placeholder={placeholder as string}
         disabled={data.disabled || form.disabled}
         maxLength={data.maxLength}
-        defaultValue={defaultValue as string}
       />
     </Form.Item>
   );

@@ -16,6 +16,7 @@ function FormInput({ data }: { data: FormItem }) {
     <Form.Item
       name={data.name}
       label={data.label}
+      initialValue={defaultValue}
       required={data.required}
       rules={data.rules.map((item) => {
         let pattern;
@@ -35,7 +36,6 @@ function FormInput({ data }: { data: FormItem }) {
         placeholder={placeholder as string}
         disabled={data.disabled || form.disabled}
         maxLength={data.maxLength}
-        defaultValue={defaultValue as string}
         addonBefore={addonBefore ? addonBefore : undefined}
         addonAfter={addonAfter ? addonAfter : undefined}
       />

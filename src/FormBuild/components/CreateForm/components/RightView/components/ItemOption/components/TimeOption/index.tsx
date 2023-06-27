@@ -1,10 +1,11 @@
 /* eslint-disable */
 import React, { useContext, useEffect, useMemo } from "react";
 import { Form, Input, TimePicker } from "antd";
+import moment, { Moment } from "moment";
 import FormItem from "../../../../../../../../methods/FormItem";
 import context from "../../../../../../../../methods/context";
 import { Attribute } from "../../../../../../../../methods/types";
-import moment, { Moment } from "moment";
+import { time2str } from "../../../../../../../../methods/utils";
 
 import "./index.less";
 
@@ -13,10 +14,14 @@ function TimeOption() {
   const data = useMemo(() => modules.form.activeItem, [modules]);
   const [formA] = Form.useForm();
   const setValues = (_data: FormItem) => {
-    const attribute = {
-      defaultValue: _data.attribute.defaultValue,
+    const attribute: Attribute = {
       placeholder: _data.attribute.placeholder,
+      defaultValue: _data.attribute.defaultValue
+        ? moment(_data.attribute.defaultValue as string)
+        : undefined,
     };
+
+    console.log("_defaultValue", attribute);
     formA.setFieldsValue(attribute);
   };
 
@@ -29,9 +34,7 @@ function TimeOption() {
   const onAttribute = (attribute: Attribute) => {
     const _attribute = { ...attribute };
     if (_attribute.defaultValue) {
-      _attribute.defaultValue = moment(
-        _attribute.defaultValue as Moment
-      ).format("HH:mm:ss");
+      _attribute.defaultValue = time2str(_attribute.defaultValue as Moment);
     }
     data?.pushAttribute(_attribute);
   };

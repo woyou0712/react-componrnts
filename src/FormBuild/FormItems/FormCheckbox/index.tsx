@@ -38,10 +38,9 @@ function FormCheckbox({ data }: { data: FormItem }) {
       label={data.label}
       required={data.required}
       rules={data.rules}
+      initialValue={defaultValue ? [defaultValue] : undefined}
     >
-      <Checkbox.Group
-        defaultValue={defaultValue ? [defaultValue as string] : undefined}
-      >
+      <Checkbox.Group>
         {_options.map((item, index) => {
           const key = `r-${index}`;
           return (

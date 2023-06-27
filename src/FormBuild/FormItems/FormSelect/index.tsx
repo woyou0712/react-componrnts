@@ -46,12 +46,12 @@ function FormSelect({ data }: { data: FormItem }) {
       label={data.label}
       required={data.required}
       rules={data.rules}
+      initialValue={defaultValue}
     >
       <Select
         mode={multiple ? "multiple" : undefined}
         placeholder={placeholder as string}
         disabled={data.disabled || modules.form.disabled}
-        defaultValue={defaultValue as string}
         fieldNames={fieldNames}
         options={_options}
       />

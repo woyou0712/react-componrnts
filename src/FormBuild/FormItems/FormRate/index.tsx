@@ -18,11 +18,9 @@ function FormRate({ data }: { data: FormItem }) {
       label={data.label}
       required={data.required}
       rules={data.rules}
+      initialValue={defaultValue}
     >
-      <Rate
-        disabled={data.disabled || form.disabled}
-        defaultValue={defaultValue as number}
-      />
+      <Rate disabled={data.disabled || form.disabled} />
     </Form.Item>
   );
 }

@@ -14,6 +14,7 @@ import RadioOption from "./components/RadioOption";
 import SliderOption from "./components/SliderOption";
 import SwitchOption from "./components/SwitchOption";
 import TimeOption from "./components/TimeOption";
+import TimesOption from "./components/TimesOption";
 import DateOption from "./components/DateOption";
 
 import "./index.less";
@@ -40,6 +41,7 @@ function getComponent(data: FormItem) {
     case "time":
       return <TimeOption />;
     case "times":
+      return <TimesOption />;
     case "date":
       return <DateOption />;
     case "dates":

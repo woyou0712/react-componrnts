@@ -2,7 +2,7 @@
 import React, { useContext } from "react";
 import PropTypes from "prop-types";
 import { Form, TimePicker } from "antd";
-import { Moment } from "moment";
+import moment, { Moment } from "moment";
 import FormItem from "../../methods/FormItem";
 import context from "../../methods/context";
 import "./index.less";
@@ -18,11 +18,11 @@ function FormTime({ data }: { data: FormItem }) {
       label={data.label}
       required={data.required}
       rules={data.rules}
+      initialValue={defaultValue ? moment(defaultValue as string) : undefined}
     >
       <TimePicker
         placeholder={placeholder as string}
         disabled={data.disabled || form.disabled}
-        defaultValue={defaultValue as Moment}
       />
     </Form.Item>
   );

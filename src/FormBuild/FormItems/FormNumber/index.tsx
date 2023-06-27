@@ -16,6 +16,7 @@ function FormNumber({ data }: { data: FormItem }) {
       name={data.name}
       label={data.label}
       required={data.required}
+      initialValue={defaultValue}
       rules={data.rules.map((item) => {
         let pattern;
         try {
@@ -34,7 +35,6 @@ function FormNumber({ data }: { data: FormItem }) {
         placeholder={placeholder as string}
         disabled={data.disabled || form.disabled}
         maxLength={data.maxLength}
-        defaultValue={defaultValue as number}
         max={max}
         min={min}
       />
