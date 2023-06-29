@@ -1,6 +1,6 @@
 /* eslint-disable */
 import React, { useContext, useEffect, useMemo } from 'react';
-import { Form, Input, Select, InputNumber } from 'antd';
+import { Form, Input, InputNumber } from 'antd';
 import { ItemAttribute, FormItemOption } from '../../../../../../../../methods/types';
 import FormItem from '../../../../../../../../methods/FormItem';
 import context from '../../../../../../../../methods/context';
@@ -8,7 +8,7 @@ import RulesOptions from '../RulesOptions';
 
 import './index.less';
 
-function NumberOption() {
+function TextareaOption() {
   const modules = useContext(context);
   const data = useMemo(() => modules.form.activeItem, [modules]);
   const [form] = Form.useForm();
@@ -16,15 +16,13 @@ function NumberOption() {
   const setValues = (_data: FormItem) => {
     const values = {
       rules: _data.rules,
-      dataType: _data.dataType,
+      maxLength: _data.maxLength,
     };
     form.setFieldsValue(values);
 
     const attribute = {
-      min: _data.attribute.min,
-      max: _data.attribute.max,
-      defaultValue: _data.attribute.defaultValue,
       placeholder: _data.attribute.placeholder,
+      defaultValue: _data.attribute.defaultValue,
     };
     formA.setFieldsValue(attribute);
   };
@@ -44,39 +42,29 @@ function NumberOption() {
   };
 
   return data ? (
-    <div className="NumberOption">
+    <div className="TextareaOption">
       <Form form={formA} labelCol={{ span: 6 }} onValuesChange={onAttribute}>
-        <Form.Item label="最小值" name="min">
-          <InputNumber />
-        </Form.Item>
-        <Form.Item label="最大值" name="max">
-          <InputNumber />
-        </Form.Item>
         <Form.Item label="默认值" name="defaultValue">
-          <InputNumber max={data.attribute.max} min={data.attribute.min} />
+          <Input />
         </Form.Item>
         <Form.Item label="占位提示符" name="placeholder">
           <Input />
         </Form.Item>
       </Form>
       <Form form={form} labelCol={{ span: 6 }} onValuesChange={onInput}>
+        <Form.Item label="最大长度" name="maxLength">
+          <InputNumber />
+        </Form.Item>
         <Form.Item label="校验规则" name="rules">
           <RulesOptions />
-        </Form.Item>
-        <Form.Item label="存储类型" name="dataType">
-          <Select>
-            <Select.Option value="string">字符</Select.Option>
-            <Select.Option value="number">数值</Select.Option>
-            <Select.Option value="float">小数</Select.Option>
-          </Select>
         </Form.Item>
       </Form>
     </div>
   ) : null;
 }
 
-NumberOption.propTypes = {};
+TextareaOption.propTypes = {};
 
-NumberOption.defaultProps = {};
+TextareaOption.defaultProps = {};
 
-export default NumberOption;
+export default TextareaOption;

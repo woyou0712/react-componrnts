@@ -16,7 +16,7 @@ function DatesOption() {
   const [formA] = Form.useForm();
   const setValues = (_data: FormItem) => {
     const attribute = {
-      datetime: _data.attribute.datetime,
+      datetime: _data.attribute.datetime || '',
       defaultValue: _data.attribute.defaultValue ? str2dates(_data.attribute.defaultValue as string) : undefined,
       placeholder: _data.attribute.placeholder,
     };
@@ -49,7 +49,10 @@ function DatesOption() {
           </Radio.Group>
         </Form.Item>
         <Form.Item label="默认值" name="defaultValue">
-          <DatePicker.RangePicker />
+          <DatePicker.RangePicker
+            showTime={data.attribute.datetime ? { format: data.attribute.datetime } : undefined}
+            format={data.attribute.datetime ? `YYYY-MM-DD ${data.attribute.datetime}` : undefined}
+          />
         </Form.Item>
         <Form.Item label="占位提示符" name="placeholder">
           <Inputs />

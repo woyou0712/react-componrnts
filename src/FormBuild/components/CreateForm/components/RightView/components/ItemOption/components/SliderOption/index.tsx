@@ -1,11 +1,11 @@
 /* eslint-disable */
-import React, { useContext, useEffect, useMemo } from "react";
-import { Form, InputNumber } from "antd";
-import { ItemAttribute } from "../../../../../../../../methods/types";
-import FormItem from "../../../../../../../../methods/FormItem";
-import context from "../../../../../../../../methods/context";
+import React, { useContext, useEffect, useMemo } from 'react';
+import { Form, InputNumber } from 'antd';
+import { ItemAttribute } from '../../../../../../../../methods/types';
+import FormItem from '../../../../../../../../methods/FormItem';
+import context from '../../../../../../../../methods/context';
 
-import "./index.less";
+import './index.less';
 
 function SliderOption() {
   const modules = useContext(context);
@@ -40,7 +40,7 @@ function SliderOption() {
           <InputNumber />
         </Form.Item>
         <Form.Item label="默认值" name="defaultValue">
-          <InputNumber />
+          <InputNumber max={data.attribute.max} min={data.attribute.min} />
         </Form.Item>
       </Form>
     </div>

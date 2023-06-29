@@ -15,7 +15,7 @@ function TimeOption() {
   const [formA] = Form.useForm();
   const setValues = (_data: FormItem) => {
     const attribute: ItemAttribute = {
-      datetime: _data.attribute.datetime,
+      datetime: _data.attribute.datetime || 'HH:mm:ss',
       placeholder: _data.attribute.placeholder,
       defaultValue: _data.attribute.defaultValue ? moment(_data.attribute.defaultValue as string) : undefined,
     };
@@ -47,7 +47,7 @@ function TimeOption() {
           </Radio.Group>
         </Form.Item>
         <Form.Item label="默认值" name="defaultValue">
-          <TimePicker />
+          <TimePicker format={data.attribute.datetime} />
         </Form.Item>
         <Form.Item label="占位提示符" name="placeholder">
           <Input />

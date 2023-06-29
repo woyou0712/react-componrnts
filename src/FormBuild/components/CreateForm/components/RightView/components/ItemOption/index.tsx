@@ -1,60 +1,62 @@
 /* eslint-disable */
-import React, { useContext, useEffect, useMemo } from "react";
-import PropTypes from "prop-types";
-import { Empty, Form, Select, Slider, Switch } from "antd";
-import { FormItemOption } from "../../../../../../methods/types";
-import context from "../../../../../../methods/context";
-import FormItem from "../../../../../../methods/FormItem";
-import TextInput from "../TextInput";
-import InputOption from "./components/InputOption";
-import NumberOption from "./components/NumberOption";
-import SelectOption from "./components/SelectOption";
-import CascaderOption from "./components/CascaderOption";
-import RadioOption from "./components/RadioOption";
-import SliderOption from "./components/SliderOption";
-import SwitchOption from "./components/SwitchOption";
-import TimeOption from "./components/TimeOption";
-import TimesOption from "./components/TimesOption";
-import DateOption from "./components/DateOption";
-import DatesOption from "./components/DatesOption";
-import RateOption from "./components/RateOption";
+import React, { useContext, useEffect, useMemo } from 'react';
+import PropTypes from 'prop-types';
+import { Empty, Form, Select, Slider, Switch } from 'antd';
+import { FormItemOption } from '../../../../../../methods/types';
+import context from '../../../../../../methods/context';
+import FormItem from '../../../../../../methods/FormItem';
+import TextInput from '../TextInput';
+import InputOption from './components/InputOption';
+import TextareaOption from './components/TextareaOption';
+import NumberOption from './components/NumberOption';
+import SelectOption from './components/SelectOption';
+import CascaderOption from './components/CascaderOption';
+import RadioOption from './components/RadioOption';
+import SliderOption from './components/SliderOption';
+import SwitchOption from './components/SwitchOption';
+import TimeOption from './components/TimeOption';
+import TimesOption from './components/TimesOption';
+import DateOption from './components/DateOption';
+import DatesOption from './components/DatesOption';
+import RateOption from './components/RateOption';
+import UploadOption from './components/UploadOption';
 
-import "./index.less";
-import UploadOption from "./components/UploadOption";
+import './index.less';
 
 function getComponent(data: FormItem) {
   switch (data.type) {
-    case "input":
-    case "textarea":
-    case "password":
+    case 'input':
       return <InputOption />;
-    case "number":
+    case 'textarea':
+    case 'password':
+      return <TextareaOption />;
+    case 'number':
       return <NumberOption />;
-    case "select":
+    case 'select':
       return <SelectOption />;
-    case "cascader":
+    case 'cascader':
       return <CascaderOption />;
-    case "radio":
-    case "checkbox":
+    case 'radio':
+    case 'checkbox':
       return <RadioOption />;
-    case "switch":
+    case 'switch':
       return <SwitchOption />;
-    case "slider":
+    case 'slider':
       return <SliderOption />;
-    case "time":
+    case 'time':
       return <TimeOption />;
-    case "times":
+    case 'times':
       return <TimesOption />;
-    case "date":
+    case 'date':
       return <DateOption />;
-    case "dates":
+    case 'dates':
       return <DatesOption />;
-    case "rate":
+    case 'rate':
       return <RateOption />;
-    case "upload":
+    case 'upload':
       return <UploadOption />;
-    case "block":
-    case "button":
+    case 'block':
+    case 'button':
   }
 }
 
@@ -85,7 +87,7 @@ function ItemOption() {
   };
 
   if (!data) {
-    return <Empty description="未选中组件" style={{ marginTop: "150px" }} />;
+    return <Empty description="未选中组件" style={{ marginTop: '150px' }} />;
   }
 
   return (

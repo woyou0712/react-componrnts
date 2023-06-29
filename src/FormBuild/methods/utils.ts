@@ -60,7 +60,7 @@ export function str2times(str: string): [Moment, Moment] | undefined {
  * 日期转字符串
  */
 export function date2str(date: Moment) {
-  return moment(date).format('YYYY-MM-DD');
+  return moment(date).format('YYYY-MM-DD HH:mm:ss');
 }
 /**
  * 日期段转字符串
