@@ -1,29 +1,28 @@
 /* eslint-disable */
-import React from "react";
-import PropTypes from "prop-types";
-import { Input } from "antd";
-import { SelfRule } from "../../../../../../../../methods/types.d";
-import DeleteButton from "../../../../../DeleteButton";
-import "./index.less";
+import React, { useState, useEffect } from 'react';
+import { Input } from 'antd';
+import { SelfRule } from '../../../../../../../../methods/types.d';
+import DeleteButton from '../../../../../DeleteButton';
+import './index.less';
 
-function RulesOptions({
-  value,
-  onChange,
-}: {
-  value?: SelfRule[];
-  onChange?: (data: SelfRule[]) => void;
-}) {
+function RulesOptions({ value, onChange }: { value?: SelfRule[]; onChange?: (data: SelfRule[]) => void }) {
+  const [values, setValues] = useState<SelfRule[]>([]);
+  useEffect(() => {
+    setValues(value ? [...value] : []);
+  }, [value]);
   return (
     <div className="form-rules-options">
-      {value
-        ? value.map((rule, index) => {
+      {values
+        ? values.map((rule, index) => {
             const key = `rule-${index}`;
             return (
               <div key={key} className="form-rule-options-item">
                 <DeleteButton
                   onClick={() => {
-                    value.splice(index, 1);
-                    if (onChange) onChange(value);
+                    const rules = [...values];
+                    rules.splice(index, 1);
+                    setValues(rules);
+                    if (onChange) onChange(rules);
                   }}
                 />
                 <Input
@@ -31,20 +30,22 @@ function RulesOptions({
                   placeholder="正则表达式"
                   onChange={(e) => {
                     rule.pattern = e.target.value;
+                    setValues([...values]);
                   }}
                   onBlur={() => {
-                    if (onChange) onChange(value);
+                    if (onChange) onChange([...values]);
                   }}
                 />
                 <Input
                   value={rule.message}
                   placeholder="提示文本"
-                  style={{ marginTop: "10px" }}
+                  style={{ marginTop: '10px' }}
                   onChange={(e) => {
                     rule.message = e.target.value;
+                    setValues([...values]);
                   }}
                   onBlur={() => {
-                    if (onChange) onChange(value);
+                    if (onChange) onChange([...values]);
                   }}
                 />
               </div>
@@ -54,8 +55,9 @@ function RulesOptions({
       <div
         className="form-rule-options-item button"
         onClick={() => {
-          const rules = value || [];
+          const rules = values ? [...values] : [];
           rules.push({});
+          setValues(rules);
           if (onChange) onChange(rules);
         }}
       >

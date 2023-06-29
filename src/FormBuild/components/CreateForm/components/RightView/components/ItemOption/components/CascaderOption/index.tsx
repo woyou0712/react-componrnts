@@ -1,7 +1,7 @@
 /* eslint-disable */
 import React, { useContext, useEffect, useMemo } from "react";
 import { Form, Input, Switch } from "antd";
-import { Attribute } from "../../../../../../../../methods/types";
+import { ItemAttribute } from "../../../../../../../../methods/types";
 import FormItem from "../../../../../../../../methods/FormItem";
 import context from "../../../../../../../../methods/context";
 import DataOrigin from "../DataOrigin";
@@ -28,7 +28,7 @@ function CascaderOption() {
     }
   }, [modules]);
 
-  const onAttribute = (attribute: Attribute) => {
+  const onAttribute = (attribute: ItemAttribute) => {
     console.log(attribute);
     data?.pushAttribute(attribute);
   };

@@ -2,7 +2,7 @@
 import React, { useContext, useEffect, useMemo } from "react";
 import PropTypes from "prop-types";
 import { Form, Radio } from "antd";
-import { Attribute } from "../../../../../../../../methods/types";
+import { ItemAttribute } from "../../../../../../../../methods/types";
 import FormItem from "../../../../../../../../methods/FormItem";
 import context from "../../../../../../../../methods/context";
 
@@ -25,7 +25,7 @@ function SwitchOption() {
     }
   }, [modules]);
 
-  const onAttribute = (attribute: Attribute) => {
+  const onAttribute = (attribute: ItemAttribute) => {
     data?.pushAttribute(attribute);
   };
   return data ? (

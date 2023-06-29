@@ -1,11 +1,11 @@
 /* eslint-disable */
-import React, { useContext } from "react";
-import PropTypes from "prop-types";
-import { Form, Slider } from "antd";
-import FormItem from "../../methods/FormItem";
-import context from "../../methods/context";
+import React, { useContext } from 'react';
+import PropTypes from 'prop-types';
+import { Form, Slider } from 'antd';
+import FormItem from '../../methods/FormItem';
+import context from '../../methods/context';
 
-import "./index.less";
+import './index.less';
 
 function FormSlider({ data }: { data: FormItem }) {
   const modules = useContext(context);
@@ -17,7 +17,7 @@ function FormSlider({ data }: { data: FormItem }) {
       label={data.label}
       required={data.required}
       rules={data.rules}
-      initialValue={defaultValue}
+      initialValue={modules.mode === 'view' ? defaultValue : undefined}
     >
       <Slider disabled={data.disabled || form.disabled} max={max} min={min} />
     </Form.Item>

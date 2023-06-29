@@ -1,7 +1,7 @@
 /* eslint-disable */
 import React, { useContext, useEffect, useMemo } from "react";
 import { Form, InputNumber } from "antd";
-import { Attribute } from "../../../../../../../../methods/types";
+import { ItemAttribute } from "../../../../../../../../methods/types";
 import FormItem from "../../../../../../../../methods/FormItem";
 import context from "../../../../../../../../methods/context";
 
@@ -26,7 +26,7 @@ function SliderOption() {
     }
   }, [modules]);
 
-  const onAttribute = (attribute: Attribute) => {
+  const onAttribute = (attribute: ItemAttribute) => {
     data?.pushAttribute(attribute);
   };
 
@@ -36,7 +36,7 @@ function SliderOption() {
         <Form.Item label="最小值" name="min">
           <InputNumber />
         </Form.Item>
-        <Form.Item label="最小值" name="max">
+        <Form.Item label="最大值" name="max">
           <InputNumber />
         </Form.Item>
         <Form.Item label="默认值" name="defaultValue">

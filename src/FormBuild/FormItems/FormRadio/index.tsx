@@ -1,13 +1,13 @@
 /* eslint-disable */
-import React, { useContext, useEffect, useState } from "react";
-import PropTypes from "prop-types";
-import { Form, Radio } from "antd";
-import FormItem from "../../methods/FormItem";
-import context from "../../methods/context";
-import { OptionType } from "../../methods/types";
-import { getFieldNames } from "../../methods/utils";
+import React, { useContext, useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
+import { Form, Radio } from 'antd';
+import FormItem from '../../methods/FormItem';
+import context from '../../methods/context';
+import { OptionType } from '../../methods/types';
+import { getFieldNames } from '../../methods/utils';
 
-import "./index.less";
+import './index.less';
 
 function FormRadio({ data }: { data: FormItem }) {
   const modules = useContext(context);
@@ -15,7 +15,7 @@ function FormRadio({ data }: { data: FormItem }) {
   const [_options, setOptions] = useState<OptionType[]>([]);
 
   useEffect(() => {
-    if (dataOrigin === "self") {
+    if (dataOrigin === 'self') {
       // 自定义选项
       if (options) {
         setOptions((options as OptionType[]).map((item) => ({ ...item })));
@@ -25,8 +25,8 @@ function FormRadio({ data }: { data: FormItem }) {
     } else {
       // 网络源
       setOptions([
-        { label: "外部数据1", value: 1 },
-        { label: "外部数据2", value: 2 },
+        { label: '外部数据1', value: 1 },
+        { label: '外部数据2', value: 2 },
       ]);
       // getFieldNames(origin);
     }
@@ -38,7 +38,7 @@ function FormRadio({ data }: { data: FormItem }) {
       label={data.label}
       required={data.required}
       rules={data.rules}
-      initialValue={defaultValue}
+      initialValue={modules.mode === 'view' ? defaultValue : undefined}
     >
       <Radio.Group>
         {_options.map((item, index) => {

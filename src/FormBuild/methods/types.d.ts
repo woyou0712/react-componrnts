@@ -1,9 +1,10 @@
-import { Rule } from "rc-field-form/lib/interface";
-import { Moment } from "moment";
-import { SizeType } from "antd/lib/config-provider/SizeContext";
+import { Rule } from 'rc-field-form/lib/interface';
+import { Moment } from 'moment';
+import { SizeType } from 'antd/lib/config-provider/SizeContext';
 
-export type LabelAlign = "left" | "right";
-export type FormLayout = "horizontal" | "vertical";
+export type LabelAlign = 'left' | 'right';
+export type FormLayout = 'horizontal' | 'vertical';
+export type TimeFormatType = 'HH' | 'HH:mm' | 'HH:mm:ss';
 
 export type SelfRule = Rule & {
   required?: boolean;
@@ -38,36 +39,36 @@ export interface FormModuleOption {
 }
 
 export type FormItemType =
-  | "input"
-  | "textarea"
-  | "password"
-  | "number"
-  | "select"
-  | "cascader"
-  | "radio"
-  | "checkbox"
-  | "switch"
-  | "slider"
-  | "time"
-  | "times"
-  | "date"
-  | "dates"
-  | "rate"
-  | "upload"
-  | "block"
-  | "button";
+  | 'input'
+  | 'textarea'
+  | 'password'
+  | 'number'
+  | 'select'
+  | 'cascader'
+  | 'radio'
+  | 'checkbox'
+  | 'switch'
+  | 'slider'
+  | 'time'
+  | 'times'
+  | 'date'
+  | 'dates'
+  | 'rate'
+  | 'upload'
+  | 'block'
+  | 'button';
 
 export type ItemTypeOption = { type: FormItemType; label: string };
 
-export type DataType = "number" | "datetime" | "string" | "float";
+export type DataType = 'number' | 'datetime' | 'string' | 'float';
 export type InputValueType = string | number | Moment | boolean;
-export interface Attribute {
+export interface ItemAttribute {
   placeholder?: string | string[]; // 占位提示符
   defaultValue?: InputValueType | InputValueType[]; // 默认值
 
   multiple?: boolean;
   options?: OptionType[];
-  dataOrigin?: "self" | "import" | "join";
+  dataOrigin?: 'self' | 'import' | 'join';
   origin?: OriginType;
   connectTable?: string; // 关联表
   connectCol?: string; // 关联字段
@@ -75,6 +76,8 @@ export interface Attribute {
   max?: number;
   addonBefore?: string;
   addonAfter?: string;
+
+  datetime?: TimeFormatType; // 日期选择器是否显示时分秒
 
   fileUploadTitle?: string;
   fileUploadMaxCount?: number;
@@ -97,13 +100,13 @@ export interface FormItemOption {
   rules?: SelfRule[]; // 校验规则，设置字段的校验逻辑
   colspan?: number; // 格栅布局宽度
 
-  attribute?: Attribute; // 其他属性
+  attribute?: ItemAttribute; // 其他属性
 
   parentId?: number;
   children?: FormItemOption[];
 }
 
 interface DragType {
-  CREATE: "create";
-  MOVE: "move";
+  CREATE: 'create';
+  MOVE: 'move';
 }

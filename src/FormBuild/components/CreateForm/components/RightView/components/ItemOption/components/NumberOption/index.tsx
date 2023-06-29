@@ -2,7 +2,7 @@
 import React, { useContext, useEffect, useMemo } from "react";
 import { Form, Input, Select, InputNumber } from "antd";
 import {
-  Attribute,
+  ItemAttribute,
   FormItemOption,
 } from "../../../../../../../../methods/types";
 import FormItem from "../../../../../../../../methods/FormItem";
@@ -42,7 +42,7 @@ function NumberOption() {
     data?.setOption(option);
   };
 
-  const onAttribute = (attribute: Attribute) => {
+  const onAttribute = (attribute: ItemAttribute) => {
     data?.pushAttribute(attribute);
   };
 
@@ -52,7 +52,7 @@ function NumberOption() {
         <Form.Item label="最小值" name="min">
           <InputNumber />
         </Form.Item>
-        <Form.Item label="最小值" name="max">
+        <Form.Item label="最大值" name="max">
           <InputNumber />
         </Form.Item>
         <Form.Item label="默认值" name="defaultValue">

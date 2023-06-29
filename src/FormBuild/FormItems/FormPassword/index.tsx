@@ -1,11 +1,11 @@
 /* eslint-disable */
-import React, { useContext } from "react";
-import PropTypes from "prop-types";
-import { Form, Input } from "antd";
-import FormItem from "../../methods/FormItem";
-import context from "../../methods/context";
+import React, { useContext } from 'react';
+import PropTypes from 'prop-types';
+import { Form, Input } from 'antd';
+import FormItem from '../../methods/FormItem';
+import context from '../../methods/context';
 
-import "./index.less";
+import './index.less';
 
 function FormPassword({ data }: { data: FormItem }) {
   const modules = useContext(context);
@@ -17,13 +17,13 @@ function FormPassword({ data }: { data: FormItem }) {
       name={data.name}
       label={data.label}
       required={data.required}
-      initialValue={defaultValue}
+      initialValue={modules.mode === 'view' ? defaultValue : undefined}
       rules={data.rules.map((item) => {
         let pattern;
         try {
           pattern = item.pattern ? new RegExp(item.pattern) : undefined;
         } catch (e) {
-          console.log("正则表达式格式错误");
+          console.log('正则表达式格式错误');
         }
         return {
           required: item.required,

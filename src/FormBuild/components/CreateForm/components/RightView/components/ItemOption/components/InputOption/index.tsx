@@ -2,7 +2,7 @@
 import React, { useContext, useEffect, useMemo } from "react";
 import { Form, Input, InputNumber } from "antd";
 import {
-  Attribute,
+  ItemAttribute,
   FormItemOption,
 } from "../../../../../../../../methods/types";
 import FormItem from "../../../../../../../../methods/FormItem";
@@ -42,7 +42,7 @@ function InputOption() {
     data?.setOption(option);
   };
 
-  const onAttribute = (attribute: Attribute) => {
+  const onAttribute = (attribute: ItemAttribute) => {
     data?.pushAttribute(attribute);
   };
 

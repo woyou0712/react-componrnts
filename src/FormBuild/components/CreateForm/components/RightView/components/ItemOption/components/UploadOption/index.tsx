@@ -1,7 +1,7 @@
 /* eslint-disable */
 import React, { useContext, useEffect, useMemo } from "react";
 import { Form, InputNumber, Input } from "antd";
-import { Attribute } from "../../../../../../../../methods/types";
+import { ItemAttribute } from "../../../../../../../../methods/types";
 import FormItem from "../../../../../../../../methods/FormItem";
 import context from "../../../../../../../../methods/context";
 
@@ -26,7 +26,7 @@ function UploadOption() {
     }
   }, [modules]);
 
-  const onAttribute = (attribute: Attribute) => {
+  const onAttribute = (attribute: ItemAttribute) => {
     data?.pushAttribute(attribute);
   };
 
