@@ -1,7 +1,7 @@
 /* eslint-disable */
 import React, { useContext, useEffect, useState } from "react";
 import { useDrop } from "react-dnd";
-import { Row, Col, Form, Space, Button } from "antd";
+import { Row, Col, Form } from "antd";
 import MoveItem from "./components/MoveItem";
 import context from "../../../../methods/context";
 import FormItem from "../../../../methods/FormItem";
@@ -37,46 +37,22 @@ function CenterView() {
     setChildren([...modules.form.children]);
   }, [modules]);
   return (
-    <div className="create-form-center-body">
-      <div className="create-form-center-head">
-        <Space>
-          <Button
-            danger
-            onClick={() => {
-              modules.form.removeChildren();
-            }}
-          >
-            清空
-          </Button>
-
-          <Button
-            type="primary"
-            onClick={() => {
-              const option = modules.form.getOption();
-              console.log(option);
-            }}
-          >
-            保存
-          </Button>
-        </Space>
-      </div>
-      <div className="create-form-center-view" ref={drop}>
-        <Form
-          size={formSize}
-          labelAlign={labelAlign}
-          labelCol={{ span: labelCol }}
-          colon={colon}
-          layout={layout}
-        >
-          <Row>
-            {children.map((item) => (
-              <Col span={item.colspan} key={item.id}>
-                <MoveItem data={item} />
-              </Col>
-            ))}
-          </Row>
-        </Form>
-      </div>
+    <div className="create-form-center-view" ref={drop}>
+      <Form
+        size={formSize}
+        labelAlign={labelAlign}
+        labelCol={{ span: labelCol }}
+        colon={colon}
+        layout={layout}
+      >
+        <Row>
+          {children.map((item) => (
+            <Col span={item.colspan} key={item.id}>
+              <MoveItem data={item} />
+            </Col>
+          ))}
+        </Row>
+      </Form>
     </div>
   );
 }

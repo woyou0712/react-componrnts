@@ -5,7 +5,7 @@ import "./App.less";
 function App() {
   return (
     <div className="App">
-      <FormBuild mode="create" />
+      <FormBuild mode="view" />
     </div>
   );
 }
