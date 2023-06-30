@@ -69,6 +69,7 @@ function ItemOption() {
       name: _data.name,
       label: _data.label,
       queryParams: _data.queryParams,
+      showTable: _data.showTable,
       disabled: _data.disabled,
       required: _data.required,
       colspan: _data.colspan,
@@ -106,6 +107,9 @@ function ItemOption() {
           <Slider min={6} max={24} />
         </Form.Item>
         <Form.Item label="查询条件" name="queryParams" valuePropName="checked">
+          <Switch />
+        </Form.Item>
+        <Form.Item label="表格展示" name="showTable" valuePropName="checked">
           <Switch />
         </Form.Item>
         <Form.Item label="禁用" name="disabled" valuePropName="checked">

@@ -80,6 +80,16 @@ export default class FormItem {
     this._queryParams = v;
     this._onChange();
   }
+
+  private _showTable = true; // 是否在表格展示
+  get showTable() {
+    return this._showTable;
+  }
+  set showTable(v) {
+    this._showTable = v;
+    this._onChange();
+  }
+
   private _disabled = false; // 是否禁用
   get disabled() {
     return this._disabled;
@@ -194,6 +204,9 @@ export default class FormItem {
     if (option.queryParams !== undefined) {
       this.queryParams = option.queryParams;
     }
+    if (option.showTable !== undefined) {
+      this.showTable = option.showTable;
+    }
     if (option.disabled !== undefined) {
       this.disabled = option.disabled;
     }
@@ -232,6 +245,7 @@ export default class FormItem {
       dataType: this.dataType,
       maxLength: this.maxLength,
       queryParams: this.queryParams,
+      showTable: this.showTable,
       disabled: this.disabled,
       required: this.required,
       rules: this.rules,

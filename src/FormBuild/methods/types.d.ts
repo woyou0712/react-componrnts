@@ -77,7 +77,7 @@ export interface ItemAttribute {
   addonBefore?: string;
   addonAfter?: string;
 
-  datetime?: TimeFormatType; // 日期选择器是否显示时分秒
+  datetime?: TimeFormatType; // 日期、时间选择器是否显示时分秒
 
   fileUploadTitle?: string;
   fileUploadMaxCount?: number;
@@ -89,11 +89,12 @@ export interface FormItemOption {
   id?: number;
   index?: number;
   type?: FormItemType; // 组件类型
-  name?: string; // 字段名称
-  label?: string; // 组件名称
+  name?: string; // 字段编码
+  label?: string; // 字段名称
   dataType?: DataType; // 数据类型
   maxLength?: number; // 最大输入数量
   queryParams?: boolean; // 是否用于查询入参
+  showTable?:boolean; // 是否在表格展示
   disabled?: boolean; // 是否禁用
 
   required?: boolean; // 必填样式
