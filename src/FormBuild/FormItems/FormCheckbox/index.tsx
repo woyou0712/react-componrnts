@@ -40,7 +40,7 @@ function FormCheckbox({ data }: { data: FormItem }) {
       rules={data.rules}
       initialValue={modules.mode === 'view' && defaultValue ? [defaultValue] : undefined}
     >
-      <Checkbox.Group>
+      <Checkbox.Group disabled={data.disabled || modules.form.disabled}>
         {_options.map((item, index) => {
           const key = `r-${index}`;
           return (

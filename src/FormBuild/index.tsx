@@ -18,7 +18,7 @@ function FormBuild({
   onBack,
   onSubmit,
 }: {
-  mode: "view" | "create";
+  mode?: "view" | "create";
   onChange?: (data: FormModule) => void;
   onBack?: () => void; // 预览页面取消事件
   onSubmit?: (data: FormModule) => void; // 预览页面提交事件

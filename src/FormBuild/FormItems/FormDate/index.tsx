@@ -23,7 +23,7 @@ function FormDate({ data }: { data: FormItem }) {
       <DatePicker
         showTime={datetime ? { format: datetime } : undefined}
         format={datetime ? `YYYY-MM-DD ${datetime}` : undefined}
-        placeholder={placeholder as string}
+        placeholder={placeholder ? (placeholder as string) : ''}
         disabled={data.disabled || form.disabled}
       />
     </Form.Item>

@@ -22,7 +22,7 @@ function FormDates({ data }: { data: FormItem }) {
       <DatePicker.RangePicker
         showTime={datetime ? { format: datetime } : undefined}
         format={datetime ? `YYYY-MM-DD ${datetime}` : undefined}
-        placeholder={placeholder as [string, string]}
+        placeholder={placeholder ? (placeholder as [string, string]) : ['', '']}
         disabled={data.disabled || form.disabled}
       />
     </Form.Item>

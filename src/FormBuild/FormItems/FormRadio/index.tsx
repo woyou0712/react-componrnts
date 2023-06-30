@@ -40,7 +40,7 @@ function FormRadio({ data }: { data: FormItem }) {
       rules={data.rules}
       initialValue={modules.mode === 'view' ? defaultValue : undefined}
     >
-      <Radio.Group>
+      <Radio.Group disabled={data.disabled || modules.form.disabled}>
         {_options.map((item, index) => {
           const key = `r-${index}`;
           return (
