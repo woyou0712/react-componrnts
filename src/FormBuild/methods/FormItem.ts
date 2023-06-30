@@ -2,7 +2,6 @@ import {
   FormItemOption,
   FormItemType,
   DataType,
-  InputValueType,
   SelfRule,
   ItemAttribute,
 } from "./types.d";
