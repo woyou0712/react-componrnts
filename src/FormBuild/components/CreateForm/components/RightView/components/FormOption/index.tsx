@@ -56,7 +56,7 @@ function FormOption() {
           </Radio.Group>
         </Form.Item>
         <Form.Item label="标签宽度" name="labelCol">
-          <Slider min={1} max={24} />
+          <Slider min={0} max={24} />
         </Form.Item>
         <Form.Item label="禁用表单" name="disabled" valuePropName="checked">
           <Switch />

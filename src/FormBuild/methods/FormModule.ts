@@ -53,7 +53,7 @@ export default class FormModule {
     this._labelAlign = v;
     this._onChange();
   }
-  private _labelWidth = 3; // 标签宽度
+  private _labelWidth = 0; // 标签宽度
   get labelCol() {
     return this._labelWidth;
   }

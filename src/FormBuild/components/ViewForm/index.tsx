@@ -30,7 +30,7 @@ function ViewForm({
         form={formData}
         size={formSize}
         labelAlign={labelAlign}
-        labelCol={{ span: labelCol }}
+        labelCol={labelCol !== 0 ? { span: labelCol } : undefined}
         colon={colon}
         layout={layout}
       >
