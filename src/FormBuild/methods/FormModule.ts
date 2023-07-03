@@ -100,6 +100,12 @@ export default class FormModule {
   }
 
   private _allItemMap: { [key: string]: FormItem } = {};
+  get allItemMap() {
+    return this._allItemMap;
+  }
+  set allItemMap(v) {
+    this._allItemMap = v;
+  }
   /** ========================= 基础属性 End ========================= */
 
   /** ========================= 编辑中的属性 Start ========================= */
@@ -165,7 +171,7 @@ export default class FormModule {
     const findItems = (children: FormItem[]) => {
       children.forEach((item) => {
         item.onChange(() => this._onChange());
-        this._allItemMap[item.id] = item;
+        this.allItemMap[item.id] = item;
         if (item.children && item.children.length) {
           findItems(item.children);
         }
@@ -250,7 +256,7 @@ export default class FormModule {
     // 创建元素
     const item = new FormItem(option);
     item.onChange(() => this._onChange());
-    this._allItemMap[item.id] = item;
+    this.allItemMap[item.id] = item;
 
     if (this.hoveringItem) {
       children.splice(
@@ -314,16 +320,16 @@ export default class FormModule {
 
   findItem(id?: number) {
     if (!id) return undefined;
-    return this._allItemMap[id];
+    return this.allItemMap[id];
   }
 
   removeItem(id: number) {
-    const item = this._allItemMap[id];
+    const item = this.allItemMap[id];
     if (!item) return this;
     // 从视图删除该项
     let parent: FormItem | FormModule = this;
     if (item.parentId) {
-      parent = this._allItemMap[item.parentId];
+      parent = this.allItemMap[item.parentId];
     }
     const children = [...parent.children];
     children.splice(item.index, 1);
@@ -331,8 +337,8 @@ export default class FormModule {
     // 从map表中移除（包括子元素），释放内存
     const delChildren = (_children: FormItem[]) => {
       _children.forEach((_item) => {
-        if (this._allItemMap[_item.id]) {
-          delete this._allItemMap[_item.id];
+        if (this.allItemMap[_item.id]) {
+          delete this.allItemMap[_item.id];
           if (this.activeItem && this.activeItem.id === _item.id) {
             this.activeItem = undefined;
           }
@@ -346,13 +352,13 @@ export default class FormModule {
     if (this.activeItem && this.activeItem.id === item.id) {
       this.activeItem = undefined;
     }
-    delete this._allItemMap[id];
+    delete this.allItemMap[id];
     this._onChange();
     return this;
   }
 
   removeChildren() {
-    this._allItemMap = {};
+    this.allItemMap = {};
     this.children = [];
     return this;
   }
