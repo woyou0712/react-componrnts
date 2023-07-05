@@ -1,10 +1,4 @@
-import {
-  FormItemOption,
-  FormItemType,
-  DataType,
-  SelfRule,
-  ItemAttribute,
-} from "./types.d";
+import { FormItemOption, FormItemType, DataType, SelfRule, ItemAttribute } from './types.d';
 
 export default class FormItem {
   private static _changeTimeout?: NodeJS.Timeout; // 监听防抖定时器
@@ -27,7 +21,7 @@ export default class FormItem {
     this._onChange();
   }
 
-  private _type: FormItemType = "input"; // 组件类型
+  private _type: FormItemType = 'input'; // 组件类型
   get type() {
     return this._type;
   }
@@ -53,7 +47,7 @@ export default class FormItem {
     this._label = v;
     this._onChange();
   }
-  private _dataType: DataType = "string"; // 数据类型
+  private _dataType: DataType = 'string'; // 数据类型
   get dataType() {
     return this._dataType;
   }
@@ -104,11 +98,15 @@ export default class FormItem {
   }
   set required(v) {
     this._required = v;
+    let message = '请选择';
+    if (['input', 'textarea', 'password', 'password', 'number'].indexOf(this.type) !== -1) {
+      message = '请输入';
+    }
     if (v && !this._rules.length) {
-      this._rules = [{ required: v }];
+      this._rules = [{ required: v, message }];
     } else {
       this._rules.forEach((rule, i) => {
-        this._rules[i] = Object.assign(rule, { required: v });
+        this._rules[i] = Object.assign(rule, { required: v, message: rule.message || message });
       });
     }
 
@@ -170,11 +168,8 @@ export default class FormItem {
   constructor(option?: FormItemOption) {
     if (option) this.setOption(option);
     // 选择组件，初始化数据来源
-    if (
-      ["select", "cascader", "radio", "checkbox"].indexOf(this._type) !== -1 &&
-      !this.attribute.dataOrigin
-    ) {
-      this.attribute.dataOrigin = "self";
+    if (['select', 'cascader', 'radio', 'checkbox'].indexOf(this._type) !== -1 && !this.attribute.dataOrigin) {
+      this.attribute.dataOrigin = 'self';
     }
   }
 
