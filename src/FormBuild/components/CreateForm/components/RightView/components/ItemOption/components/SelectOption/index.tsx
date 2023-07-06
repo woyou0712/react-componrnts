@@ -19,8 +19,8 @@ function SelectOption() {
     const attribute = {
       multiple: _data.attribute.multiple,
       options: _data.attribute.options,
-      dataOrigin: _data.attribute.dataOrigin,
-      origin: _data.attribute.origin,
+      optionsOriginType: _data.attribute.optionsOriginType,
+      optionsOrigin: _data.attribute.optionsOrigin,
       connectTable: _data.attribute.connectTable,
       connectCol: _data.attribute.connectCol,
       placeholder: _data.attribute.placeholder,
@@ -43,15 +43,15 @@ function SelectOption() {
         <Form.Item label="多选" name="multiple" valuePropName="checked">
           <Switch />
         </Form.Item>
-        <Form.Item label="数据来源" name="dataOrigin">
+        <Form.Item label="数据来源" name="optionsOriginType">
           <Radio.Group buttonStyle="solid">
             <Radio.Button value="self">自定义</Radio.Button>
             <Radio.Button value="join">关联表</Radio.Button>
             <Radio.Button value="import">外部数据</Radio.Button>
           </Radio.Group>
         </Form.Item>
-        {((dataOrigin) => {
-          switch (dataOrigin) {
+        {((optionsOriginType) => {
+          switch (optionsOriginType) {
             case "self":
               return (
                 <Form.Item label="选项" name="options">
@@ -60,7 +60,7 @@ function SelectOption() {
               );
             case "import":
               return (
-                <Form.Item label="数据源" name="origin">
+                <Form.Item label="数据源" name="optionsOrigin">
                   <DataOrigin />
                 </Form.Item>
               );
@@ -78,7 +78,7 @@ function SelectOption() {
             default:
               break;
           }
-        })(data.attribute.dataOrigin)}
+        })(data.attribute.optionsOriginType)}
         <Form.Item label="默认值" name="defaultValue">
           <Input />
         </Form.Item>

@@ -12,26 +12,26 @@ import { getFieldNames } from '../../methods/utils';
 
 function FormSelect({ data }: { data: FormItem }) {
   const modules = useContext(context);
-  const { multiple, options, dataOrigin, origin, placeholder, defaultValue } = data.attribute;
+  const { multiple, options, optionsOriginType, optionsOrigin, placeholder, defaultValue } = data.attribute;
   const [_options, setOptions] = useState<OptionType[]>([]);
   const [fieldNames, setFieldNames] = useState<FieldNames>();
 
   useEffect(() => {
-    if (dataOrigin === 'self') {
+    if (optionsOriginType === 'self') {
       // 自定义选项
       if (options) {
         setOptions((options as OptionType[]).map((item) => ({ ...item })));
       } else {
         setOptions([]);
       }
-    } else if (dataOrigin === 'import') {
+    } else if (optionsOriginType === 'import') {
       // 网络源
       setOptions([
         { label: '外部数据1', value: 1 },
         { label: '外部数据2', value: 2 },
       ]);
-      setFieldNames(getFieldNames(origin));
-    } else if (dataOrigin === 'join') {
+      setFieldNames(getFieldNames(optionsOrigin));
+    } else if (optionsOriginType === 'join') {
       setOptions([
         { label: '其他表数据1', value: 1 },
         { label: '其他表数据2', value: 2 },

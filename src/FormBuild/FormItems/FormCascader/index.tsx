@@ -12,7 +12,7 @@ import './index.less';
 
 function FormCascader({ data }: { data: FormItem }) {
   const modules = useContext(context);
-  const { multiple, origin, placeholder, defaultValue } = data.attribute;
+  const { multiple, optionsOrigin, placeholder, defaultValue } = data.attribute;
   const [_options, setOptions] = useState<OptionType[]>([]);
   const [fieldNames, setFieldNames] = useState<FieldNames>();
 
@@ -36,7 +36,7 @@ function FormCascader({ data }: { data: FormItem }) {
         ],
       },
     ]);
-    setFieldNames(getFieldNames(origin));
+    setFieldNames(getFieldNames(optionsOrigin));
   }, []);
 
   return (

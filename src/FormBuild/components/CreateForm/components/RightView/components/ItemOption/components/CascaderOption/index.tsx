@@ -15,7 +15,7 @@ function CascaderOption() {
   const setValues = (_data: FormItem) => {
     const attribute = {
       multiple: _data.attribute.multiple,
-      origin: _data.attribute.origin,
+      optionsOrigin: _data.attribute.optionsOrigin,
       placeholder: _data.attribute.placeholder,
       defaultValue: _data.attribute.defaultValue,
     };
@@ -38,7 +38,7 @@ function CascaderOption() {
         <Form.Item label="多选" name="multiple" valuePropName="checked">
           <Switch />
         </Form.Item>
-        <Form.Item label="数据源" name="origin">
+        <Form.Item label="数据源" name="optionsOrigin">
           <DataOrigin />
         </Form.Item>
         <Form.Item label="默认值" name="defaultValue">

@@ -1,10 +1,11 @@
-import { Rule } from 'rc-field-form/lib/interface';
-import { Moment } from 'moment';
-import { SizeType } from 'antd/lib/config-provider/SizeContext';
+import { Rule } from "rc-field-form/lib/interface";
+import { Moment } from "moment";
+import { SizeType } from "antd/lib/config-provider/SizeContext";
 
-export type LabelAlign = 'left' | 'right';
-export type FormLayout = 'horizontal' | 'vertical';
-export type TimeFormatType = 'HH' | 'HH:mm' | 'HH:mm:ss';
+export type LabelAlign = "left" | "right";
+export type FormLayout = "horizontal" | "vertical";
+export type TimeFormatType = "HH" | "HH:mm" | "HH:mm:ss";
+export type DataOriginType = "self" | "import" | "join";
 
 export type SelfRule = Rule & {
   required?: boolean;
@@ -18,7 +19,7 @@ export type OptionType = {
   children?: OptionType[];
 };
 
-export type OriginType = {
+export type OptionsOrigin = {
   url?: string;
   value?: string;
   label?: string;
@@ -39,37 +40,39 @@ export interface FormModuleOption {
 }
 
 export type FormItemType =
-  | 'input'
-  | 'textarea'
-  | 'password'
-  | 'number'
-  | 'select'
-  | 'cascader'
-  | 'radio'
-  | 'checkbox'
-  | 'switch'
-  | 'slider'
-  | 'time'
-  | 'times'
-  | 'date'
-  | 'dates'
-  | 'rate'
-  | 'upload'
-  | 'block'
-  | 'button';
+  | "input"
+  | "textarea"
+  | "password"
+  | "number"
+  | "select"
+  | "cascader"
+  | "radio"
+  | "checkbox"
+  | "switch"
+  | "slider"
+  | "time"
+  | "times"
+  | "date"
+  | "dates"
+  | "rate"
+  | "upload"
+  | "block"
+  | "button";
 
 export type ItemTypeOption = { type: FormItemType; label: string };
 
-export type DataType = 'number' | 'datetime' | 'string' | 'float';
+export type DataType = "number" | "datetime" | "string" | "float";
 export type InputValueType = string | number | Moment | boolean;
 export interface ItemAttribute {
   placeholder?: string | string[]; // 占位提示符
   defaultValue?: InputValueType | InputValueType[]; // 默认值
+  defaultValueOriginType?: DataOriginType; // 默认值数据源类型
+  defaultValueOrigin?: DataOriginType; // 默认值数据源配置项
 
   multiple?: boolean;
   options?: OptionType[];
-  dataOrigin?: 'self' | 'import' | 'join';
-  origin?: OriginType;
+  optionsOriginType?: DataOriginType; // 选项数据源类型
+  optionsOrigin?: OptionsOrigin; // 选项数据源配置项
   connectTable?: string; // 关联表
   connectCol?: string; // 关联字段
   min?: number;
@@ -94,7 +97,7 @@ export interface FormItemOption {
   dataType?: DataType; // 数据类型
   maxLength?: number; // 最大输入数量
   queryParams?: boolean; // 是否用于查询入参
-  showTable?:boolean; // 是否在表格展示
+  showTable?: boolean; // 是否在表格展示
   disabled?: boolean; // 是否禁用
 
   required?: boolean; // 必填样式
@@ -108,6 +111,6 @@ export interface FormItemOption {
 }
 
 interface DragType {
-  CREATE: 'create';
-  MOVE: 'move';
+  CREATE: "create";
+  MOVE: "move";
 }

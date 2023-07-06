@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { Input } from "antd";
-import { OriginType } from "../../../../../../../../methods/types";
+import { OptionsOrigin } from "../../../../../../../../methods/types";
 
 import "./index.less";
 
@@ -10,10 +10,10 @@ function DataOrigin({
   value,
   onChange,
 }: {
-  value?: OriginType;
-  onChange?: (data: OriginType) => void;
+  value?: OptionsOrigin;
+  onChange?: (data: OptionsOrigin) => void;
 }) {
-  const [_value, setValue] = useState<OriginType>({
+  const [_value, setValue] = useState<OptionsOrigin>({
     url: "",
     value: "",
     label: "",
@@ -26,7 +26,7 @@ function DataOrigin({
   }, [value]);
 
   return (
-    <div className="form-data-origin">
+    <div className="form-data-optionsOrigin">
       <Input
         placeholder="数据源地址URL"
         value={_value.url}

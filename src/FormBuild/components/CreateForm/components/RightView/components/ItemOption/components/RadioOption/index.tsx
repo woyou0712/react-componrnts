@@ -17,8 +17,8 @@ function RadioOption() {
     const attribute = {
       defaultValue: _data.attribute.defaultValue,
       options: _data.attribute.options,
-      dataOrigin: _data.attribute.dataOrigin,
-      origin: _data.attribute.origin,
+      optionsOriginType: _data.attribute.optionsOriginType,
+      optionsOrigin: _data.attribute.optionsOrigin,
     };
     formA.setFieldsValue(attribute);
   };
@@ -35,14 +35,14 @@ function RadioOption() {
   return data ? (
     <div className="RadioOption">
       <Form form={formA} labelCol={{ span: 6 }} onValuesChange={onAttribute}>
-        <Form.Item label="数据来源" name="dataOrigin">
+        <Form.Item label="数据来源" name="optionsOriginType">
           <Radio.Group buttonStyle="solid">
             <Radio.Button value="self">自定义</Radio.Button>
             <Radio.Button value="import">外部数据</Radio.Button>
           </Radio.Group>
         </Form.Item>
-        {((dataOrigin) => {
-          switch (dataOrigin) {
+        {((optionsOriginType) => {
+          switch (optionsOriginType) {
             case "self":
               return (
                 <Form.Item label="选项" name="options">
@@ -51,14 +51,14 @@ function RadioOption() {
               );
             case "import":
               return (
-                <Form.Item label="数据源" name="origin">
+                <Form.Item label="数据源" name="optionsOrigin">
                   <DataOrigin />
                 </Form.Item>
               );
             default:
               break;
           }
-        })(data.attribute.dataOrigin)}
+        })(data.attribute.optionsOriginType)}
         <Form.Item label="默认值" name="defaultValue">
           <Input />
         </Form.Item>

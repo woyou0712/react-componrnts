@@ -11,11 +11,11 @@ import './index.less';
 
 function FormRadio({ data }: { data: FormItem }) {
   const modules = useContext(context);
-  const { options, dataOrigin, origin, defaultValue } = data.attribute;
+  const { options, optionsOriginType, optionsOrigin, defaultValue } = data.attribute;
   const [_options, setOptions] = useState<OptionType[]>([]);
 
   useEffect(() => {
-    if (dataOrigin === 'self') {
+    if (optionsOriginType === 'self') {
       // 自定义选项
       if (options) {
         setOptions((options as OptionType[]).map((item) => ({ ...item })));
@@ -28,7 +28,7 @@ function FormRadio({ data }: { data: FormItem }) {
         { label: '外部数据1', value: 1 },
         { label: '外部数据2', value: 2 },
       ]);
-      // getFieldNames(origin);
+      // getFieldNames(optionsOrigin);
     }
   }, [modules]);
 

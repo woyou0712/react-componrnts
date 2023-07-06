@@ -1,11 +1,11 @@
 import moment, { Moment } from 'moment';
-import { OriginType } from './types.d';
+import { OptionsOrigin } from './types.d';
 
 /**
  * 获取选项配置项
  */
-export function getFieldNames(params?: OriginType) {
-  const option: OriginType = {
+export function getFieldNames(params?: OptionsOrigin) {
+  const option: OptionsOrigin = {
     value: 'value',
     label: 'label',
     children: 'children',
