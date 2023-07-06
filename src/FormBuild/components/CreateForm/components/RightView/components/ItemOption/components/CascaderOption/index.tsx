@@ -4,7 +4,7 @@ import { Form, Input, Switch } from "antd";
 import { ItemAttribute } from "../../../../../../../../methods/types";
 import FormItem from "../../../../../../../../methods/FormItem";
 import context from "../../../../../../../../methods/context";
-import DataOrigin from "../DataOrigin";
+import OptionsDataOrigin from "../../../OptionsDataOrigin";
 
 import "./index.less";
 
@@ -39,7 +39,7 @@ function CascaderOption() {
           <Switch />
         </Form.Item>
         <Form.Item label="数据源" name="optionsOrigin">
-          <DataOrigin />
+          <OptionsDataOrigin />
         </Form.Item>
         <Form.Item label="默认值" name="defaultValue">
           <Input />

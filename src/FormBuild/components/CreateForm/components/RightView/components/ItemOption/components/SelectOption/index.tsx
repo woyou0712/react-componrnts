@@ -1,13 +1,11 @@
 /* eslint-disable */
 import React, { useContext, useEffect, useMemo } from "react";
 import PropTypes from "prop-types";
-import { Form, Input, Radio, Select, Switch, InputNumber } from "antd";
-import { FormItemOption } from "../../../../../../../../methods/types";
+import { Form, Input, Radio, Select, Switch } from "antd";
 import FormItem from "../../../../../../../../methods/FormItem";
 import context from "../../../../../../../../methods/context";
-import Options from "../Options";
-import DataOrigin from "../DataOrigin";
-import RulesOptions from "../RulesOptions";
+import Options from "../../../Options";
+import OptionsDataOrigin from "../../../OptionsDataOrigin";
 
 import "./index.less";
 
@@ -61,7 +59,7 @@ function SelectOption() {
             case "import":
               return (
                 <Form.Item label="数据源" name="optionsOrigin">
-                  <DataOrigin />
+                  <OptionsDataOrigin />
                 </Form.Item>
               );
             case "join":

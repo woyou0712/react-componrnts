@@ -1,12 +1,13 @@
 /* eslint-disable */
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { Input } from "antd";
-import { OptionsOrigin } from "../../../../../../../../methods/types";
+import { OptionsOrigin } from "../../../../../../methods/types";
+import context from "../../../../../../methods/context";
 
 import "./index.less";
 
-function DataOrigin({
+function OptionsDataOrigin({
   value,
   onChange,
 }: {
@@ -19,6 +20,10 @@ function DataOrigin({
     label: "",
     children: "",
   });
+
+  const modules = useContext(context);
+  const type = modules.form.activeItem ? modules.form.activeItem.type : null;
+
   useEffect(() => {
     if (value) {
       setValue({ ...value });
@@ -59,23 +64,25 @@ function DataOrigin({
           if (onChange) onChange(_value);
         }}
       />
-      <Input
-        placeholder="子级字段名(默认取children)"
-        style={{ marginTop: "10px" }}
-        value={_value.children}
-        onChange={(e) => {
-          _value.children = e.target.value;
-        }}
-        onBlur={() => {
-          if (onChange) onChange(_value);
-        }}
-      />
+      {type === "cascader" ? (
+        <Input
+          placeholder="子级字段名(默认取children)"
+          style={{ marginTop: "10px" }}
+          value={_value.children}
+          onChange={(e) => {
+            _value.children = e.target.value;
+          }}
+          onBlur={() => {
+            if (onChange) onChange(_value);
+          }}
+        />
+      ) : null}
     </div>
   );
 }
 
-DataOrigin.propTypes = {};
+OptionsDataOrigin.propTypes = {};
 
-DataOrigin.defaultProps = {};
+OptionsDataOrigin.defaultProps = {};
 
-export default DataOrigin;
+export default OptionsDataOrigin;

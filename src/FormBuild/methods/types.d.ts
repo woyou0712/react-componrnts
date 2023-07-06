@@ -20,10 +20,17 @@ export type OptionType = {
 };
 
 export type OptionsOrigin = {
-  url?: string;
-  value?: string;
-  label?: string;
-  children?: string;
+  url?: string; // 数据源地址
+  value?: string; // 值取字段
+  label?: string; // 名称取字段
+  children?: string; // 子级取字段
+};
+
+export type ValueOrigin = {
+  url?: string; // 数据源地址
+  keys?: string; // 取字段key(例如：data.userInfo.name)
+  joinItem?: string; // 关联其他组件
+  paramsKey?: string; // 参数key
 };
 
 export interface FormModuleOption {
@@ -67,7 +74,7 @@ export interface ItemAttribute {
   placeholder?: string | string[]; // 占位提示符
   defaultValue?: InputValueType | InputValueType[]; // 默认值
   defaultValueOriginType?: DataOriginType; // 默认值数据源类型
-  defaultValueOrigin?: DataOriginType; // 默认值数据源配置项
+  defaultValueOrigin?: ValueOrigin; // 默认值数据源配置项
 
   multiple?: boolean;
   options?: OptionType[];

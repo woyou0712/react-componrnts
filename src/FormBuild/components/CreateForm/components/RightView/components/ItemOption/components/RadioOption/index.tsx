@@ -4,8 +4,8 @@ import { Form, Input, Radio } from "antd";
 import { ItemAttribute } from "../../../../../../../../methods/types";
 import FormItem from "../../../../../../../../methods/FormItem";
 import context from "../../../../../../../../methods/context";
-import Options from "../Options";
-import DataOrigin from "../DataOrigin";
+import Options from "../../../Options";
+import OptionsDataOrigin from "../../../OptionsDataOrigin";
 
 import "./index.less";
 
@@ -52,7 +52,7 @@ function RadioOption() {
             case "import":
               return (
                 <Form.Item label="数据源" name="optionsOrigin">
-                  <DataOrigin />
+                  <OptionsDataOrigin />
                 </Form.Item>
               );
             default:
