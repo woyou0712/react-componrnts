@@ -38,6 +38,7 @@ function OptionsDataOrigin({
           value={_value.url}
           onChange={(e) => {
             _value.url = e.target.value;
+            setValue({ ..._value });
           }}
           onBlur={() => {
             if (onChange) onChange(_value);
@@ -50,6 +51,7 @@ function OptionsDataOrigin({
           value={_value.value}
           onChange={(e) => {
             _value.value = e.target.value;
+            setValue({ ..._value });
           }}
           onBlur={() => {
             if (onChange) onChange(_value);
@@ -62,6 +64,7 @@ function OptionsDataOrigin({
           value={_value.label}
           onChange={(e) => {
             _value.label = e.target.value;
+            setValue({ ..._value });
           }}
           onBlur={() => {
             if (onChange) onChange(_value);
@@ -75,6 +78,7 @@ function OptionsDataOrigin({
             value={_value.children}
             onChange={(e) => {
               _value.children = e.target.value;
+              setValue({ ..._value });
             }}
             onBlur={() => {
               if (onChange) onChange(_value);
