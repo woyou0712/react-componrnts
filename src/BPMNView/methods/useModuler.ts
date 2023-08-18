@@ -1,4 +1,7 @@
 import { useEffect, useState } from "react";
+import Canvas from "diagram-js/lib/core/Canvas";
+import Modeling from "bpmn-js/lib/features/modeling/Modeling";
+import ElementFactory from "bpmn-js/lib/features/modeling/ElementFactory";
 import Moduler from "./Moduler";
 import { createBpmnXml } from "./utils";
 import Palette from "../components/Tools";
@@ -7,13 +10,29 @@ export default function useModuler(
   container: string | HTMLDivElement,
   defaultXml?: string
 ) {
-  const [bpmn, setBpmn] = useState<Moduler>();
+  const [module, setModule] = useState<Moduler>();
+  const [canvas, setCanvas] = useState<Canvas>();
+  const [elementFactory, setElementFactory] = useState<ElementFactory>();
+  const [modeling, setModeling] = useState<Modeling>();
 
   useEffect(() => {
-    const _bpmn = new Moduler({ container, additionalModules: [Palette] });
-    _bpmn.renderXML(defaultXml || createBpmnXml());
-    setBpmn(_bpmn);
-  }, []);
+    if (!container) return;
+    const _module = new Moduler({ container, additionalModules: [Palette] });
+    setModule(_module);
+  }, [container]);
+  useEffect(() => {
+    if (!module) return;
+    module.renderXML(defaultXml || createBpmnXml());
+  }, [module, defaultXml]);
+  useEffect(() => {
+    if (!module) return;
+    const _e = module.get<ElementFactory>("elementFactory");
+    setElementFactory(_e);
+    const _c = module.get<Canvas>("canvas");
+    setCanvas(_c);
+    const _m = module.get<Modeling>("modeling");
+    setModeling(_m);
+  }, [module]);
 
-  return bpmn;
+  return { module, canvas, elementFactory, modeling };
 }

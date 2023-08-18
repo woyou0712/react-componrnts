@@ -1,9 +1,9 @@
 /* eslint-disable */
 import React from "react";
 import PropTypes from "prop-types";
+import useModuler from "./methods/useModuler";
 
 import "./index.less";
-import useModuler from "./methods/useModuler";
 
 function BPMNView() {
   const bpmn = useModuler("#bpmn-view");
