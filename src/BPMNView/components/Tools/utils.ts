@@ -1,6 +1,6 @@
 import { getDi } from "bpmn-js/lib/util/ModelUtil";
 import { assign } from "min-dash";
-import { Create, ElementFactory, Translate } from "./types.d";
+import { Create, ElementFactory, PaletteEntry, Translate } from "./types.d";
 
 /**
  * 创建节点类型对象
@@ -14,7 +14,7 @@ export function createAction(
   create: Create,
   translate: Translate,
   options?: any
-) {
+): PaletteEntry {
   var shortType = type.replace(/^bpmn:/, "");
   const createListener = (event: Event) => {
     var shape = elementFactory.createShape(assign({ type: type }, options));
@@ -26,13 +26,11 @@ export function createAction(
 
     create.start(event, shape, undefined);
   };
-  return {
+  const result: any = {
     group: group,
     className: className,
     title: title || translate("Create {type}", { type: shortType }),
-    action: {
-      dragstart: createListener,
-      click: createListener,
-    },
+    action: { dragstart: createListener, click: createListener },
   };
+  return result;
 }

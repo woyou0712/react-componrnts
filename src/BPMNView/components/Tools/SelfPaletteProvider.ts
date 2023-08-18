@@ -1,12 +1,8 @@
 import PaletteProvider from "bpmn-js/lib/features/palette/PaletteProvider";
-
-import { assign } from "min-dash";
 import SelfPalette from "./SelfPalette";
-import { getDi } from "bpmn-js/lib/util/ModelUtil";
 
 import {
   SpaceTool,
-  Event,
   PaletteEntries,
   Translate,
   Create,
@@ -77,7 +73,7 @@ export default class SelfPaletteProvider extends PaletteProvider {
       this.elementFactory,
       this.create,
       this.translate
-    ) as any;
+    );
     // 添加服务节点
     newData["create.service-task"] = createAction(
       "bpmn:ServiceTask",
@@ -87,7 +83,7 @@ export default class SelfPaletteProvider extends PaletteProvider {
       this.elementFactory,
       this.create,
       this.translate
-    ) as any;
+    );
     // 修改title属性
     newData["hand-tool"].title = "激活移动工具";
     newData["lasso-tool"].title = "激活锁套工具";
