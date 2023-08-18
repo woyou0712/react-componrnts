@@ -9,14 +9,13 @@ import { assign } from "min-dash";
 import SelfPalette from "./SelfPalette";
 import { getDi } from "bpmn-js/lib/util/ModelUtil";
 import { Event } from "diagram-js/lib/core/EventBus";
+import { Translate } from "./types.d";
 type Create = import("diagram-js/lib/features/create/Create").default;
 type ElementFactory = import("diagram-js/lib/core/ElementFactory").default;
 type LassoTool = import("diagram-js/lib/features/lasso-tool/LassoTool").default;
 type HandTool = import("diagram-js/lib/features/hand-tool/HandTool").default;
 type GlobalConnect =
   import("diagram-js/lib/features/global-connect/GlobalConnect").default;
-type Translate =
-  typeof import("diagram-js/lib/i18n/translate/translate").default;
 
 export default class SelfPaletteProvider extends PaletteProvider {
   private palette: SelfPalette;
