@@ -1,18 +1,19 @@
-import ContextPadProvider, {
+import ContextPadProvider from "bpmn-js/lib/features/context-pad/ContextPadProvider";
+import {
   ContextPadConfig,
   ContextPadEntries,
-} from "bpmn-js/lib/features/context-pad/ContextPadProvider";
-import { Injector } from "didi";
-import { Element } from "bpmn-js/lib/model/Types";
-import EventBus from "diagram-js/lib/core/EventBus";
-import ContextPad from "diagram-js/lib/features/context-pad/ContextPad";
-import Modeling from "bpmn-js/lib/features/modeling/Modeling";
-import ElementFactory from "bpmn-js/lib/features/modeling/ElementFactory";
-import Connect from "diagram-js/lib/features/connect/Connect";
-import Create from "diagram-js/lib/features/create/Create";
-import PopupMenu from "diagram-js/lib/features/popup-menu/PopupMenu";
-import Rules from "diagram-js/lib/features/rules/Rules";
-import { Translate } from "./types.d";
+  Translate,
+  Element,
+  EventBus,
+  ContextPad,
+  Modeling,
+  ElementFactory,
+  Injector,
+  Connect,
+  Create,
+  PopupMenu,
+  Rules,
+} from "./types.d";
 
 export default class SelfContextPadProvider extends ContextPadProvider {
   constructor(

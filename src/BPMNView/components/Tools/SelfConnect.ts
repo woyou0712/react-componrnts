@@ -1,12 +1,7 @@
-import EventBus from "diagram-js/lib/core/EventBus";
 import Connect from "diagram-js/lib/features/connect/Connect";
-import Dragging from "diagram-js/lib/features/dragging/Dragging";
-import Modeling from "diagram-js/lib/features/modeling/Modeling";
-import Rules from "diagram-js/lib/features/rules/Rules";
-import { Element } from "diagram-js/lib/model/Types";
-import { Point } from "diagram-js/lib/util/Types";
-import { isNil, isObject } from "min-dash";
+import { isObject } from "min-dash";
 import { getMid } from "diagram-js/lib/layout/LayoutUtil";
+import { EventBus, Dragging, Modeling, Rules, Element, Point } from "./types.d";
 
 export default class SelfConnect extends Connect {
   private eventBus: EventBus;

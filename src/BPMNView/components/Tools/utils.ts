@@ -1,21 +1,23 @@
 import { getDi } from "bpmn-js/lib/util/ModelUtil";
-import Create from "diagram-js/lib/features/create/Create";
 import { assign } from "min-dash";
-import { Translate } from "./types.d";
+import { Create, ElementFactory, Translate } from "./types.d";
 
+/**
+ * 创建节点类型对象
+ */
 export function createAction(
   type: string,
   group: string,
   className: string,
   title: string,
+  elementFactory: ElementFactory,
   create: Create,
+  translate: Translate,
   options?: any
 ) {
   var shortType = type.replace(/^bpmn:/, "");
   const createListener = (event: Event) => {
-    var shape = this.elementFactory.createShape(
-      assign({ type: type }, options)
-    );
+    var shape = elementFactory.createShape(assign({ type: type }, options));
 
     if (options) {
       var di = getDi(shape as any);
@@ -27,7 +29,7 @@ export function createAction(
   return {
     group: group,
     className: className,
-    title: title || this.translate("Create {type}", { type: shortType }),
+    title: title || translate("Create {type}", { type: shortType }),
     action: {
       dragstart: createListener,
       click: createListener,

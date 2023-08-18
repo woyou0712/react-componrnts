@@ -1,7 +1,5 @@
-import { Shape } from "bpmn-js/lib/model/Types";
-import EventBus from "diagram-js/lib/core/EventBus";
 import RuleProvider from "diagram-js/lib/features/rules/RuleProvider";
-import Rules from "diagram-js/lib/features/rules/Rules";
+import { EventBus, Rules, Shape } from "./types.d";
 
 export default class SelfRuleProvider extends RuleProvider {
   constructor(eventBus: EventBus, rules: Rules) {
