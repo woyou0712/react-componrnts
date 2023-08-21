@@ -1,10 +1,8 @@
 import { useEffect, useState } from "react";
-import Canvas from "diagram-js/lib/core/Canvas";
-import Modeling from "bpmn-js/lib/features/modeling/Modeling";
-import ElementFactory from "bpmn-js/lib/features/modeling/ElementFactory";
 import Moduler from "./Moduler";
 import { createBpmnXml } from "./utils";
 import Palette from "../components/Tools";
+import { Canvas, Modeling, ElementFactory } from "./types";
 
 export default function useModuler(
   container: string | HTMLDivElement,

@@ -7,6 +7,7 @@ export type EventBus = import("diagram-js/lib/core/EventBus").default;
 export type { Event } from "diagram-js/lib/core/EventBus";
 export type ContextPad =
   import("diagram-js/lib/features/context-pad/ContextPad").default;
+export type { ContextPadTarget } from "diagram-js/lib/features/context-pad/ContextPad";
 export type Modeling = import("bpmn-js/lib/features/modeling/Modeling").default;
 export type ElementFactory =
   import("bpmn-js/lib/modeling/ElementFactory").default;
@@ -14,7 +15,7 @@ export type Connect = import("diagram-js/lib/features/connect/Connect").default;
 export type Create = import("diagram-js/lib/features/create/Create").default;
 export type PopupMenu =
   import("diagram-js/lib/features/popup-menu/PopupMenu").default;
-export type Canvas = any;
+export type Canvas = import("diagram-js/lib/core/Canvas").default;
 export type Rules = import("diagram-js/lib/features/rules/Rules").default;
 export type Element = import("bpmn-js/lib/model/Types").Element;
 export type ModdleElement = import("bpmn-js/lib/model/Types").ModdleElement;

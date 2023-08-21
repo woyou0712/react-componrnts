@@ -14,7 +14,7 @@ import {
   PopupMenu,
   Rules,
   Shape,
-} from "./types.d";
+} from "../../methods/types";
 import { createAction } from "./utils";
 
 export default class SelfContextPadProvider extends ContextPadProvider {
@@ -74,9 +74,8 @@ export default class SelfContextPadProvider extends ContextPadProvider {
   }
 
   getContextPadEntries(shape: Shape): ContextPadEntries {
-    console.log(shape);
     const result = super.getContextPadEntries(shape);
-
+    console.log(result);
     const newData = Object.assign({}, result);
     delete newData["replace"]; // 删除扳手（转换类型）工具
     delete newData["append.end-event"]; // 删除结束节点

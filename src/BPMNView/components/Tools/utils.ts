@@ -1,6 +1,6 @@
 import { getDi } from "bpmn-js/lib/util/ModelUtil";
 import { assign } from "min-dash";
-import { Create, ElementFactory, PaletteEntry, Translate } from "./types.d";
+import { Create, ElementFactory, PaletteEntry, Translate } from "../../methods/types";
 
 /**
  * 创建节点类型对象

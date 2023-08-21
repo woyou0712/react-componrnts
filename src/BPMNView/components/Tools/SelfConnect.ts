@@ -1,7 +1,7 @@
 import Connect from "diagram-js/lib/features/connect/Connect";
 import { isObject } from "min-dash";
 import { getMid } from "diagram-js/lib/layout/LayoutUtil";
-import { EventBus, Dragging, Modeling, Rules, Element, Point } from "./types.d";
+import { EventBus, Dragging, Modeling, Rules, Element, Point } from "../../methods/types";
 
 export default class SelfConnect extends Connect {
   private eventBus: EventBus;

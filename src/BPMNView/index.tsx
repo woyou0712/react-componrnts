@@ -8,9 +8,7 @@ import "./index.less";
 function BPMNView() {
   const bpmn = useModuler("#bpmn-view");
 
-  return <section id="bpmn-view">
-    
-  </section>;
+  return <section id="bpmn-view"></section>;
 }
 
 BPMNView.propTypes = {};

@@ -10,7 +10,7 @@ import {
   LassoTool,
   HandTool,
   GlobalConnect,
-} from "./types.d";
+} from "../../methods/types";
 import { createAction } from "./utils";
 
 export default class SelfPaletteProvider extends PaletteProvider {

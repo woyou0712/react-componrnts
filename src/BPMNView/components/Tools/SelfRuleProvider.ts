@@ -1,5 +1,5 @@
 import RuleProvider from "diagram-js/lib/features/rules/RuleProvider";
-import { EventBus, Rules, Shape } from "./types.d";
+import { EventBus, Rules, Shape } from "../../methods/types";
 
 export default class SelfRuleProvider extends RuleProvider {
   constructor(eventBus: EventBus, rules: Rules) {
