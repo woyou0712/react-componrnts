@@ -73,16 +73,16 @@ export default class SelfContextPadProvider extends ContextPadProvider {
   }
 
   getContextPadEntries(shape: Shape): ContextPadEntries {
+    console.log(shape);
     const result = super.getContextPadEntries(shape);
-    console.log(result);
     const newData = Object.assign({}, result);
     delete newData["replace"]; // 删除扳手（转换类型）工具
     delete newData["append.end-event"]; // 删除结束节点
     delete newData["append.intermediate-event"]; // 删除中间事件节点
     delete newData["append.append-task"]; // 删除空白的任务节点
     delete newData["append.text-annotation"]; // 删除文本注释节点
-    // 不是结束节点，在节点工具上添加任务和抄送节点
-    if (shape.type !== "bpmn:EndEvent") {
+    // 结束节点和边节点不需要添加任务和抄送节点
+    if (["bpmn:SequenceFlow", "bpmn:EndEvent"].indexOf(shape.type) === -1) {
       newData["append.append-user-task"] = appendAction(
         "bpmn:UserTask",
         "model",

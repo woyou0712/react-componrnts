@@ -64,6 +64,8 @@ export default class SelfPaletteProvider extends PaletteProvider {
     delete newData["create.intermediate-event"];
     delete newData["create.subprocess-expanded"];
     delete newData["create.task"];
+    delete newData["global-connect-tool"];
+    delete newData["space-tool"];
     // 添加用户节点
     newData["create.user-task"] = createAction(
       "bpmn:UserTask",
@@ -87,8 +89,6 @@ export default class SelfPaletteProvider extends PaletteProvider {
     // 修改title属性
     newData["hand-tool"].title = "激活移动工具";
     newData["lasso-tool"].title = "激活锁套工具";
-    newData["space-tool"].title = "激活空间工具";
-    newData["global-connect-tool"].title = "激活全局连接工具";
 
     newData["create.start-event"].title = "创建开始节点";
     newData["create.end-event"].title = "创建结束节点";
