@@ -3,7 +3,6 @@ import {
   ContextPadConfig,
   ContextPadEntries,
   Translate,
-  Element,
   EventBus,
   ContextPad,
   Modeling,
@@ -15,7 +14,7 @@ import {
   Rules,
   Shape,
 } from "../../methods/types";
-import { appendAction, createAction } from "./utils";
+import { appendAction } from "./utils";
 
 export default class SelfContextPadProvider extends ContextPadProvider {
   private config: ContextPadConfig;
