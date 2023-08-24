@@ -22,3 +22,37 @@ export function createBpmnXml() {
   const xml = createXml(newID, newName);
   return xml;
 }
+
+export function readFile(fn: (v: string | ArrayBuffer) => void) {
+  const ipt = document.createElement("input");
+  ipt.addEventListener("change", (e) => {
+    const file: File = (e.target as any).files[0];
+    const reader = new FileReader();
+    reader.onload = (t) => {
+      const value = t.target.result;
+      fn(value);
+      document.body.removeChild(ipt);
+    };
+    reader.readAsText(file);
+  });
+  ipt.setAttribute("type", "file");
+  ipt.style.display = "none";
+  document.body.appendChild(ipt);
+  ipt.click();
+}
+
+export function downloadFile(text, filename = `${Date.now()}.bpmn`) {
+  const element = document.createElement("a");
+  element.setAttribute(
+    "href",
+    `data:text/plain;charset=utf-8,${encodeURIComponent(text)}`
+  );
+  element.setAttribute("download", filename);
+
+  element.style.display = "none";
+  document.body.appendChild(element);
+
+  element.click();
+
+  document.body.removeChild(element);
+}

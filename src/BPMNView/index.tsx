@@ -2,13 +2,23 @@
 import React from "react";
 import PropTypes from "prop-types";
 import useModuler from "./methods/useModuler";
+import context from "./methods/context";
+import Toolbar from "./components/Toolbar";
 
 import "./index.less";
 
-function BPMNView() {
-  const bpmn = useModuler("#bpmn-view");
+const { Provider } = context;
 
-  return <section id="bpmn-view"></section>;
+function BPMNView() {
+  const modulers = useModuler("#bpmn-view");
+
+  return (
+    <Provider value={modulers}>
+      <section id="bpmn-view">
+        <Toolbar />
+      </section>
+    </Provider>
+  );
 }
 
 BPMNView.propTypes = {};

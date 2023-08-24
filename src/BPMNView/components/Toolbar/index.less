@@ -1,0 +1,24 @@
+.bpmn-toolbar {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  z-index: 1;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  .toolbar-body {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    box-shadow: 0 2px 6px 0 #aaa;
+    border-radius: 4px;
+    overflow: hidden;
+    & + .toolbar-body {
+      margin-left: 20px;
+    }
+    .toolbar-item {
+      padding: 5px 10px;
+      background-color: #fff;
+    }
+  }
+}
