@@ -6,6 +6,7 @@ import context from "./methods/context";
 import Toolbar from "./components/Toolbar";
 
 import "./index.less";
+import Panel from "./components/Panel";
 
 const { Provider } = context;
 
@@ -16,6 +17,7 @@ function BPMNView() {
     <Provider value={modulers}>
       <section id="bpmn-view">
         <Toolbar />
+        <Panel />
       </section>
     </Provider>
   );

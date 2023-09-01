@@ -8,29 +8,35 @@ export default function useModuler(
   container: string | HTMLDivElement,
   defaultXml?: string
 ) {
-  const [module, setModule] = useState<Moduler>();
-  const [canvas, setCanvas] = useState<Canvas>();
-  const [elementFactory, setElementFactory] = useState<ElementFactory>();
-  const [modeling, setModeling] = useState<Modeling>();
+  const [result, setResult] = useState<{
+    module?: Moduler;
+    canvas?: Canvas;
+    elementFactory?: ElementFactory;
+    modeling?: Modeling;
+  }>({
+    module: undefined,
+    canvas: undefined,
+    elementFactory: undefined,
+    modeling: undefined,
+  });
 
   useEffect(() => {
     if (!container) return;
-    const _module = new Moduler({ container, additionalModules: [Palette] });
-    setModule(_module);
+    const module = new Moduler({ container, additionalModules: [Palette] });
+    module.renderXML(defaultXml || createBpmnXml()).then(() => {
+      setResult({ ...result, module });
+    });
   }, [container]);
-  useEffect(() => {
-    if (!module) return;
-    module.renderXML(defaultXml || createBpmnXml());
-  }, [module, defaultXml]);
-  useEffect(() => {
-    if (!module) return;
-    const _e = module.get<ElementFactory>("elementFactory");
-    setElementFactory(_e);
-    const _c = module.get<Canvas>("canvas");
-    setCanvas(_c);
-    const _m = module.get<Modeling>("modeling");
-    setModeling(_m);
-  }, [module]);
 
-  return { module, canvas, elementFactory, modeling };
+  useEffect(() => {
+    if (!result.module) return;
+    const elementFactory = result.module.get<ElementFactory>("elementFactory");
+    const canvas = result.module.get<Canvas>("canvas");
+    const modeling = result.module.get<Modeling>("modeling");
+    setResult({ ...result, elementFactory, canvas, modeling });
+  }, [result.module]);
+
+  result.module?.onChange(() => setResult({ ...result }));
+
+  return result;
 }

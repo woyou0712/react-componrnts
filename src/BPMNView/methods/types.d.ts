@@ -43,3 +43,8 @@ export type {
 } from "bpmn-js/lib/features/context-pad/ContextPadProvider";
 export type { Shape } from "bpmn-js/lib/model/Types";
 export type { Point } from "diagram-js/lib/util/Types";
+export type { BaseViewerOptions } from "bpmn-js/lib/Viewer";
+export interface InternalEvent {
+  newSelection: Shape[];
+  oldSelection: Shape[];
+}

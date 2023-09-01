@@ -27,7 +27,7 @@ function Toolbar() {
           className="toolbar-item"
           onClick={() => {
             readFile(".bpmn,.xml").then((xml) => {
-              module.importXML(xml as string);
+              module.renderXML(xml as string);
             });
           }}
         >
@@ -37,7 +37,11 @@ function Toolbar() {
           className="toolbar-item"
           onClick={() => {
             module.saveXML().then(({ xml }) => {
-              downloadFile(xml);
+              const definitions = module.getDefinitions();
+              downloadFile(
+                xml,
+                `${definitions?.rootElements[0]?.name || Date.now()}.bpmn`
+              );
             });
           }}
         >
