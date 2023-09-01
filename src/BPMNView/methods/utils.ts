@@ -23,22 +23,32 @@ export function createBpmnXml() {
   return xml;
 }
 
-export function readFile(fn: (v: string | ArrayBuffer) => void) {
-  const ipt = document.createElement("input");
-  ipt.addEventListener("change", (e) => {
-    const file: File = (e.target as any).files[0];
-    const reader = new FileReader();
-    reader.onload = (t) => {
-      const value = t.target.result;
-      fn(value);
-      document.body.removeChild(ipt);
-    };
-    reader.readAsText(file);
+export function readFile(accept?: string): Promise<string | ArrayBuffer> {
+  return new Promise((resolve, reject) => {
+    const ipt = document.createElement("input");
+    if (accept) {
+      ipt.setAttribute("accept", accept);
+    }
+    ipt.addEventListener("change", (e) => {
+      try {
+        const file: File = (e.target as any).files[0];
+        const reader = new FileReader();
+        reader.onload = (t) => {
+          const value = t.target.result;
+          resolve(value);
+          document.body.removeChild(ipt);
+        };
+        reader.readAsText(file);
+      } catch (e) {
+        reject(e);
+        document.body.removeChild(ipt);
+      }
+    });
+    ipt.setAttribute("type", "file");
+    ipt.style.display = "none";
+    document.body.appendChild(ipt);
+    ipt.click();
   });
-  ipt.setAttribute("type", "file");
-  ipt.style.display = "none";
-  document.body.appendChild(ipt);
-  ipt.click();
 }
 
 export function downloadFile(text, filename = `${Date.now()}.bpmn`) {
