@@ -9,21 +9,39 @@ section.bpmn-panel-body {
   top: 0;
   right: 0;
   box-shadow: -2px 0 6px 0 #ccc;
+  overflow: hidden;
+  transition: 0.3s;
+
+  &.hidden {
+    width: 44px;
+    .bpmn-panel-title {
+      .title-open-box {
+        padding: 12px;
+        display: block;
+        position: absolute;
+        height: 100%;
+        left: 0;
+        top: 0;
+        z-index: 1;
+        background-color: #fff;
+        .title-open {
+          transform: rotate(180deg);
+        }
+      }
+    }
+  }
 
   .bpmn-panel-title {
     width: @width;
-    height: 44px;
-    line-height: 43px;
+    height: 45px;
+    line-height: 44px;
     font-size: 16px;
     font-weight: 700;
     padding-right: 20px;
     border-bottom: 1px solid #ddd;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
     .title-open-box {
-      width: 43px;
-      height: 43px;
+      width: 44px;
+      height: 44px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -33,11 +51,14 @@ section.bpmn-panel-body {
       }
       .title-open {
         width: 20px;
+        height: 20px;
+        transition: 0.3s;
       }
     }
     .title-text {
       display: flex;
       align-items: center;
+      float: right;
       img {
         width: 20px;
         margin-right: 5px;
@@ -50,5 +71,38 @@ section.bpmn-panel-body {
     height: ~"calc(100% - 44px)";
     padding: 10px 20px;
     overflow-y: auto;
+
+    div.bpmn-form {
+      width: 100%;
+      div.bpmn-form-item {
+        width: 100%;
+        height: 40px;
+        line-height: 40px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        div.bpmn-form-label {
+          width: 80px;
+          text-align: right;
+        }
+        div.bpmn-form-data {
+          width: ~"calc(100% - 80px)";
+          padding-right: 10px;
+          input {
+            width: 100%;
+            border: 1px solid #ddd;
+            box-shadow: none;
+            outline: none;
+            height: 30px;
+            line-height: 28px;
+            padding: 0 10px;
+            border-radius: 4px;
+            &:focus {
+              border-color: #888;
+            }
+          }
+        }
+      }
+    }
   }
 }
